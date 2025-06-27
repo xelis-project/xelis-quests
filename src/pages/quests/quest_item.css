@@ -1,0 +1,66 @@
+.quest-item {
+    background-color: rgb(15, 15, 15);
+    width: 18rem;
+    transition: translate .25s;
+}
+
+.quest-item:hover {
+    translate: 0 1%;
+}
+
+.quest-item img {
+    object-fit: cover;
+    height: 9rem;
+    width: 100%;
+}
+
+.quest-item-content {
+    padding: 1rem;
+    display: flex;
+    gap: .5rem;
+    flex-direction: column;
+}
+
+.quest-item-name {
+    color: white;
+    font-weight: 700;
+}
+
+.quest-item-description {
+    color: white;
+    font-weight: 400;
+    opacity: .8;
+    font-size: .8rem;
+}
+
+.quest-item-action {
+    margin-top: .5rem;
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+.quest-item-details {
+    font-size: .7rem;
+    display: flex;
+    gap: .25rem;
+    flex-direction: column;
+    color: white;
+    opacity: .6;
+}
+
+.quest-item-start-btn {
+    background: rgba(2, 255, 207, 0.1);
+    border-radius: .25rem;
+    border: none;
+    padding: .5rem;
+    font-size: .9rem;
+    padding: .5rem 1rem;
+    color: #02FFCF;
+    cursor: pointer;
+    transition: translate .25s;
+}
+
+.quest-item-start-btn:hover {
+    translate: 3% 0;
+}

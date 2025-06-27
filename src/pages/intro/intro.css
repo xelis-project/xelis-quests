@@ -1,0 +1,110 @@
+.intro-page {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    flex-direction: column;
+    font-family: Helios;
+    overflow: hidden;
+    background-color: rgb(11, 11, 11);
+}
+
+.intro-page-xelis-logo {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    z-index: 1;
+    color: #02FFCF;
+    width: 5rem;
+}
+
+.intro-page-shape-1 {
+    position: absolute;
+    width: 40rem;
+    height: 20rem;
+    left: 0rem;
+    top: 0rem;
+
+    background: radial-gradient(50% 50% at 50% 50%, rgba(2, 255, 207, 0.24) 0%, rgba(2, 255, 207, 0) 100%);
+    filter: blur(300px);
+    transform: rotate(29.74deg);
+}
+
+.intro-page-shape-2 {
+    position: absolute;
+    width: 40rem;
+    height: 10rem;
+    left: 35rem;
+    top: 30rem;
+
+    background: radial-gradient(50% 50% at 50% 50%, rgba(2, 255, 207, 0.34) 0%, rgba(2, 255, 207, 0) 100%);
+    filter: blur(160px);
+    transform: rotate(29.74deg);
+}
+
+.intro-page-shape-3 {
+    position: absolute;
+    background-color: #02FFCF;
+    width: 100rem;
+    height: 100rem;
+    rotate: 50deg;
+}
+
+.intro-page-circuit {
+    position: absolute;
+    top: 0;
+    scale: 1.8;
+    opacity: .5;
+    transform-origin: top;
+}
+
+.intro-page-content {
+    display: flex;
+    gap: 1rem;
+    flex-direction: column;
+    max-width: 50rem;
+    align-items: start;
+    padding: 2rem;
+}
+
+.intro-page-title {
+    font-size: 3rem;
+    font-weight: 700;
+    color: #02FFCF;
+}
+
+.intro-page-description {
+    font-size: 1.8rem;
+    font-weight: 300;
+    color: white;
+}
+
+.intro-page-start-btn {
+    font-weight: bold;
+    font-size: 2rem;
+    background-color: #02FFCF;
+    border: .25rem solid transparent;
+    padding: .5rem 1rem;
+    cursor: pointer;
+    transition: color .25s, background-color .25s, translate .25s;
+    margin-top: 1rem;
+    color: black;
+    border-radius: .25rem;
+
+    display: flex;
+    gap: .5rem;
+    align-items: center;
+}
+
+.intro-page-start-btn svg {
+    width: 1.2rem;
+}
+
+.intro-page-start-btn:hover {
+    background-color: transparent;
+    border: .25rem solid #02FFCF;
+    color: #02FFCF;
+    translate: 5%;
+}

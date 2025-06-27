@@ -1,0 +1,51 @@
+[
+    {
+        "img": "/images/quest_img_1.webp",
+        "name": "What is XELIS Quest",
+        "description": "An interative platform to help users understand the XELIS network.",
+        "time": "3min",
+        "reward": "0.5 XEL"
+    },
+    {
+        "img": "/images/quest_img_2.webp",
+        "name": "What is XELIS all about?",
+        "description": "XELIS is a decentralized, open source, cryptocurrency network.",
+        "time": "5min",
+        "reward": "0.5 XEL"
+    },
+    {
+        "img": "/images/quest_img_3.webp",
+        "name": "XELIS is BlockDAG!",
+        "description": "XELIS uses a BlockDAG structure instead of a traditionnal linear blockchain.",
+        "time": "5min",
+        "reward": "0.5 XEL"
+    },
+    {
+        "img": "/images/quest_img_3.webp",
+        "name": "XELIS is BlockDAG!",
+        "description": "XELIS uses a BlockDAG structure instead of a traditionnal linear blockchain.",
+        "time": "5min",
+        "reward": "0.5 XEL"
+    },
+    {
+        "img": "/images/quest_img_3.webp",
+        "name": "XELIS is BlockDAG!",
+        "description": "XELIS uses a BlockDAG structure instead of a traditionnal linear blockchain.",
+        "time": "5min",
+        "reward": "0.5 XEL"
+    },
+    {
+        "img": "/images/quest_img_3.webp",
+        "name": "XELIS is BlockDAG!",
+        "description": "XELIS uses a BlockDAG structure instead of a traditionnal linear blockchain.",
+        "time": "5min",
+        "reward": "0.5 XEL"
+    },
+    {
+        "img": "/images/quest_img_3.webp",
+        "name": "XELIS is BlockDAG!",
+        "description": "XELIS uses a BlockDAG structure instead of a traditionnal linear blockchain.",
+        "time": "5min",
+        "reward": "0.5 XEL"
+    }
+]

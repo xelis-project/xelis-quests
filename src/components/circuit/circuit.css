@@ -1,0 +1,7 @@
+.top-circuit {
+    position: fixed;
+    top: 0;
+    scale: 1.8;
+    opacity: .5;
+    transform-origin: top;
+}
