@@ -1,11 +1,13 @@
 .quest-item {
     background-color: rgb(15, 15, 15);
     width: 18rem;
-    transition: translate .25s;
+    transition: translate .25s, scale .25s, box-shadow .25s;
 }
 
 .quest-item:hover {
     translate: 0 1%;
+    scale: 1.01;
+    box-shadow: 0 0 5rem black;
 }
 
 .quest-item img {
@@ -58,9 +60,11 @@
     padding: .5rem 1rem;
     color: #02FFCF;
     cursor: pointer;
-    transition: translate .25s;
+    transition: translate .25s, background-color .25s, color .25s;
 }
 
 .quest-item-start-btn:hover {
-    translate: 3% 0;
+    translate: 1% 0;
+    background-color: #02FFCF;
+    color: black;
 }
