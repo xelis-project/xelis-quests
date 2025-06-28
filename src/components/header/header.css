@@ -1,0 +1,58 @@
+.header {
+    position: fixed;
+    top: 0;
+    z-index: 1;
+    display: flex;
+    gap: 1rem;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    padding: 1rem;
+    box-sizing: border-box;
+    opacity: .4;
+    transition: opacity .25s;
+    background: linear-gradient(180deg, black, rgba(0, 0, 0, 0));
+    font-family: Helios;
+}
+
+.header:hover {
+    opacity: 1;
+}
+
+.header-logo {
+    width: 5rem;
+    color: #02FFCF;
+}
+
+.header-menu {
+    display: flex;
+    gap: 1rem;
+    flex-direction: row;
+}
+
+.header-menu button {
+    border: none;
+    background: transparent;
+    color: #02FFCF;
+    cursor: pointer;
+    font-size: 1.1rem;
+    transition: font-weight .25s;
+}
+
+.header-menu button:hover {
+    font-weight: bold;
+}
+
+.header-btn-settings {
+    width: 3rem;
+    height: 3rem;
+    border: none;
+    background: transparent;
+    color: #02FFCF;
+    cursor: pointer;
+    transition: rotate .25s;
+}
+
+.header-btn-settings:hover {
+    rotate: 45deg;
+}

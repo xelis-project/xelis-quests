@@ -4,18 +4,26 @@ import { QuestsPage } from "./pages/quests/quests";
 import 'reset-css/reset.css';
 import './font_types.css';
 import './app.css';
+import { Settings } from "./components/settings/settings";
+import { Header } from "./components/header/header";
 
 export class App {
     root: HTMLElement;
 
     intro_page: IntroPage;
     quests_page: QuestsPage;
+    settings: Settings;
 
     constructor(root: HTMLElement) {
         this.root = root;
 
+        const header = new Header(this);
+        header.anime_show();
+
         this.intro_page = new IntroPage(this);
         this.quests_page = new QuestsPage(this);
+
+        this.settings = new Settings(this);
 
         this.register_events();
         this.on_resize();
@@ -23,10 +31,18 @@ export class App {
         this.load_page();
     }
 
+    go_to(link: string) {
+        window.history.pushState(null, ``, link);
+        this.load_page();
+    }
+
     load_page() {
         const url = new URL(window.location.href);
 
-        switch(url.pathname) {
+        this.intro_page.hide();
+        this.quests_page.hide();
+
+        switch (url.pathname) {
             case "/":
                 this.intro_page.anime_show();
                 break;

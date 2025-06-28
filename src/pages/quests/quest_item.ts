@@ -23,7 +23,7 @@ export class QuestItem extends Component {
 
         this.element.addEventListener(`mouseenter`, () => {
             const audio_hover = new Audio(`/audio/sound_effects/btn_hover_2.mp3`);
-            audio_hover.volume = 0.1;
+            audio_hover.volume = 0.05;
             audio_hover.play();
         });
 

@@ -4,11 +4,10 @@ import { AppComponent } from '../../component/app_component';
 
 import './intro.css';
 import * as icons from '../../assets/icons';
-import { xelis_logo } from '../../assets/xelis';
 import { Circuit } from '../../components/circuit/circuit';
 
 export class IntroPage extends AppComponent {
-    xelis_logo_element: HTMLDivElement;
+
     title_element: HTMLDivElement;
     description_element: HTMLDivElement;
     btn_start_element: HTMLButtonElement;
@@ -19,11 +18,6 @@ export class IntroPage extends AppComponent {
 
     constructor(app: App) {
         super(app, `intro-page`);
-
-        this.xelis_logo_element = document.createElement(`div`);
-        this.xelis_logo_element.classList.add(`intro-page-xelis-logo`);
-        this.xelis_logo_element.innerHTML = xelis_logo();
-        this.element.appendChild(this.xelis_logo_element);
 
         this.circuit = new Circuit(this.element);
         this.circuit.show();
@@ -59,10 +53,11 @@ export class IntroPage extends AppComponent {
         this.btn_start_element.classList.add(`intro-page-start-btn`);
         this.btn_start_element.addEventListener(`click`, () => {
             this.anime_hide(() => {
-                this.app.quests_page.anime_show();
+                this.app.go_to(`/quests`);
+                //this.app.quests_page.anime_show();
             });
 
-            window.history.pushState(null, `Quests`, `/quests`);
+            //window.history.pushState(null, `Quests`, `/quests`);
 
             const audio_transition = new Audio('/audio/sound_effects/page_transition_1.mp3');
             audio_transition.playbackRate = 1.3;
@@ -120,14 +115,6 @@ export class IntroPage extends AppComponent {
             duration: 450,
             delay: 1000,
             ease: eases.outBack(2)
-        });
-
-        animate(this.xelis_logo_element, {
-            translateY: [`-100%`, 0],
-            opacity: [0, 1],
-            duration: 500,
-            delay: 1250,
-            ease: eases.inOutBack(2)
         });
 
         animate(this.shape_3_element, {
