@@ -2,12 +2,14 @@
     background-color: rgb(15, 15, 15);
     width: 18rem;
     transition: translate .25s, scale .25s, box-shadow .25s;
+    border: .25rem solid transparent;
 }
 
 .quest-item:hover {
     translate: 0 1%;
     scale: 1.01;
-    box-shadow: 0 0 5rem black;
+    box-shadow: 0 0 5rem rgba(2, 255, 207, 0.1);
+    border: .25rem solid #02FFCF;
 }
 
 .quest-item img {

@@ -15,6 +15,7 @@ export class IntroPage extends AppComponent {
 
     circuit: Circuit;
     shape_3_element: HTMLDivElement;
+    music: HTMLAudioElement;
 
     constructor(app: App) {
         super(app, `intro-page`);
@@ -62,9 +63,31 @@ export class IntroPage extends AppComponent {
             });
 
             window.history.pushState(null, `Quests`, `/quests`);
+
+            const audio_transition = new Audio('/audio/sound_effects/page_transition_1.mp3');
+            audio_transition.playbackRate = 1.3;
+            audio_transition.volume = 0.5;
+            audio_transition.play();
+
+            const audio_click = new Audio(`/audio/sound_effects/btn_click_1.mp3`);
+            audio_click.volume = 0.1;
+            audio_click.play();
+        });
+        this.btn_start_element.addEventListener(`mouseenter`, () => {
+            const audio_hover = new Audio(`/audio/sound_effects/btn_hover_1.mp3`);
+            audio_hover.volume = 0.1;
+            audio_hover.play();
         });
 
         content.appendChild(this.btn_start_element);
+
+        this.music = new Audio(`/audio/music/music_electric_synth_1.mp3`);
+        this.music.volume = 0.05;
+
+        this.element.addEventListener(`click`, () => {
+            //this.music.currentTime = 0;
+            this.music.play();
+        });
     }
 
     anime_show() {
@@ -125,5 +148,7 @@ export class IntroPage extends AppComponent {
                 complete();
             }
         });
+
+        this.music.pause();
     }
 }

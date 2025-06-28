@@ -21,6 +21,12 @@ export class QuestItem extends Component {
     constructor(parent: HTMLElement, props: QuestItemProps) {
         super(parent, `quest-item`);
 
+        this.element.addEventListener(`mouseenter`, () => {
+            const audio_hover = new Audio(`/audio/sound_effects/btn_hover_2.mp3`);
+            audio_hover.volume = 0.1;
+            audio_hover.play();
+        });
+
         this.image_element = document.createElement(`img`);
         this.image_element.src = props.img;
         this.image_element.classList.add(`quest-item-img`);
@@ -47,6 +53,12 @@ export class QuestItem extends Component {
         this.btn_start_element = document.createElement(`button`);
         this.btn_start_element.classList.add(`quest-item-start-btn`);
         this.btn_start_element.innerHTML = `Start Quest`;
+        this.btn_start_element.addEventListener(`mouseenter`, () => {
+            const audio_hover = new Audio(`/audio/sound_effects/btn_hover_1.mp3`);
+            audio_hover.volume = 0.1;
+            audio_hover.play();
+        });
+
         action_content.appendChild(this.btn_start_element);
 
         const details_content = document.createElement(`div`);
