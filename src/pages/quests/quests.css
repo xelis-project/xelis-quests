@@ -11,14 +11,6 @@
     background-color: rgb(11, 11, 11);
 }
 
-.quests-page-circuit {
-    position: absolute;
-    bottom: 0;
-    scale: 1.8;
-    opacity: .5;
-    transform-origin: bottom;
-}
-
 .quests-page-title {
     font-weight: 700;
     color: #02FFCF;

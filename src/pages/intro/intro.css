@@ -24,24 +24,24 @@
     position: absolute;
     width: 40rem;
     height: 20rem;
-    left: 0rem;
-    top: 0rem;
+    left: 0;
+    top: 0;
 
-    background: radial-gradient(50% 50% at 50% 50%, rgba(2, 255, 207, 0.24) 0%, rgba(2, 255, 207, 0) 100%);
+    background: radial-gradient(50% 50% at 50% 50%, rgba(2, 255, 207, 0.2) 0%, rgba(2, 255, 207, 0) 100%);
     filter: blur(300px);
-    transform: rotate(29.74deg);
+    transform: rotate(20deg);
 }
 
 .intro-page-shape-2 {
     position: absolute;
     width: 40rem;
-    height: 10rem;
-    left: 35rem;
-    top: 30rem;
+    height: 20rem;
+    bottom: -5rem;
+    right: -30%;
 
-    background: radial-gradient(50% 50% at 50% 50%, rgba(2, 255, 207, 0.34) 0%, rgba(2, 255, 207, 0) 100%);
-    filter: blur(160px);
-    transform: rotate(29.74deg);
+    background: radial-gradient(50% 50% at 50% 50%, rgba(2, 255, 207, 0.3) 0%, rgba(2, 255, 207, 0) 100%);
+    filter: blur(150px);
+    transform: rotate(20deg);
 }
 
 .intro-page-shape-3 {
@@ -50,14 +50,6 @@
     width: 100rem;
     height: 100rem;
     rotate: 50deg;
-}
-
-.intro-page-circuit {
-    position: absolute;
-    top: 0;
-    scale: 1.8;
-    opacity: .5;
-    transform-origin: top;
 }
 
 .intro-page-content {
