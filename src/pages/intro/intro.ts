@@ -54,10 +54,7 @@ export class IntroPage extends Component {
         this.btn_start_element.addEventListener(`click`, () => {
             this.anime_hide(() => {
                 this.app.go_to(`/quests`);
-                //this.app.quests_page.anime_show();
             });
-
-            //window.history.pushState(null, `Quests`, `/quests`);
 
             const audio_click = new Audio(`/audio/sound_effects/btn_click_1.mp3`);
             audio_click.volume = 0.1;
