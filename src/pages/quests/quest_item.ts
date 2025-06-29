@@ -24,8 +24,8 @@ export class QuestItem extends Component {
 
         this.element.addEventListener(`mouseenter`, () => {
             const audio_hover = new Audio(`/audio/sound_effects/btn_hover_2.mp3`);
-            audio_hover.volume = 0.05;
-            audio_hover.play();
+            audio_hover.volume = 0.1;
+            this.app.audio.play_audio(`sound_effect`, audio_hover);
         });
 
         this.image_element = document.createElement(`img`);
@@ -57,7 +57,7 @@ export class QuestItem extends Component {
         this.btn_start_element.addEventListener(`mouseenter`, () => {
             const audio_hover = new Audio(`/audio/sound_effects/btn_hover_1.mp3`);
             audio_hover.volume = 0.1;
-            audio_hover.play();
+            this.app.audio.play_audio(`sound_effect`, audio_hover);
         });
 
         action_content.appendChild(this.btn_start_element);
