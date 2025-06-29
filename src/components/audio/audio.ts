@@ -16,20 +16,20 @@ export class Audio {
     }
 
     play_audio(type: AudioType, audio: HTMLAudioElement) {
-        let volume = 1;
+        let type_volume = 1;
         switch (type) {
             case "music":
-                volume = this.music_volume;
+                type_volume = this.music_volume;
                 break;
             case 'sound_effect':
-                volume = this.music_volume;
+                type_volume = this.sound_effect_volume;
                 break;
             case 'voice':
-                volume = this.music_volume;
+                type_volume = this.voice_volume;
                 break;
         }
 
-        audio.volume = audio.volume * volume;
+        audio.volume = audio.volume * this.master_volume * type_volume;
         audio.play();
     }
 
