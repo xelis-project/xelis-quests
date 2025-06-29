@@ -47,6 +47,11 @@ export class QuestsPage extends AppComponent {
         this.show();
         this.register_events();
 
+        const audio_transition = new Audio('/audio/sound_effects/page_transition_1.mp3');
+        audio_transition.playbackRate = 1.4;
+        audio_transition.volume = 0.5;
+        this.app.audio.play_audio(`sound_effect`, audio_transition);
+
         animate(this.element, {
             opacity: [0, 1],
             duration: 2000

@@ -6,16 +6,20 @@ import './font_types.css';
 import './app.css';
 import { Settings } from "./components/settings/settings";
 import { Header } from "./components/header/header";
+import { Audio } from "./components/audio/audio";
 
 export class App {
     root: HTMLElement;
 
     intro_page: IntroPage;
     quests_page: QuestsPage;
+
     settings: Settings;
+    audio: Audio;
 
     constructor(root: HTMLElement) {
         this.root = root;
+        this.audio = new Audio();
 
         const header = new Header(this);
         header.anime_show();

@@ -34,7 +34,7 @@ export class Header extends AppComponent {
         this.btn_intro_element.addEventListener(`mouseenter`, () => {
             const audio_hover = new Audio(`/audio/sound_effects/btn_hover_3.mp3`);
             audio_hover.volume = 0.1;
-            audio_hover.play();
+            this.app.audio.play_audio(`sound_effect`, audio_hover);
         });
         menu_element.appendChild(this.btn_intro_element);
 
@@ -46,7 +46,7 @@ export class Header extends AppComponent {
         this.btn_quests_element.addEventListener(`mouseenter`, () => {
             const audio_hover = new Audio(`/audio/sound_effects/btn_hover_3.mp3`);
             audio_hover.volume = 0.1;
-            audio_hover.play();
+            this.app.audio.play_audio(`sound_effect`, audio_hover);
         });
         menu_element.appendChild(this.btn_quests_element);
 
@@ -54,16 +54,12 @@ export class Header extends AppComponent {
         this.btn_settings_element.innerHTML = icons.settings()
         this.btn_settings_element.classList.add(`header-btn-settings`);
         this.btn_settings_element.addEventListener(`click`, () => {
-            const audio_click = new Audio(`/audio/sound_effects/wrench_transition_1.mp3`);
-            audio_click.volume = 0.5;
-            audio_click.play();
-
             this.app.settings.anime_show();
         });
         this.btn_settings_element.addEventListener(`mouseenter`, () => {
             const audio_hover = new Audio(`/audio/sound_effects/btn_hover_1.mp3`);
             audio_hover.volume = 0.1;
-            audio_hover.play();
+            this.app.audio.play_audio(`sound_effect`, audio_hover);
         });
         this.element.appendChild(this.btn_settings_element);
     }

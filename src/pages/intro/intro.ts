@@ -59,19 +59,14 @@ export class IntroPage extends AppComponent {
 
             //window.history.pushState(null, `Quests`, `/quests`);
 
-            const audio_transition = new Audio('/audio/sound_effects/page_transition_1.mp3');
-            audio_transition.playbackRate = 1.3;
-            audio_transition.volume = 0.5;
-            audio_transition.play();
-
             const audio_click = new Audio(`/audio/sound_effects/btn_click_1.mp3`);
             audio_click.volume = 0.1;
-            audio_click.play();
+            this.app.audio.play_audio(`sound_effect`, audio_click);
         });
         this.btn_start_element.addEventListener(`mouseenter`, () => {
             const audio_hover = new Audio(`/audio/sound_effects/btn_hover_1.mp3`);
             audio_hover.volume = 0.1;
-            audio_hover.play();
+            this.app.audio.play_audio(`sound_effect`, audio_hover);
         });
 
         content.appendChild(this.btn_start_element);
@@ -82,11 +77,17 @@ export class IntroPage extends AppComponent {
         this.element.addEventListener(`click`, () => {
             //this.music.currentTime = 0;
             this.music.play();
+            //this.app.audio.play_audio(`music`, this.music);
         });
     }
 
     anime_show() {
         super.show();
+
+        const audio_transition = new Audio('/audio/sound_effects/page_transition_3.mp3');
+        audio_transition.playbackRate = 1;
+        audio_transition.volume = 0.5;
+        this.app.audio.play_audio(`sound_effect`, audio_transition);
 
         animate(this.element, {
             opacity: [0, 1],
