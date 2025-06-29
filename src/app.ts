@@ -65,7 +65,12 @@ export class App {
         this.set_font_size();
     }
 
+    on_pop_state = (e: PopStateEvent) => {
+        this.load_page();
+    }
+
     register_events() {
         window.addEventListener(`resize`, this.on_resize);
+        window.addEventListener(`popstate`, this.on_pop_state);
     }
 }
