@@ -1,12 +1,13 @@
 import { animate, eases, stagger, svg, utils } from "animejs";
-import { Component } from "../../component/component";
+import { Component } from "../../component";
 import { circuit } from '../../assets/circuit';
 
 import './circuit.css';
+import type { App } from "../../app";
 
 export class Circuit extends Component {
-    constructor(parent: HTMLElement) {
-        super(parent, `top-circuit`);
+    constructor(app: App, parent: HTMLElement) {
+        super(app, parent, `top-circuit`);
         this.element.innerHTML = circuit();
     }
 

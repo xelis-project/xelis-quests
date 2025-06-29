@@ -1,12 +1,12 @@
 import { animate, eases } from 'animejs';
 import type { App } from '../../app';
-import { AppComponent } from '../../component/app_component';
 
 import './intro.css';
 import * as icons from '../../assets/icons';
 import { Circuit } from '../../components/circuit/circuit';
+import { Component } from '../../component';
 
-export class IntroPage extends AppComponent {
+export class IntroPage extends Component {
 
     title_element: HTMLDivElement;
     description_element: HTMLDivElement;
@@ -17,9 +17,9 @@ export class IntroPage extends AppComponent {
     music: HTMLAudioElement;
 
     constructor(app: App) {
-        super(app, `intro-page`);
+        super(app, app.root, `intro-page`);
 
-        this.circuit = new Circuit(this.element);
+        this.circuit = new Circuit(app, this.element);
         this.circuit.show();
 
         const shape_1_element = document.createElement(`div`);

@@ -1,9 +1,10 @@
 import { animate, eases } from "animejs";
 import type { App } from "../../app";
-import { AppComponent } from "../../component/app_component";
+import { Component } from "../../component";
+
 import './settings.css';
 
-export class Settings extends AppComponent {
+export class Settings extends Component {
     btn_close: HTMLButtonElement;
 
     master_volume_slider: SettingsSlider;
@@ -12,7 +13,7 @@ export class Settings extends AppComponent {
     sound_effect_volume_slider: SettingsSlider;
 
     constructor(app: App) {
-        super(app, `settings`);
+        super(app, app.root, `settings`);
 
         this.btn_close = document.createElement(`button`);
         this.btn_close.classList.add(`settings-btn-close`);

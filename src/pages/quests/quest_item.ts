@@ -1,4 +1,5 @@
-import { Component } from "../../component/component";
+import type { App } from "../../app";
+import { Component } from "../../component";
 
 import './quest_item.css';
 
@@ -18,8 +19,8 @@ export class QuestItem extends Component {
     time_element: HTMLDivElement;
     reward_element: HTMLDivElement;
 
-    constructor(parent: HTMLElement, props: QuestItemProps) {
-        super(parent, `quest-item`);
+    constructor(app: App, parent: HTMLElement, props: QuestItemProps) {
+        super(app, parent, `quest-item`);
 
         this.element.addEventListener(`mouseenter`, () => {
             const audio_hover = new Audio(`/audio/sound_effects/btn_hover_2.mp3`);

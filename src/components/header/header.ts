@@ -1,12 +1,12 @@
 import { animate, eases } from "animejs";
 import type { App } from "../../app";
 import { xelis_logo } from "../../assets/xelis";
-import { AppComponent } from "../../component/app_component";
+import { Component } from "../../component";
 import * as icons from "../../assets/icons";
 
 import './header.css';
 
-export class Header extends AppComponent {
+export class Header extends Component {
     xelis_logo_element: HTMLDivElement;
 
     btn_intro_element: HTMLButtonElement;
@@ -15,7 +15,7 @@ export class Header extends AppComponent {
     btn_settings_element: HTMLButtonElement;
 
     constructor(app: App) {
-        super(app, `header`);
+        super(app, app.root, `header`);
 
         this.xelis_logo_element = document.createElement(`div`);
         this.xelis_logo_element.classList.add(`header-logo`);

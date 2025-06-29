@@ -1,13 +1,13 @@
-import { animate, eases, stagger, svg, utils } from "animejs";
+import { animate, eases, stagger } from "animejs";
 import type { App } from "../../app";
-import { AppComponent } from "../../component/app_component";
 import './quests.css';
 
 import quests from './quests.json';
 import { QuestItem } from "./quest_item";
 import { Circuit } from "../../components/circuit/circuit";
+import { Component } from "../../component";
 
-export class QuestsPage extends AppComponent {
+export class QuestsPage extends Component {
     title_element: HTMLDivElement;
     description_element: HTMLDivElement;
     quest_items: QuestItem[];
@@ -15,11 +15,11 @@ export class QuestsPage extends AppComponent {
     circuit: Circuit;
 
     constructor(app: App) {
-        super(app, "quests-page");
+        super(app, app.root, "quests-page");
 
         this.quest_items = [];
 
-        this.circuit = new Circuit(this.element);
+        this.circuit = new Circuit(app, this.element);
         this.circuit.show();
 
         this.title_element = document.createElement(`div`);
@@ -37,7 +37,7 @@ export class QuestsPage extends AppComponent {
         this.element.appendChild(content);
 
         quests.forEach((q) => {
-            const quest_item = new QuestItem(content, q);
+            const quest_item = new QuestItem(app, content, q);
             quest_item.show();
             this.quest_items.push(quest_item);
         });

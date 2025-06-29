@@ -1,9 +1,13 @@
+import type { App } from "./app";
+
 export class Component {
+    app: App;
     parent: HTMLElement;
     element: HTMLElement;
     visible: boolean;
 
-    constructor(parent: HTMLElement, classname: string) {
+    constructor(app: App, parent: HTMLElement, classname: string) {
+        this.app = app;
         this.parent = parent;
         this.element = document.createElement(`div`);
         this.element.classList.add(classname);
