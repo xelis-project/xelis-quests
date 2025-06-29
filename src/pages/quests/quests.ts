@@ -83,8 +83,18 @@ export class QuestsPage extends Component {
         });
     }
 
-    anime_hide() {
-
+    anime_hide(complete: () => void) {
+        animate(this.element, {
+            scale: [1, 2],
+            rotate: [`0`, `50deg`],
+            opacity: [1, 0],
+            duration: 500,
+            ease: eases.inCubic,
+            onComplete: () => {
+                super.hide();
+                complete();
+            }
+        });
     }
 
     on_wheel = (e: WheelEvent) => {

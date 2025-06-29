@@ -60,7 +60,14 @@ export class QuestItem extends Component {
             this.app.audio.play_audio(`sound_effect`, audio_hover);
         });
         this.btn_start_element.addEventListener(`click`, () => {
-            this.app.go_to(`/quest`);
+            const audio_transition = new Audio('/audio/sound_effects/page_transition_5.mp3');
+            audio_transition.playbackRate = 1.4;
+            audio_transition.volume = 0.5;
+            this.app.audio.play_audio(`sound_effect`, audio_transition);
+
+            this.app.quests_page.anime_hide(() => {
+                this.app.go_to(`/quest`);
+            });
         });
 
         action_content.appendChild(this.btn_start_element);
