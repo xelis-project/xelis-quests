@@ -1,19 +1,22 @@
 import { IntroPage } from "./pages/intro/intro";
 import { QuestsPage } from "./pages/quests/quests";
+import { Settings } from "./components/settings/settings";
+import { Header } from "./components/header/header";
+import { Audio } from "./components/audio/audio";
+import { QuestPage } from "./pages/quest/quest";
 
 import 'reset-css/reset.css';
 import './font_types.css';
 import './app.css';
-import { Settings } from "./components/settings/settings";
-import { Header } from "./components/header/header";
-import { Audio } from "./components/audio/audio";
 
 export class App {
     root: HTMLElement;
 
     intro_page: IntroPage;
     quests_page: QuestsPage;
+    quest_page: QuestPage;
 
+    header: Header;
     settings: Settings;
     audio: Audio;
 
@@ -21,13 +24,12 @@ export class App {
         this.root = root;
         this.audio = new Audio();
 
-        const header = new Header(this);
-        header.anime_show();
+        this.header = new Header(this);
+        this.settings = new Settings(this);
 
         this.intro_page = new IntroPage(this);
         this.quests_page = new QuestsPage(this);
-
-        this.settings = new Settings(this);
+        this.quest_page = new QuestPage(this);
 
         this.register_events();
         this.on_resize();
@@ -48,10 +50,16 @@ export class App {
 
         switch (url.pathname) {
             case "/":
+                this.header.anime_show();
                 this.intro_page.anime_show();
                 break;
             case "/quests":
+                this.header.anime_show();
                 this.quests_page.anime_show();
+                break;
+            case "/quest":
+                this.header.anime_hide();
+                this.quest_page.anime_show();
                 break;
         }
     }

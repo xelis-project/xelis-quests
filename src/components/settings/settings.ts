@@ -85,7 +85,7 @@ export class Settings extends Component {
             onComplete: () => {
                 super.hide();
             }
-        })
+        });
     }
 }
 

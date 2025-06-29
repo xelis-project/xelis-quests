@@ -59,6 +59,9 @@ export class QuestItem extends Component {
             audio_hover.volume = 0.1;
             this.app.audio.play_audio(`sound_effect`, audio_hover);
         });
+        this.btn_start_element.addEventListener(`click`, () => {
+            this.app.go_to(`/quest`);
+        });
 
         action_content.appendChild(this.btn_start_element);
 

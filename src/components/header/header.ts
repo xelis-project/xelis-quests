@@ -67,11 +67,23 @@ export class Header extends Component {
     anime_show() {
         super.show();
 
+        if (!this.visible) {
+            animate(this.element, {
+                translateY: [`-100%`, 0],
+                duration: 750,
+                delay: 750,
+                ease: eases.inOutBack(3)
+            });
+        }
+    }
+
+    anime_hide() {
         animate(this.element, {
-            translateY: [`-100%`, 0],
-            duration: 750,
-            delay: 750,
-            ease: eases.inOutBack(3)
+            translateY: [0, `-100%`],
+            duration: 500,
+            onComplete: () => {
+                super.hide();
+            }
         });
     }
 }
