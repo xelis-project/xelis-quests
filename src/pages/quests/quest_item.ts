@@ -11,7 +11,7 @@ interface QuestItemProps {
     reward: string;
 }
 
-export class QuestItem extends Component {
+export class QuestItem extends Component<any> {
     image_element: HTMLImageElement;
     name_element: HTMLDivElement;
     description_element: HTMLDivElement;

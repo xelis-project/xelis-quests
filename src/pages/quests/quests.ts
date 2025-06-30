@@ -7,7 +7,7 @@ import { QuestItem } from "./quest_item";
 import { Circuit } from "../../components/circuit/circuit";
 import { Component } from "../../component";
 
-export class QuestsPage extends Component {
+export class QuestsPage extends Component<any> {
     title_element: HTMLDivElement;
     description_element: HTMLDivElement;
     quest_items: QuestItem[];

@@ -6,7 +6,7 @@ import * as icons from "../../assets/icons";
 
 import './header.css';
 
-export class Header extends Component {
+export class Header extends Component<any> {
     xelis_logo_element: HTMLDivElement;
 
     btn_intro_element: HTMLButtonElement;

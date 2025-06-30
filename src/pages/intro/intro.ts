@@ -6,7 +6,7 @@ import * as icons from '../../assets/icons';
 import { Circuit } from '../../components/circuit/circuit';
 import { Component } from '../../component';
 
-export class IntroPage extends Component {
+export class IntroPage extends Component<any> {
 
     title_element: HTMLDivElement;
     description_element: HTMLDivElement;

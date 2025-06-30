@@ -4,7 +4,7 @@ import { Component } from "../../component";
 
 import './settings.css';
 
-export class Settings extends Component {
+export class Settings extends Component<any> {
     btn_close: HTMLButtonElement;
 
     master_volume_slider: SettingsSlider;

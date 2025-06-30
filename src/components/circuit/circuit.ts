@@ -5,7 +5,7 @@ import { circuit } from '../../assets/circuit';
 import './circuit.css';
 import type { App } from "../../app";
 
-export class Circuit extends Component {
+export class Circuit extends Component<any> {
     constructor(app: App, parent: HTMLElement) {
         super(app, parent, `top-circuit`);
         this.element.innerHTML = circuit();

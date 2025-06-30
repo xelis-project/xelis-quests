@@ -1,10 +1,10 @@
-type EventMap = {
+export type EventEmitterMap = {
     [key: string]: any;
 }
 
 type EventListener<T> = (data?: T) => void;
 
-export class EventEmitter<T extends EventMap> {
+export class EventEmitter<T extends EventEmitterMap> {
     events: Map<keyof T, EventListener<T[keyof T]>[]>;
 
     constructor() {
