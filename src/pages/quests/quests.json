@@ -1,16 +1,16 @@
 [
     {
         "img": "/images/quest_img_1.webp",
-        "name": "What is XELIS Quest",
-        "description": "An interative platform to help users understand the XELIS network.",
+        "name": "What is XELIS all about?",
+        "description": "Meet the mascot, understand the role of XELIS and it's foundation.",
         "time": "3min",
         "reward": "0.5 XEL"
-    },
+    }, 
     {
         "img": "/images/quest_img_2.webp",
-        "name": "What is XELIS all about?",
-        "description": "XELIS is a decentralized, open source, cryptocurrency network.",
-        "time": "5min",
+        "name": "XELIS innovations and technological advantages",
+        "description": "Dive deeper into more complex XELIS structures.",
+        "time": "5min", 
         "reward": "0.5 XEL"
     },
     {

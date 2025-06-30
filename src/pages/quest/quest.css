@@ -1,7 +1,29 @@
 .quest-page {
-
+    overflow: hidden;
+    position: absolute;
+    width: 100%;
+    height: 100%;
 }
 
-.test {
+.quest-model {
+    bottom: -1rem;
+    right: 1rem;
+    position: absolute;
+    width: 20rem;
+    user-select: none;
+    -webkit-user-drag: none;
+}
+
+.quest-dialogue {
+    bottom: 1rem;
+    left: 1rem;
+    position: absolute;
+    padding: 1rem;
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 1rem;
+    font-family: Helios;
+}
+
+.quest-dialogue-text {
     color: white;
 }
