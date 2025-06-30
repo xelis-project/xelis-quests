@@ -3,7 +3,7 @@ import type { App } from "../../app";
 import './quests.css';
 
 import quests from './quests.json';
-import { QuestItem } from "./quest_item";
+import { QuestItem } from "./quest_item/quest_item";
 import { Circuit } from "../../components/circuit/circuit";
 import { Component } from "../../component";
 

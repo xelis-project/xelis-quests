@@ -1,5 +1,5 @@
-import type { App } from "../../app";
-import { Component } from "../../component";
+import type { App } from "../../../app";
+import { Component } from "../../../component";
 
 import './quest_item.css';
 
