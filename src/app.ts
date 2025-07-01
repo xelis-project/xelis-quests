@@ -25,6 +25,7 @@ export class App {
         this.audio = new Audio();
 
         this.header = new Header(this);
+        this.header.anime_show();
         this.settings = new Settings(this);
 
         this.intro_page = new IntroPage(this);
@@ -47,18 +48,16 @@ export class App {
 
         this.intro_page.hide();
         this.quests_page.hide();
+        this.quest_page.hide();
 
         switch (url.pathname) {
             case "/":
-                this.header.anime_show();
                 this.intro_page.anime_show();
                 break;
             case "/quests":
-                this.header.anime_show();
                 this.quests_page.anime_show();
                 break;
             case "/quest":
-                this.header.anime_hide();
                 this.quest_page.anime_show();
                 break;
         }
