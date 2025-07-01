@@ -1,0 +1,17 @@
+.quest-dialogue {
+    bottom: 2rem;
+    left: 50%;
+    translate: calc(-50% - 5rem);
+    position: absolute;
+    padding: 2rem;
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 1rem;
+    font-family: Helios;
+    font-size: 1.2rem;
+    width: 20rem;
+    backdrop-filter: blur(20px);
+}
+
+.quest-dialogue-text {
+    color: white;
+}

@@ -1,6 +1,6 @@
-.quest-page {
-    overflow: hidden;
+.quest-background-img {
     position: absolute;
+    background-repeat: no-repeat;
     width: 100%;
     height: 100%;
 }

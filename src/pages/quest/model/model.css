@@ -1,0 +1,10 @@
+.quest-model-img {
+    bottom: -1rem;
+    left: 50%;
+    translate: 1rem;
+    position: absolute;
+    width: 20rem;
+    user-select: none;
+    -webkit-user-drag: none;
+    filter: drop-shadow(1rem 1rem 1rem rgba(0, 0, 0, 0.5));
+}

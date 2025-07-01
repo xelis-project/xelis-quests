@@ -1,31 +1,17 @@
 import type { App } from "../../app";
 import { Component } from "../../component";
-import { Typewriter } from "../../utils/typewriter";
-import './quest.css';
 
 import quest_1 from '../quests/quest_1.json';
-import { animate, eases } from "animejs";
+import { Dialogue, type DialogueProps } from "./dialogue/dialogue";
+import { Background, type BackgroundProps } from "./background/background";
+import { Model, type ModelProps } from "./model/model";
+import { Question, type QuestionProps } from "./question/question";
 
-interface DialogueProps {
-    dialogues: { text: string }[];
-}
-
-interface QuestionProps {
-    text: string;
-    choices: { text: string }[];
-}
-
-interface AlertProps {
-    text: string;
-}
-
-interface ModelProps {
-    img: string;
-}
+import './quest.css';
 
 interface QuestStep {
-    alert?: AlertProps;
     model?: ModelProps;
+    background?: BackgroundProps;
     dialogue?: DialogueProps;
     question?: QuestionProps;
 }
@@ -39,8 +25,11 @@ interface QuestData {
 }
 
 export class QuestPage extends Component<any> {
-    model_element: HTMLImageElement;
+    background: Background;
+    model: Model;
     dialogue: Dialogue;
+    question: Question;
+
     scene_index: number;
     step_index: number;
     data: QuestData;
@@ -52,10 +41,10 @@ export class QuestPage extends Component<any> {
         this.step_index = 0;
         this.data = quest_1;
 
-        this.model_element = document.createElement(`img`);
-        this.model_element.classList.add(`quest-model`);
-        this.element.appendChild(this.model_element);
+        this.background = new Background(app, this.element);
+        this.model = new Model(app, this.element);
         this.dialogue = new Dialogue(app, this.element);
+        this.question = new Question(app, this.element);
     }
 
     forward() {
@@ -80,33 +69,26 @@ export class QuestPage extends Component<any> {
         const step = scene.steps[this.step_index];
         if (!step) return;
 
+        if (step.background) {
+            this.background.anime_show(step.background);
+        } else {
+           // this.background.anime_hide();
+        }
+
         if (step.model) {
-            this.model_element.src = step.model.img;
-
-            const appear_audio = new Audio(`/audio/sound_effects/appear_pop_1.mp3`);
-            appear_audio.volume = 0.5;
-            this.app.audio.play_audio(`sound_effect`, appear_audio);
-
-            animate(this.model_element, {
-                translateY: [`100%`, 0],
-                duration: 500,
-                ease: eases.inOutBack(2),
-                onComplete: () => {
-                    animate(this.model_element, {
-                        translateY: [0, `1%`],
-                        duration: 2000,
-                        ease: eases.linear(),
-                        loop: true,
-                        alternate: true
-                    });
-                }
-            });
+            this.model.anime_show(step.model);
+        } else {
+            //this.model.anime_hide();
         }
 
         if (step.dialogue) {
             this.dialogue.anime_show(step.dialogue);
+        }
+
+        if (step.question) {
+            this.question.anime_show(step.question);
         } else {
-            this.dialogue.anime_hide();
+
         }
     }
 
@@ -126,74 +108,5 @@ export class QuestPage extends Component<any> {
 
     register_events() {
         this.element.addEventListener(`click`, this.on_click);
-    }
-}
-
-class Dialogue extends Component<any> {
-    text_element: HTMLDivElement;
-    typewriter: Typewriter;
-    dialogues: string[];
-    dialogue_index: number;
-
-    constructor(app: App, parent: HTMLElement) {
-        super(app, parent, `quest-dialogue`);
-
-        this.text_element = document.createElement(`div`);
-        this.text_element.classList.add(`quest-dialogue-text`);
-        this.element.appendChild(this.text_element);
-
-        this.dialogue_index = 0;
-        this.dialogues = [];
-
-        this.typewriter = new Typewriter({
-            speed: 15,
-            element: this.text_element,
-        });
-    }
-
-    forward() {
-        if (this.typewriter.active) {
-            this.typewriter.finish();
-            return;
-        }
-
-        if (this.dialogue_index < this.dialogues.length) {
-            this.dialogue_index++;
-            this.run_dialogue();
-        } else {
-            this.anime_hide();
-        }
-    }
-
-    run_dialogue() {
-        const dialogue = this.dialogues[this.dialogue_index];
-        this.typewriter.start(dialogue);
-    }
-
-    anime_show(props: DialogueProps) {
-        super.show();
-
-        this.dialogue_index = 0;
-        this.dialogues = props.dialogues.map(x => x.text);
-        this.run_dialogue();
-        this.register_events();
-    }
-
-    anime_hide() {
-        super.hide();
-        this.unregister_events();
-    }
-
-    on_click = (e: MouseEvent) => {
-        e.stopImmediatePropagation();
-        this.forward();
-    }
-
-    register_events() {
-        this.parent.addEventListener(`click`, this.on_click);
-    }
-
-    unregister_events() {
-        this.parent.removeEventListener(`click`, this.on_click);
     }
 }

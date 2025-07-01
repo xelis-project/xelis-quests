@@ -3,7 +3,7 @@
         {
             "steps": [
                 {
-                    "alert": { "text": "Click anywhere to advance the dialogue."},
+                    "background": { "img": "/images/quest_img_1.webp" },
                     "model": { "img": "/mascot/mascot_04.webp" },
                     "dialogue": {
                         "dialogues": [
