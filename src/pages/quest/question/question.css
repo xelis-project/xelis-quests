@@ -1,0 +1,38 @@
+.quest-question {
+    bottom: 2rem;
+    left: 50%;
+    translate: calc(-50% - 5rem);
+    position: absolute;
+    padding: 2rem;
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 1rem;
+    font-family: Helios;
+    width: 20rem;
+    backdrop-filter: blur(20px);
+}
+
+.quest-question-text {
+    font-weight: bold;
+    color: #02FFCF;
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+}
+
+.quest-question-choices {
+    display: flex;
+    gap: .5rem;
+    flex-direction: column;
+}
+
+.quest-question-choice {
+    cursor: pointer;
+    user-select: none;
+    transition: translate .25s, color .25s;
+    color: rgba(255, 255, 255, 0.9);
+    opacity: 0;
+}
+
+.quest-question-choice:hover {
+    translate: -2%;
+    color:#02FFCF;
+}

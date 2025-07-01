@@ -14,7 +14,7 @@
                                 "text": "I've been brought to life to be your guide during your quests."
                             },
                             {
-                                "text": "The goal of XelQuests is to deepen your understanding of the network."
+                                "text": "The goal of XelQuests is to deepen your understanding of the XELIS."
                             },
                             {
                                 "text": "I will send you rewards for your participation and hard work."
@@ -26,8 +26,10 @@
                     }
                 },
                 {
+                    "model": { "img": "/mascot/mascot_11.webp" },
                     "question": {
                         "text": "What is XELIS?",
+                        "answer": "A decentralized, open source, cryptocurrency network.",
                         "choices": [
                             {
                                 "text": "A decentralized, open source, cryptocurrency network."

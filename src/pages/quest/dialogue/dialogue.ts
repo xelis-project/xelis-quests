@@ -11,7 +11,7 @@ export interface DialogueProps {
 
 export class Dialogue extends Component<any> {
     text_element: HTMLDivElement;
-    typewriter: Typewriter;
+    text_typewriter: Typewriter;
     dialogues: string[];
     dialogue_index: number;
 
@@ -25,15 +25,15 @@ export class Dialogue extends Component<any> {
         this.dialogue_index = 0;
         this.dialogues = [];
 
-        this.typewriter = new Typewriter({
+        this.text_typewriter = new Typewriter({
             speed: 15,
             element: this.text_element,
         });
     }
 
     forward() {
-        if (this.typewriter.active) {
-            this.typewriter.finish();
+        if (this.text_typewriter.active) {
+            this.text_typewriter.finish();
             return;
         }
 
@@ -47,7 +47,7 @@ export class Dialogue extends Component<any> {
 
     run_dialogue() {
         const dialogue = this.dialogues[this.dialogue_index];
-        this.typewriter.start(dialogue);
+        this.text_typewriter.start(dialogue);
     }
 
     anime_show(props: DialogueProps) {
