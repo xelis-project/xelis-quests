@@ -17,14 +17,18 @@ export class Header extends Component<any> {
     constructor(app: App) {
         super(app, app.root, `header`);
 
+        const content_element = document.createElement(`div`);
+        content_element.classList.add(`header-content`);
+        this.element.appendChild(content_element);
+
         this.xelis_logo_element = document.createElement(`div`);
         this.xelis_logo_element.classList.add(`header-logo`);
         this.xelis_logo_element.innerHTML = xelis_logo();
-        this.element.appendChild(this.xelis_logo_element);
+        content_element.appendChild(this.xelis_logo_element);
 
         const menu_element = document.createElement(`div`);
         menu_element.classList.add(`header-menu`);
-        this.element.appendChild(menu_element);
+        content_element.appendChild(menu_element);
 
         this.btn_intro_element = document.createElement(`button`);
         this.btn_intro_element.innerHTML = `INTRO`;
@@ -61,7 +65,7 @@ export class Header extends Component<any> {
             audio_hover.volume = 0.1;
             this.app.audio.play_audio(`sound_effect`, audio_hover);
         });
-        this.element.appendChild(this.btn_settings_element);
+        content_element.appendChild(this.btn_settings_element);
     }
 
     anime_show() {

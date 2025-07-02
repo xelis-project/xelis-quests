@@ -2,21 +2,28 @@
     position: fixed;
     top: 0;
     z-index: 1;
-    display: flex;
-    gap: 1rem;
-    flex-direction: row;
-    justify-content: space-between;
     width: 100%;
-    padding: 1rem;
     box-sizing: border-box;
     opacity: .4;
     transition: opacity .25s;
     background: linear-gradient(180deg, black, rgba(0, 0, 0, 0));
     font-family: Helios;
+    display: flex;
+    justify-content: center;
 }
 
 .header:hover {
     opacity: 1;
+}
+
+.header-content {
+    max-width: 50rem;
+    padding: 1rem;
+    display: flex;
+    gap: 1rem;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
 }
 
 .header-logo {
