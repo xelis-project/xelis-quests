@@ -4,6 +4,7 @@ import { Component } from "../../../component";
 import { Typewriter } from "../../../utils/typewriter";
 
 import './dialogue.css';
+import { AudioTypewriter } from "../../../components/audio_typewriter/audio_typewriter";
 
 export interface DialogueProps {
     dialogues: { text: string }[];
@@ -11,7 +12,7 @@ export interface DialogueProps {
 
 export class Dialogue extends Component<any> {
     text_element: HTMLDivElement;
-    text_typewriter: Typewriter;
+    text_typewriter: AudioTypewriter;
     dialogues: string[];
     dialogue_index: number;
 
@@ -25,7 +26,8 @@ export class Dialogue extends Component<any> {
         this.dialogue_index = 0;
         this.dialogues = [];
 
-        this.text_typewriter = new Typewriter({
+        this.text_typewriter = new AudioTypewriter({
+            app,
             speed: 15,
             element: this.text_element,
         });
@@ -47,6 +49,7 @@ export class Dialogue extends Component<any> {
 
     run_dialogue() {
         const dialogue = this.dialogues[this.dialogue_index];
+        //this.text_typewriter.typing_volume = this.app.audio.get_volume(`sound_effect`);
         this.text_typewriter.start(dialogue);
     }
 

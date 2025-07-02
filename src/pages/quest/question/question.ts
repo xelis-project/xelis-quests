@@ -4,6 +4,7 @@ import { Component } from "../../../component";
 import { Typewriter } from "../../../utils/typewriter";
 
 import './question.css';
+import { AudioTypewriter } from "../../../components/audio_typewriter/audio_typewriter";
 
 export interface QuestionProps {
     text: string;
@@ -45,7 +46,8 @@ export class Question extends Component<any> {
             duration: 500
         });
 
-        const text_typewriter = new Typewriter({ element: this.text_element, speed: 15 });
+        const text_typewriter = new AudioTypewriter({ app: this.app, element: this.text_element, speed: 15 });
+        //text_typewriter.typing_volume = this.app.audio.get_volume(`sound_effect`);
         text_typewriter.start(props.text);
         text_typewriter.addListener(`finish`, () => {
             props.choices.forEach((choice, i) => {

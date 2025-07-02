@@ -1,6 +1,6 @@
 import { EventEmitter } from "./event_emitter";
 
-interface TypeWriterProps {
+interface TypewriterProps {
     element: HTMLElement;
     speed: number;
 }
@@ -19,9 +19,8 @@ export class Typewriter extends EventEmitter<TypewriterEventMap> {
     speed: number;
     text: string;
     active: boolean;
-    audio_typing: string[];
 
-    constructor(props: TypeWriterProps) {
+    constructor(props: TypewriterProps) {
         super();
 
         this.element = props.element;
@@ -32,14 +31,8 @@ export class Typewriter extends EventEmitter<TypewriterEventMap> {
         this.index = 0;
         this.speed = props.speed;
         this.active = false;
-        this.audio_typing = [
-            `/audio/sound_effects/typewriter_1.mp3`,
-            `/audio/sound_effects/typewriter_2.mp3`,
-            `/audio/sound_effects/typewriter_3.mp3`
-        ];
     }
 
-    private sound_delta = 0;
     write_character() {
         const timeout = 1000 / this.speed;
 
@@ -51,20 +44,6 @@ export class Typewriter extends EventEmitter<TypewriterEventMap> {
 
             const char = this.text[this.index++];
             this.element.innerHTML += char;
-            this.sound_delta += timeout;
-
-            if (this.sound_delta / timeout >= 1.5) {
-                this.sound_delta = 0;
-
-                let audio_typing: HTMLAudioElement;
-                const audio_index = Math.floor(Math.random() * this.audio_typing.length);
-                audio_typing = new Audio(this.audio_typing[audio_index]);
-                
-                const playback_rate = Math.random() * (1.25 - 0.75) + 0.75;
-                audio_typing.playbackRate = playback_rate;
-                audio_typing.play();
-            }
-
             this.emit(`char`, char);
             this.write_character();
         }, timeout);
@@ -85,7 +64,6 @@ export class Typewriter extends EventEmitter<TypewriterEventMap> {
     }
 
     stop() {
-
         if (this.active) this.emit('stop');
         this.active = false;
         clearTimeout(this.char_timeout_id);

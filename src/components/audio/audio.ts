@@ -16,6 +16,11 @@ export class Audio {
     }
 
     play_audio(type: AudioType, audio: HTMLAudioElement) {
+        audio.volume = audio.volume * this.master_volume * this.get_volume(type);
+        audio.play();
+    }
+
+    get_volume(type: AudioType) {
         let type_volume = 1;
         switch (type) {
             case "music":
@@ -29,8 +34,7 @@ export class Audio {
                 break;
         }
 
-        audio.volume = audio.volume * this.master_volume * type_volume;
-        audio.play();
+        return this.master_volume * type_volume;
     }
 
     parse_volume(value: string | null, default_value: number) {
