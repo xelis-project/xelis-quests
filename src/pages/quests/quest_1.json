@@ -32,16 +32,20 @@
                         "answer": "A decentralized, open source, cryptocurrency blockchain.",
                         "choices": [
                             {
-                                "text": "A decentralized, open source, cryptocurrency blockchain."
+                                "text": "A decentralized, open source, cryptocurrency blockchain.",
+                                "go_to": { "scene_index": 0, "step_index": 2 }
                             },
                             {
-                                "text": "A cryptocurrency game set in a futuristic world."
+                                "text": "A cryptocurrency game set in a futuristic world.",
+                                "go_to": { "scene_index": 0, "step_index": 4 }
                             },
                             {
-                                "text": "A centralized authoritative financial system."
+                                "text": "A centralized authoritative financial system.",
+                                "go_to": { "scene_index": 0, "step_index": 6 }
                             },
                             {
-                                "text": "I don't know."
+                                "text": "I don't know.",
+                                "go_to": { "scene_index": 0, "step_index": 8 }
                             }
                         ]
                     }
@@ -50,8 +54,56 @@
                     "dialogue": {
                         "dialogues": [
                             {
-                                "text": "Yes, you are right!"
+                                "text": "You're correct!"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "go_to": { "scene_index": 0, "step_index": 9 }
+                },
+                {
+                    "dialogue": {
+                        "dialogues": [
+                            {
+                                "text": "XELIS is not a game; it is a decentralized financial blockchain."
+                            }
+                        ]
+                    }
+                },
+                {
+                    "go_to": { "scene_index": 0, "step_index": 9 }
+                },
+                {
+                    "dialogue": {
+                        "dialogues": [
+                            {
+                                "text": "On the contrary, this is one of the many reasons why XELIS exists."
                             },
+                            {
+                                "text": "The goal is to create a decentralized financial system that removes the authoritative aspect while ensuring the system remains extremely performant for its tasks."
+                            }
+                        ]
+                    }
+                },
+                {
+                    "go_to": { "scene_index": 0, "step_index": 9 }
+                },
+                {
+                    "dialogue": {
+                        "dialogues": [
+                            {
+                                "text": "That's perfectly fine."
+                            },
+                            {
+                                "text": "XELIS is a decentralized cryptocurrency. It is an open-source blockchain with many strong features."
+                            }
+                        ]
+                    }
+                },
+                {
+                    "dialogue": {
+                        "dialogues": [
                             {
                                 "text": "To continue, XELIS is the world's first blockchain designed to solve the Quadrilemma."
                             },

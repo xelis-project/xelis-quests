@@ -33,7 +33,7 @@ export class Dialogue extends Component<any> {
         });
     }
 
-    forward() {
+    next_dialogue() {
         if (this.text_typewriter.active) {
             this.text_typewriter.finish();
             return;
@@ -49,7 +49,6 @@ export class Dialogue extends Component<any> {
 
     run_dialogue() {
         const dialogue = this.dialogues[this.dialogue_index];
-        //this.text_typewriter.typing_volume = this.app.audio.get_volume(`sound_effect`);
         this.text_typewriter.start(dialogue);
     }
 
@@ -75,13 +74,13 @@ export class Dialogue extends Component<any> {
             duration: 500,
             onComplete: () => {
                 super.hide();
+                this.app.quest_page.forward();
             }
         });
     }
 
     on_click = (e: MouseEvent) => {
-        e.stopImmediatePropagation();
-        this.forward();
+        this.next_dialogue();
     }
 
     register_events() {

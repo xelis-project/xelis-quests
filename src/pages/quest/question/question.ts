@@ -1,15 +1,20 @@
-import { animate, stagger } from "animejs";
+import { animate } from "animejs";
 import { App } from "../../../app";
 import { Component } from "../../../component";
-import { Typewriter } from "../../../utils/typewriter";
 
 import './question.css';
 import { AudioTypewriter } from "../../../components/audio_typewriter/audio_typewriter";
+import type { GoToProps } from "../go_to/go_to";
+
+interface QuestionChoice {
+    text: string;
+    go_to: GoToProps;
+}
 
 export interface QuestionProps {
     text: string;
     answer: string;
-    choices: { text: string }[];
+    choices: QuestionChoice[];
 }
 
 export class Question extends Component<any> {
@@ -34,10 +39,6 @@ export class Question extends Component<any> {
         this.choices = [];
     }
 
-    answer(text: string) {
-
-    }
-
     anime_show(props: QuestionProps) {
         super.show();
 
@@ -47,11 +48,10 @@ export class Question extends Component<any> {
         });
 
         const text_typewriter = new AudioTypewriter({ app: this.app, element: this.text_element, speed: 15 });
-        //text_typewriter.typing_volume = this.app.audio.get_volume(`sound_effect`);
         text_typewriter.start(props.text);
         text_typewriter.addListener(`finish`, () => {
             props.choices.forEach((choice, i) => {
-                const question_choice = new QuestionChoice(choice.text, this, this.choices_element);
+                const question_choice = new QuestionChoiceItem(this.app, this.choices_element, choice);
                 question_choice.show();
 
                 setTimeout(() => {
@@ -69,27 +69,28 @@ export class Question extends Component<any> {
         });
     }
 
-    anime_hide() {
+    anime_hide(complete: () => void) {
         animate(this.element, {
             translateY: [0, `200%`],
             duration: 500,
             onComplete: () => {
                 super.hide();
+                this.choices_element.replaceChildren();
+                complete();
             }
         });
     }
 }
 
-class QuestionChoice extends Component<any> {
-    question: Question;
+class QuestionChoiceItem extends Component<any> {
+    constructor(app: App, parent: HTMLDivElement, choice: QuestionChoice) {
+        super(app, parent, `quest-question-choice`);
+        this.element.innerHTML = choice.text;
 
-    constructor(text: string, question: Question, parent: HTMLDivElement) {
-        super(question.app, parent, `quest-question-choice`);
-        this.question = question;
-        this.element.innerHTML = text;
-
-        this.element.addEventListener(`click`, () => {
-            question.answer(text);
+        this.element.addEventListener(`click`, (e) => {
+            this.app.quest_page.question.anime_hide(() => {
+                this.app.quest_page.go_to.execute(choice.go_to);
+            });
         });
 
         this.element.addEventListener(`mouseenter`, () => {

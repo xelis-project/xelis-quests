@@ -9,12 +9,14 @@ import { Question, type QuestionProps } from "./question/question";
 
 import './quest.css';
 import { CanvasShader } from "../../utils/canvas_shader";
+import { GoTo, type GoToProps } from "./go_to/go_to";
 
 interface QuestStep {
     model?: ModelProps;
     background?: BackgroundProps;
     dialogue?: DialogueProps;
     question?: QuestionProps;
+    go_to?: GoToProps;
 }
 
 interface QuestScene {
@@ -30,7 +32,9 @@ export class QuestPage extends Component<any> {
     model: Model;
     dialogue: Dialogue;
     question: Question;
+    go_to: GoTo;
 
+    vars: Record<string, any>;
     scene_index: number;
     step_index: number;
     data: QuestData;
@@ -38,6 +42,7 @@ export class QuestPage extends Component<any> {
     constructor(app: App) {
         super(app, app.root, `quest-page`);
 
+        this.vars = {};
         this.scene_index = 0;
         this.step_index = 0;
         this.data = quest_1;
@@ -71,9 +76,15 @@ export class QuestPage extends Component<any> {
         this.model = new Model(app, this.element);
         this.dialogue = new Dialogue(app, this.element);
         this.question = new Question(app, this.element);
+        this.go_to = new GoTo(app);
     }
 
     forward() {
+        if (
+            this.dialogue.visible ||
+            this.question.visible
+        ) return;
+
         const scene = this.data.scenes[this.scene_index];
         if (scene) {
             const next_step = scene.steps[this.step_index + 1];
@@ -95,10 +106,14 @@ export class QuestPage extends Component<any> {
         const step = scene.steps[this.step_index];
         if (!step) return;
 
+        if (step.go_to) {
+            this.go_to.execute(step.go_to);
+        }
+
         if (step.background) {
             //this.background.anime_show(step.background);
         } else {
-           // this.background.anime_hide();
+            // this.background.anime_hide();
         }
 
         if (step.model) {
@@ -134,5 +149,9 @@ export class QuestPage extends Component<any> {
 
     register_events() {
         this.element.addEventListener(`click`, this.on_click);
+    }
+
+    unregister_events() {
+        this.element.removeEventListener(`click`, this.on_click);
     }
 }
