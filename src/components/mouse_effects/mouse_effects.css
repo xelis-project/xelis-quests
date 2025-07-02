@@ -1,0 +1,12 @@
+.mouse-effects {}
+
+.mouse-effects-click {
+    pointer-events: none;
+    z-index: 1;
+    position: fixed;
+    width: 5rem;
+    height: 5rem;
+    border-radius: 100%;
+    background: radial-gradient(circle at 50% 50%, rgba(0, 255, 208, 1) 0%, rgba(0, 0, 0, 0) 50%);
+    opacity: 0;
+}

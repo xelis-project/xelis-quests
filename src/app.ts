@@ -4,6 +4,7 @@ import { Settings } from "./components/settings/settings";
 import { Header } from "./components/header/header";
 import { Audio } from "./components/audio/audio";
 import { QuestPage } from "./pages/quest/quest";
+import { MouseEffects } from "./components/mouse_effects/mouse_effects";
 
 import 'reset-css/reset.css';
 import './font_types.css';
@@ -19,11 +20,14 @@ export class App {
     header: Header;
     settings: Settings;
     audio: Audio;
+    mouse_effects: MouseEffects
 
     constructor(root: HTMLElement) {
         this.root = root;
         this.audio = new Audio();
 
+        this.mouse_effects = new MouseEffects(this);
+        this.mouse_effects.show();
         this.header = new Header(this);
         this.header.anime_show();
         this.settings = new Settings(this);
