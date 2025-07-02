@@ -20,7 +20,7 @@
                                 "text": "I will send you rewards for your participation and hard work."
                             },
                             {
-                                "text": "Let's begin your first lessons."
+                                "text": "Let's begin."
                             }
                         ]
                     }
@@ -29,10 +29,10 @@
                     "model": { "img": "/mascot/mascot_11.webp" },
                     "question": {
                         "text": "What is XELIS?",
-                        "answer": "A decentralized, open source, cryptocurrency network.",
+                        "answer": "A decentralized, open source, cryptocurrency blockchain.",
                         "choices": [
                             {
-                                "text": "A decentralized, open source, cryptocurrency network."
+                                "text": "A decentralized, open source, cryptocurrency blockchain."
                             },
                             {
                                 "text": "A cryptocurrency game set in a futuristic world."
@@ -42,6 +42,24 @@
                             },
                             {
                                 "text": "I don't know."
+                            }
+                        ]
+                    }
+                },
+                {
+                    "dialogue": {
+                        "dialogues": [
+                            {
+                                "text": "Yes, you are right!"
+                            },
+                            {
+                                "text": "To continue, XELIS is the world's first blockchain designed to solve the Quadrilemma."
+                            },
+                            {
+                                "text": "This means it addresses security, privacy, decentralization, and scalability."
+                            },
+                            {
+                                "text": "Let's explore these key aspects and what sets XELIS apart from the competition."
                             }
                         ]
                     }

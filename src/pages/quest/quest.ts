@@ -8,6 +8,7 @@ import { Model, type ModelProps } from "./model/model";
 import { Question, type QuestionProps } from "./question/question";
 
 import './quest.css';
+import { CanvasShader } from "../../utils/canvas_shader";
 
 interface QuestStep {
     model?: ModelProps;
@@ -25,7 +26,7 @@ interface QuestData {
 }
 
 export class QuestPage extends Component<any> {
-    background: Background;
+    //background: Background;
     model: Model;
     dialogue: Dialogue;
     question: Question;
@@ -41,7 +42,32 @@ export class QuestPage extends Component<any> {
         this.step_index = 0;
         this.data = quest_1;
 
-        this.background = new Background(app, this.element);
+        // TODO: create space shader with ellipsis, lines, warping, etc...
+        const shader = `
+            #include <common>
+            uniform vec3 iResolution;
+            uniform float iTime;
+            // By iq: https://www.shadertoy.com/user/iq
+            // license: Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Unported License.
+            void mainImage( out vec4 fragColor, in vec2 fragCoord )
+            {
+                // Normalized pixel coordinates (from 0 to 1)
+                vec2 uv = fragCoord/iResolution.xy;
+                // Time varying pixel color
+                vec3 col = 0.5 + 0.5*cos(iTime+uv.xyx+vec3(0,2,4));
+                // Output to screen
+                fragColor = vec4(col,1.0);
+            }
+            void main() {
+                mainImage(gl_FragColor, gl_FragCoord.xy);
+            }
+        `
+
+        const canvas_shader = new CanvasShader(shader);
+        canvas_shader.canvas.classList.add(`quest-canvas`);
+        this.element.appendChild(canvas_shader.canvas);
+
+        //this.background = new Background(app, this.element);
         this.model = new Model(app, this.element);
         this.dialogue = new Dialogue(app, this.element);
         this.question = new Question(app, this.element);
@@ -70,7 +96,7 @@ export class QuestPage extends Component<any> {
         if (!step) return;
 
         if (step.background) {
-            this.background.anime_show(step.background);
+            //this.background.anime_show(step.background);
         } else {
            // this.background.anime_hide();
         }

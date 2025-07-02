@@ -1,7 +1,7 @@
 .quest-dialogue {
-    bottom: 2rem;
+    bottom: 6rem;
     left: 50%;
-    translate: calc(-50% - 5rem);
+    translate: calc(-50% - 3rem);
     position: absolute;
     padding: 2rem;
     background-color: rgba(0, 0, 0, 0.5);
