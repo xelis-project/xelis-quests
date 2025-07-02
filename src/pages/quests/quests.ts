@@ -84,7 +84,7 @@ export class QuestsPage extends Component<any> {
     }
 
     anime_hide(complete: () => void) {
-        animate(this.element, {
+        const hide_animation = animate(this.element, {
             scale: [1, 2],
             rotate: [`0`, `50deg`],
             opacity: [1, 0],
@@ -92,6 +92,7 @@ export class QuestsPage extends Component<any> {
             ease: eases.inCubic,
             onComplete: () => {
                 super.hide();
+                hide_animation.revert();
                 complete();
             }
         });
