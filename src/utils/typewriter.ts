@@ -57,14 +57,11 @@ export class Typewriter extends EventEmitter<TypewriterEventMap> {
                 this.sound_delta = 0;
 
                 let audio_typing: HTMLAudioElement;
-                if (char === ` `) {
-                    audio_typing = new Audio(`/audio/sound_effects/typewriter_space_1.mp3`);
-                } else {
-                    const audio_index = Math.floor(Math.random() * this.audio_typing.length);
-                    audio_typing = new Audio(this.audio_typing[audio_index]);
-                }
-
-                audio_typing.playbackRate = Math.min(Math.max(1, 0.75), 1.25);
+                const audio_index = Math.floor(Math.random() * this.audio_typing.length);
+                audio_typing = new Audio(this.audio_typing[audio_index]);
+                
+                const playback_rate = Math.random() * (1.25 - 0.75) + 0.75;
+                audio_typing.playbackRate = playback_rate;
                 audio_typing.play();
             }
 
