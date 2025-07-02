@@ -9,11 +9,13 @@
         "preview": "vite preview"
     },
     "devDependencies": {
+        "@types/three": "^0.178.0",
         "typescript": "~5.8.3",
         "vite": "^7.0.0"
     },
     "dependencies": {
         "animejs": "^4.0.2",
-        "reset-css": "^5.0.2"
+        "reset-css": "^5.0.2",
+        "three": "^0.178.0"
     }
 }
