@@ -45,11 +45,12 @@
     color: #02FFCF;
     cursor: pointer;
     font-size: 1.1rem;
-    transition: font-weight .25s;
+    transition: font-weight .25s, translate .25s;
 }
 
 .header-menu button:hover {
     font-weight: bold;
+    translate: 0 2%;
 }
 
 .header-btn-settings {
