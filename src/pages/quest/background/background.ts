@@ -1,4 +1,4 @@
-import { animate, stagger } from "animejs";
+import { animate } from "animejs";
 import { App } from "../../../app";
 import { Component } from "../../../component";
 

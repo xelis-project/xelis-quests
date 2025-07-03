@@ -87,7 +87,7 @@ export class App extends EventEmitter<AppEventMap> {
         this.set_font_size();
     }
 
-    on_pop_state = (e: PopStateEvent) => {
+    on_pop_state = (_e: PopStateEvent) => {
         this.load_page();
     }
 

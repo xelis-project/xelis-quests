@@ -1,7 +1,6 @@
-import { animate, eases } from "animejs";
+import { animate } from "animejs";
 import { App } from "../../../app";
 import { Component } from "../../../component";
-import { Typewriter } from "../../../utils/typewriter";
 
 import './dialogue.css';
 import { AudioTypewriter } from "../../../components/audio_typewriter/audio_typewriter";
@@ -52,7 +51,7 @@ export class Dialogue extends Component<any> {
         this.text_typewriter.start(dialogue);
     }
 
-    on_click = (e: MouseEvent) => {
+    on_click = () => {
         this.next_dialogue();
     }
 

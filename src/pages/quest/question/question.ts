@@ -87,7 +87,7 @@ class QuestionChoiceItem extends Component<any> {
         super(app, parent, `quest-question-choice`);
         this.element.innerHTML = choice.text;
 
-        this.element.addEventListener(`click`, (e) => {
+        this.element.addEventListener(`click`, () => {
             this.app.quest_page.question.leave(() => {
                 this.app.quest_page.go_to.execute(choice.go_to);
             });
