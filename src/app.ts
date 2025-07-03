@@ -34,9 +34,9 @@ export class App extends EventEmitter<AppEventMap> {
         this.audio = new Audio();
 
         this.mouse_effects = new MouseEffects(this);
-        this.mouse_effects.show();
+        this.mouse_effects.load();
         this.header = new Header(this);
-        this.header.anime_show();
+        this.header.load();
         this.settings = new Settings(this);
 
         this.intro_page = new IntroPage(this);
@@ -57,21 +57,21 @@ export class App extends EventEmitter<AppEventMap> {
     load_page() {
         const url = new URL(window.location.href);
 
-        this.intro_page.hide();
-        this.quests_page.hide();
-        this.quest_page.hide();
+        this.intro_page.unload();
+        this.quests_page.unload();
+        this.quest_page.unload();
 
         switch (url.pathname) {
             case "/quests":
-                this.quests_page.anime_show();
+                this.quests_page.appear();
                 break;
             case "/quest":
-                this.quest_page.anime_show();
+                this.quest_page.load();
                 break;
             // we don't need 404 not found - simply display the intro page
             case "/":
             default:
-                this.intro_page.anime_show();
+                this.intro_page.appear();
                 break;
         }
 

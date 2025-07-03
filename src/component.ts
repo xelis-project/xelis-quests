@@ -5,27 +5,27 @@ export class Component<T extends EventEmitterMap> extends EventEmitter<T> {
     app: App;
     parent: HTMLElement;
     element: HTMLElement;
-    visible: boolean;
+    loaded: boolean;
 
     constructor(app: App, parent: HTMLElement, classname?: string) {
         super();
-            
+
         this.app = app;
         this.parent = parent;
         this.element = document.createElement(`div`);
         if (classname) this.element.classList.add(classname);
-        this.visible = false;
+        this.loaded = false;
     }
 
-    show() {
-        if (this.visible) return;
-        this.visible = true;
+    load() {
+        if (this.loaded) return;
+        this.loaded = true;
         this.parent.appendChild(this.element);
     }
 
-    hide() {
-        if (!this.visible) return;
-        this.visible = false;
+    unload() {
+        if (!this.loaded) return;
+        this.loaded = false;
         this.parent.removeChild(this.element);
     }
 }

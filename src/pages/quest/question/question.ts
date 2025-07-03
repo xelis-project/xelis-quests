@@ -39,8 +39,8 @@ export class Question extends Component<any> {
         this.choices = [];
     }
 
-    anime_show(props: QuestionProps) {
-        super.show();
+    appear(props: QuestionProps) {
+        this.load();
 
         animate(this.element, {
             translateY: [`200%`, 0],
@@ -52,7 +52,7 @@ export class Question extends Component<any> {
         text_typewriter.addListener(`finish`, () => {
             props.choices.forEach((choice, i) => {
                 const question_choice = new QuestionChoiceItem(this.app, this.choices_element, choice);
-                question_choice.show();
+                question_choice.load();
 
                 setTimeout(() => {
                     animate(question_choice.element, {
@@ -69,12 +69,12 @@ export class Question extends Component<any> {
         });
     }
 
-    anime_hide(complete: () => void) {
+    leave(complete: () => void) {
         animate(this.element, {
             translateY: [0, `200%`],
             duration: 500,
             onComplete: () => {
-                super.hide();
+                this.unload();
                 this.choices_element.replaceChildren();
                 complete();
             }
@@ -88,7 +88,7 @@ class QuestionChoiceItem extends Component<any> {
         this.element.innerHTML = choice.text;
 
         this.element.addEventListener(`click`, (e) => {
-            this.app.quest_page.question.anime_hide(() => {
+            this.app.quest_page.question.leave(() => {
                 this.app.quest_page.go_to.execute(choice.go_to);
             });
         });

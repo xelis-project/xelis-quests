@@ -66,7 +66,7 @@ export class QuestItem extends Component<any> {
             audio_transition.volume = 0.5;
             this.app.audio.play_audio(`sound_effect`, audio_transition);
 
-            this.app.quests_page.anime_hide(() => {
+            this.app.quests_page.leave(() => {
                 this.app.go_to(`/quest?slug=${props.slug}`);
             });
         });

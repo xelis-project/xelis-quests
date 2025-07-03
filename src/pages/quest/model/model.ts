@@ -19,8 +19,8 @@ export class Model extends Component<any> {
         this.element.appendChild(this.model_element);
     }
 
-    anime_show(props: ModelProps) {
-        super.show();
+    appear(props: ModelProps) {
+        this.load();
         this.model_element.src = props.img;
 
         const appear_audio = new Audio(`/audio/sound_effects/appear_pop_1.mp3`);

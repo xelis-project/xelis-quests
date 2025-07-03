@@ -20,7 +20,7 @@ export class QuestsPage extends Component<any> {
         this.quest_items = [];
 
         this.circuit = new Circuit(app, this.element);
-        this.circuit.show();
+        this.circuit.load();
 
         this.title_element = document.createElement(`div`);
         this.title_element.innerHTML = `QUESTS`;
@@ -38,14 +38,35 @@ export class QuestsPage extends Component<any> {
 
         quests.forEach((q) => {
             const quest_item = new QuestItem(app, content, q);
-            quest_item.show();
+            quest_item.load();
             this.quest_items.push(quest_item);
         });
     }
 
-    anime_show() {
-        this.show();
+    load() {
+        super.load();
         this.register_events();
+    }
+
+    unload() {
+        super.unload();
+        this.unregister_events();
+    }
+
+    on_wheel = (e: WheelEvent) => {
+        document.documentElement.scrollLeft += e.deltaY;
+    }
+
+    register_events() {
+        this.element.addEventListener(`wheel`, this.on_wheel);
+    }
+
+    unregister_events() {
+        this.element.removeEventListener(`wheel`, this.on_wheel);
+    }
+
+    appear() {
+        this.load();
 
         const audio_transition = new Audio('/audio/sound_effects/page_transition_1.mp3');
         audio_transition.playbackRate = 1.4;
@@ -83,7 +104,7 @@ export class QuestsPage extends Component<any> {
         });
     }
 
-    anime_hide(complete: () => void) {
+    leave(complete: () => void) {
         const hide_animation = animate(this.element, {
             scale: [1, 2],
             rotate: [`0`, `50deg`],
@@ -91,22 +112,10 @@ export class QuestsPage extends Component<any> {
             duration: 500,
             ease: eases.inCubic,
             onComplete: () => {
-                super.hide();
+                this.unload();
                 hide_animation.revert();
                 complete();
             }
         });
-    }
-
-    on_wheel = (e: WheelEvent) => {
-        document.documentElement.scrollLeft += e.deltaY;
-    }
-
-    register_events() {
-        this.element.addEventListener(`wheel`, this.on_wheel);
-    }
-
-    unregister_events() {
-        this.element.removeEventListener(`wheel`, this.on_wheel);
     }
 }

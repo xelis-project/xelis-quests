@@ -82,8 +82,8 @@ export class QuestPage extends Component<any> {
 
     forward() {
         if (
-            this.dialogue.visible ||
-            this.question.visible
+            this.dialogue.loaded ||
+            this.question.loaded
         ) return;
 
         const scene = this.data.scenes[this.scene_index];
@@ -112,23 +112,23 @@ export class QuestPage extends Component<any> {
         }
 
         if (step.background) {
-            //this.background.anime_show(step.background);
+
         } else {
-            // this.background.anime_hide();
+
         }
 
         if (step.model) {
-            this.model.anime_show(step.model);
+            this.model.appear(step.model);
         } else {
-            //this.model.anime_hide();
+    
         }
 
         if (step.dialogue) {
-            this.dialogue.anime_show(step.dialogue);
+            this.dialogue.appear(step.dialogue);
         }
 
         if (step.question) {
-            this.question.anime_show(step.question);
+            this.question.appear(step.question);
         } else {
 
         }
@@ -143,9 +143,8 @@ export class QuestPage extends Component<any> {
         }
     }
 
-    anime_show() {
-        super.show();
-
+    load() {
+        super.load();
 
         this.set_data_from_querystring();
 
@@ -158,8 +157,9 @@ export class QuestPage extends Component<any> {
         this.register_events();
     }
 
-    anime_hide() {
-        super.hide();
+    unload() {
+        super.unload();
+        this.unregister_events();
     }
 
     on_click = () => {

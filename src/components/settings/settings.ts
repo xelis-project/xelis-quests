@@ -19,7 +19,7 @@ export class Settings extends Component<any> {
         this.btn_close.classList.add(`settings-btn-close`);
         this.btn_close.innerHTML = `GO BACK`;
         this.btn_close.addEventListener(`click`, () => {
-            this.anime_hide();
+            this.leave();
         });
         this.element.appendChild(this.btn_close);
 
@@ -64,8 +64,8 @@ export class Settings extends Component<any> {
         this.element.appendChild(this.sound_effect_volume_slider.element);
     }
 
-    anime_show() {
-        super.show();
+    appear() {
+        this.load();
 
         const audio_click = new Audio(`/audio/sound_effects/page_transition_4.mp3`);
         audio_click.volume = 0.5;
@@ -78,12 +78,12 @@ export class Settings extends Component<any> {
         });
     }
 
-    anime_hide() {
+    leave() {
         animate(this.element, {
             opacity: [1, 0],
             duration: 350,
             onComplete: () => {
-                super.hide();
+                this.unload();
             }
         });
     }

@@ -20,7 +20,7 @@ export class IntroPage extends Component<any> {
         super(app, app.root, `intro-page`);
 
         this.circuit = new Circuit(app, this.element);
-        this.circuit.show();
+        this.circuit.load();
 
         const shape_1_element = document.createElement(`div`);
         shape_1_element.classList.add(`intro-page-shape-1`);
@@ -52,7 +52,7 @@ export class IntroPage extends Component<any> {
         this.btn_start_element.innerHTML = `${icons.play()} Start`;
         this.btn_start_element.classList.add(`intro-page-start-btn`);
         this.btn_start_element.addEventListener(`click`, () => {
-            this.anime_hide(() => {
+            this.leave(() => {
                 this.app.go_to(`/quests`);
             });
 
@@ -78,8 +78,8 @@ export class IntroPage extends Component<any> {
         });
     }
 
-    anime_show() {
-        super.show();
+    appear() {
+        super.load();
 
         const audio_transition = new Audio('/audio/sound_effects/page_transition_3.mp3');
         audio_transition.playbackRate = 1;
@@ -124,12 +124,12 @@ export class IntroPage extends Component<any> {
         });
     }
 
-    anime_hide(complete: () => void) {
+    leave(complete: () => void) {
         animate(this.element, {
             opacity: [1, 0],
             duration: 500,
             onComplete: () => {
-                this.hide();
+                this.unload();
                 complete();
             }
         });

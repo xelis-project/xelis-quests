@@ -30,13 +30,13 @@ export class MouseEffects extends Component<any> {
         this.app.audio.play_audio(`sound_effect`, click_audio);
     }
 
-    show() {
-        super.show();
+    load() {
+        super.load();
         this.app.root.addEventListener(`click`, this.on_click);
     }
 
-    hide() {
-        super.hide();
+    unload() {
+        super.unload();
         this.app.root.removeEventListener(`click`, this.on_click);
     }
 }

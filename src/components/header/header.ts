@@ -58,7 +58,7 @@ export class Header extends Component<any> {
         this.btn_settings_element.innerHTML = icons.settings()
         this.btn_settings_element.classList.add(`header-btn-settings`);
         this.btn_settings_element.addEventListener(`click`, () => {
-            this.app.settings.anime_show();
+            this.app.settings.appear();
         });
         this.btn_settings_element.addEventListener(`mouseenter`, () => {
             const audio_hover = new Audio(`/audio/sound_effects/btn_hover_1.mp3`);
@@ -66,10 +66,6 @@ export class Header extends Component<any> {
             this.app.audio.play_audio(`sound_effect`, audio_hover);
         });
         content_element.appendChild(this.btn_settings_element);
-
-        this.app.addListener("page_load", () => {
-            this.highlight_menu_btn();
-        });
     }
 
     highlight_menu_btn() {
@@ -91,25 +87,36 @@ export class Header extends Component<any> {
         }
     }
 
-    anime_show() {
-        super.show();
-
-        if (!this.visible) {
-            animate(this.element, {
-                translateY: [`-100%`, 0],
-                duration: 750,
-                delay: 750,
-                ease: eases.inOutBack(3)
-            });
-        }
+    on_app_page_load = () => {
+        this.highlight_menu_btn();
     }
 
-    anime_hide() {
+    load() {
+        super.load();
+        this.app.addListener("page_load", this.on_app_page_load);
+    }
+
+    unload() {
+        super.unload();
+        this.app.removeListener("page_load", this.on_app_page_load);
+    }
+
+    appear() {
+        this.load();
+        animate(this.element, {
+            translateY: [`-100%`, 0],
+            duration: 750,
+            delay: 750,
+            ease: eases.inOutBack(3)
+        });
+    }
+
+    leave() {
         animate(this.element, {
             translateY: [0, `-100%`],
             duration: 500,
             onComplete: () => {
-                super.hide();
+                this.unload();
             }
         });
     }

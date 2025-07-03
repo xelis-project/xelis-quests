@@ -19,8 +19,8 @@ export class Background extends Component<any> {
         this.element.appendChild(this.background_element);
     }
 
-    anime_show(props: BackgroundProps) {
-        super.show();
+    appear(props: BackgroundProps) {
+        this.load();
         this.background_element.style.backgroundImage = `url('${props.img}')`;
 
         animate(this.background_element, {

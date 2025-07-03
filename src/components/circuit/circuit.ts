@@ -11,8 +11,8 @@ export class Circuit extends Component<any> {
         this.element.innerHTML = circuit();
     }
 
-    show(): void {
-        super.show();
+    load() {
+        super.load();
 
         const paths = this.element.children[0].children;
         for (let p of paths) {

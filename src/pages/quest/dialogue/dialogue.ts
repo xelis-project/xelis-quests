@@ -43,40 +43,13 @@ export class Dialogue extends Component<any> {
             this.dialogue_index++;
             this.run_dialogue();
         } else {
-            this.anime_hide();
+            this.leave();
         }
     }
 
     run_dialogue() {
         const dialogue = this.dialogues[this.dialogue_index];
         this.text_typewriter.start(dialogue);
-    }
-
-    anime_show(props: DialogueProps) {
-        super.show();
-
-        animate(this.element, {
-            translateY: [`200%`, 0],
-            duration: 500
-        });
-
-        this.dialogue_index = 0;
-        this.dialogues = props.dialogues.map(x => x.text);
-        this.run_dialogue();
-        this.register_events();
-    }
-
-    anime_hide() {
-        this.unregister_events();
-
-        animate(this.element, {
-            translateY: [0, `200%`],
-            duration: 500,
-            onComplete: () => {
-                super.hide();
-                this.app.quest_page.forward();
-            }
-        });
     }
 
     on_click = (e: MouseEvent) => {
@@ -89,5 +62,39 @@ export class Dialogue extends Component<any> {
 
     unregister_events() {
         this.parent.removeEventListener(`click`, this.on_click);
+    }
+
+    load() {
+        super.load();
+        this.register_events();
+    }
+
+    unload() {
+        super.unload();
+        this.unregister_events();
+    }
+
+    appear(props: DialogueProps) {
+        this.load();
+        animate(this.element, {
+            translateY: [`200%`, 0],
+            duration: 500
+        });
+
+        this.dialogue_index = 0;
+        this.dialogues = props.dialogues.map(x => x.text);
+        this.run_dialogue();
+        this.register_events();
+    }
+
+    leave() {
+        animate(this.element, {
+            translateY: [0, `200%`],
+            duration: 500,
+            onComplete: () => {
+                this.unload();
+                this.app.quest_page.forward();
+            }
+        });
     }
 }
