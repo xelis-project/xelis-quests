@@ -39,7 +39,7 @@ export class QuestPage extends Component<any> {
     vars: Record<string, any>;
     scene_index: number;
     step_index: number;
-    data!: QuestData;
+    data?: QuestData;
 
     constructor(app: App) {
         super(app, app.root, `quest-page`);
@@ -86,6 +86,7 @@ export class QuestPage extends Component<any> {
             this.question.loaded
         ) return;
 
+        if (!this.data) return;
         const scene = this.data.scenes[this.scene_index];
         if (scene) {
             const next_step = scene.steps[this.step_index + 1];
@@ -101,6 +102,8 @@ export class QuestPage extends Component<any> {
     }
 
     run_scene() {
+        if (!this.data) return;
+
         const scene = this.data.scenes[this.scene_index];
         if (!scene) return;
 
@@ -120,7 +123,7 @@ export class QuestPage extends Component<any> {
         if (step.model) {
             this.model.appear(step.model);
         } else {
-    
+
         }
 
         if (step.dialogue) {
@@ -159,6 +162,7 @@ export class QuestPage extends Component<any> {
 
     unload() {
         super.unload();
+        this.data = undefined;
         this.unregister_events();
     }
 
