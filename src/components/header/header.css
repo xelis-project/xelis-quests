@@ -48,6 +48,11 @@
     transition: font-weight .25s, translate .25s;
 }
 
+.header-menu button.active {
+    font-weight: bold;
+    font-size: 1.3rem;
+}
+
 .header-menu button:hover {
     font-weight: bold;
     translate: 0 2%;

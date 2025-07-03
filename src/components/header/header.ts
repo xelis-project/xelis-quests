@@ -66,6 +66,29 @@ export class Header extends Component<any> {
             this.app.audio.play_audio(`sound_effect`, audio_hover);
         });
         content_element.appendChild(this.btn_settings_element);
+
+        this.app.addListener("page_load", () => {
+            this.highlight_menu_btn();
+        });
+    }
+
+    highlight_menu_btn() {
+        const url = new URL(window.location.href);
+
+        this.btn_intro_element.classList.remove(`active`);
+        this.btn_quests_element.classList.remove(`active`);
+
+        switch (url.pathname) {
+            case "/quests":
+                this.btn_quests_element.classList.add(`active`);
+                break;
+            case "/quest":
+                break;
+            case "/":
+            default:
+                this.btn_intro_element.classList.add(`active`);
+                break;
+        }
     }
 
     anime_show() {
