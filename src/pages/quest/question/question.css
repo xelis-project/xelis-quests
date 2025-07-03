@@ -3,7 +3,6 @@
     left: 50%;
     translate: calc(-50% - 5rem);
     position: absolute;
-    background-color: rgba(0, 0, 0, 0.5);
     border-radius: 1rem;
     font-family: Helios;
     width: 25rem;
@@ -13,9 +12,12 @@
 .quest-question-text {
     font-weight: bold;
     color: white;
+    background-color: rgba(0, 0, 0, 0.6);
     font-size: 1.2rem;
     line-height: 1rem;
     padding: 1.5rem 1.5rem 1rem 1.5rem;
+    border-top-left-radius: 1rem;
+    border-top-right-radius: 1rem;
 }
 
 .quest-question-choices {
@@ -23,7 +25,7 @@
     gap: .6rem;
     flex-direction: column;
     padding: 1rem 1.5rem 1.5rem 1.5rem;
-    background: rgba(0, 0, 0, 0.2);
+    background: rgba(0, 0, 0, 0.5);
     border-bottom-left-radius: 1rem;
     border-bottom-right-radius: 1rem;
 }
