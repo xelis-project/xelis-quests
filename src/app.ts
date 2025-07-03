@@ -5,12 +5,17 @@ import { Header } from "./components/header/header";
 import { Audio } from "./components/audio/audio";
 import { QuestPage } from "./pages/quest/quest";
 import { MouseEffects } from "./components/mouse_effects/mouse_effects";
+import { EventEmitter } from "./utils/event_emitter";
 
 import 'reset-css/reset.css';
 import './font_types.css';
 import './app.css';
 
-export class App {
+interface AppEventMap {
+    page_load: any;
+}
+
+export class App extends EventEmitter<AppEventMap> {
     root: HTMLElement;
 
     intro_page: IntroPage;
@@ -23,6 +28,8 @@ export class App {
     mouse_effects: MouseEffects
 
     constructor(root: HTMLElement) {
+        super();
+
         this.root = root;
         this.audio = new Audio();
 
@@ -67,6 +74,8 @@ export class App {
                 this.intro_page.anime_show();
                 break;
         }
+
+        this.emit("page_load");
     }
 
     set_font_size() {
