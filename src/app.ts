@@ -55,14 +55,16 @@ export class App {
         this.quest_page.hide();
 
         switch (url.pathname) {
-            case "/":
-                this.intro_page.anime_show();
-                break;
             case "/quests":
                 this.quests_page.anime_show();
                 break;
             case "/quest":
                 this.quest_page.anime_show();
+                break;
+            // we don't need 404 not found - simply display the intro page
+            case "/":
+            default:
+                this.intro_page.anime_show();
                 break;
         }
     }
