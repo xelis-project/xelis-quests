@@ -1,15 +1,17 @@
 import type { App } from "../../app";
 import { Component } from "../../component";
 
-import quest_1 from '../quests/quest_1.json';
 import { Dialogue, type DialogueProps } from "./dialogue/dialogue";
 import { Background, type BackgroundProps } from "./background/background";
 import { Model, type ModelProps } from "./model/model";
 import { Question, type QuestionProps } from "./question/question";
-
-import './quest.css';
 import { CanvasShader } from "../../utils/canvas_shader";
 import { GoTo, type GoToProps } from "./go_to/go_to";
+import queryString from "query-string";
+
+import quest_1 from './data/quest_1.json';
+
+import './quest.css';
 
 interface QuestStep {
     model?: ModelProps;
@@ -37,7 +39,7 @@ export class QuestPage extends Component<any> {
     vars: Record<string, any>;
     scene_index: number;
     step_index: number;
-    data: QuestData;
+    data!: QuestData;
 
     constructor(app: App) {
         super(app, app.root, `quest-page`);
@@ -45,7 +47,6 @@ export class QuestPage extends Component<any> {
         this.vars = {};
         this.scene_index = 0;
         this.step_index = 0;
-        this.data = quest_1;
 
         // TODO: create space shader with ellipsis, lines, warping, etc...
         const shader = `
@@ -133,8 +134,26 @@ export class QuestPage extends Component<any> {
         }
     }
 
+    set_data_from_querystring() {
+        const parsed = queryString.parse(window.location.search);
+        switch (parsed.slug) {
+            case "quest-1":
+                this.data = quest_1;
+                break;
+        }
+    }
+
     anime_show() {
         super.show();
+
+
+        this.set_data_from_querystring();
+
+        if (!this.data) {
+            this.app.go_to(`/`);
+            return;
+        }
+
         this.run_scene();
         this.register_events();
     }

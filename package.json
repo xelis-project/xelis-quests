@@ -17,6 +17,7 @@
     "dependencies": {
         "animejs": "^4.0.2",
         "json-logic-js": "^2.0.5",
+        "query-string": "^9.2.1",
         "reset-css": "^5.0.2",
         "three": "^0.178.0"
     }

@@ -4,6 +4,7 @@ import { Component } from "../../../component";
 import './quest_item.css';
 
 interface QuestItemProps {
+    slug: string;
     img: string;
     name: string;
     description: string;
@@ -66,7 +67,7 @@ export class QuestItem extends Component<any> {
             this.app.audio.play_audio(`sound_effect`, audio_transition);
 
             this.app.quests_page.anime_hide(() => {
-                this.app.go_to(`/quest`);
+                this.app.go_to(`/quest?slug=${props.slug}`);
             });
         });
 
