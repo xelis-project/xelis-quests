@@ -5,15 +5,21 @@ import { Component } from "../../../component";
 import './dialogue.css';
 import { AudioTypewriter } from "../../../components/audio_typewriter/audio_typewriter";
 
+interface DialogueData {
+    text: string;
+    voice?: { src: string, volume: number };
+}
+
 export interface DialogueProps {
-    dialogues: { text: string }[];
+    dialogues: DialogueData[];
 }
 
 export class Dialogue extends Component<any> {
     text_element: HTMLDivElement;
     text_typewriter: AudioTypewriter;
-    dialogues: string[];
+    dialogues: DialogueData[];
     dialogue_index: number;
+    voice_audio?: HTMLAudioElement;
 
     constructor(app: App, parent: HTMLElement) {
         super(app, parent, `quest-dialogue`);
@@ -34,6 +40,10 @@ export class Dialogue extends Component<any> {
 
     next_dialogue() {
         if (this.text_typewriter.active) {
+            if (this.voice_audio) {
+                this.voice_audio?.pause();
+            }
+
             this.text_typewriter.finish();
             return;
         }
@@ -48,7 +58,13 @@ export class Dialogue extends Component<any> {
 
     run_dialogue() {
         const dialogue = this.dialogues[this.dialogue_index];
-        this.text_typewriter.start(dialogue);
+        this.text_typewriter.start(dialogue.text);
+
+        if (dialogue.voice) {
+            this.voice_audio = new Audio(dialogue.voice.src);
+            this.voice_audio.volume = dialogue.voice.volume;
+            this.app.audio.play_audio(`voice`, this.voice_audio)
+        }
     }
 
     on_click = () => {
@@ -81,7 +97,7 @@ export class Dialogue extends Component<any> {
         });
 
         this.dialogue_index = 0;
-        this.dialogues = props.dialogues.map(x => x.text);
+        this.dialogues = props.dialogues;
         this.run_dialogue();
         this.register_events();
     }

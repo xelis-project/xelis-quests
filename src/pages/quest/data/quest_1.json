@@ -8,10 +8,18 @@
                     "dialogue": {
                         "dialogues": [
                             {
-                                "text": "Hey, I'm NAME. The XELIS mascot."
+                                "text": "Hey, I'm XELITOR. The friendly futuristic mascot of XELIS.",
+                                "voice": {
+                                    "src": "/audio/voices/quest_1/xelitor_001.mp3",
+                                    "volume": 1
+                                }
                             },
                             {
-                                "text": "I've been brought to life to be your guide during your quests."
+                                "text": "I've been brought to life to be your guide during your quests.",
+                                "voice": {
+                                    "src": "/audio/voices/quest_1/xelitor_002.mp3",
+                                    "volume": 1
+                                }
                             },
                             {
                                 "text": "The goal of XelQuests is to deepen your understanding of the XELIS."
