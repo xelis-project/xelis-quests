@@ -22,8 +22,7 @@ export class Question extends Component<any> {
     choices_element: HTMLDivElement;
     text_typewriter: AudioTypewriter;
 
-    question: string;
-    choices: QuestionChoice[];
+    data?: QuestionProps;
 
     constructor(app: App, parent: HTMLElement) {
         super(app, parent, `quest-question`);
@@ -36,9 +35,6 @@ export class Question extends Component<any> {
         this.choices_element.classList.add(`quest-question-choices`);
         this.element.appendChild(this.choices_element);
 
-        this.question = ``;
-        this.choices = [];
-
         this.text_typewriter = new AudioTypewriter({ app: this.app, element: this.text_element, speed: 15 });
     }
 
@@ -47,10 +43,12 @@ export class Question extends Component<any> {
         this.text_typewriter.removeListener(`finish`, this.on_typewriter_finish);
         this.text_typewriter.stop();
         this.choices_element.replaceChildren();
+        this.data = undefined;
     }
 
     on_typewriter_finish = () => {
-        this.choices.forEach((choice, i) => {
+        if (!this.data) return;
+        this.data.choices.forEach((choice, i) => {
             const question_choice = new QuestionChoiceItem(this.app, this.choices_element, choice);
             question_choice.load();
 
@@ -76,8 +74,8 @@ export class Question extends Component<any> {
             duration: 500
         });
 
+        this.data = props;
         this.text_typewriter.start(props.text);
-        this.choices = props.choices;
         this.text_typewriter.addListener(`finish`, this.on_typewriter_finish);
     }
 
@@ -102,6 +100,19 @@ class QuestionChoiceItem extends Component<any> {
             const audio_click = new Audio(`/audio/sound_effects/btn_click_1.mp3`);
             audio_click.volume = 0.6;
             this.app.audio.play_audio(`sound_effect`, audio_click);
+
+            const question_data = this.app.quest_page.question.data;
+            if (question_data) {
+                if (choice.text === question_data.answer) {
+                    const audio_good_answer = new Audio(`/audio/sound_effects/good_answer_1.mp3`);
+                    audio_good_answer.volume = 0.3;
+                    this.app.audio.play_audio(`sound_effect`, audio_good_answer);
+                } else {
+                    const audio_bad_answer = new Audio(`/audio/sound_effects/bad_answer_1.mp3`);
+                    audio_bad_answer.volume = 0.7;
+                    this.app.audio.play_audio(`sound_effect`, audio_bad_answer);
+                }
+            }
 
             this.app.quest_page.question.leave(() => {
                 this.app.quest_page.go_to.execute(choice.go_to);
