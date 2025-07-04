@@ -8,6 +8,7 @@ import { Question, type QuestionProps } from "./question/question";
 import { CanvasShader } from "../../utils/canvas_shader";
 import { GoTo, type GoToProps } from "./go_to/go_to";
 import queryString from "query-string";
+import { animate } from "animejs";
 
 import quest_1 from './data/quest_1.json';
 
@@ -158,6 +159,25 @@ export class QuestPage extends Component<any> {
 
         this.run_scene();
         this.register_events();
+    }
+
+    appear() {
+        this.load();
+
+        animate(this.element, {
+            opacity: [0, 1],
+            duration: 1000
+        });
+    }
+
+    leave() {
+        animate(this.element, {
+            scale: [1, 2],
+            duration: 1000,
+            onComplete: () => {
+                this.unload();
+            }
+        });
     }
 
     unload() {

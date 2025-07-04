@@ -66,7 +66,7 @@ export class App extends EventEmitter<AppEventMap> {
                 this.quests_page.appear();
                 break;
             case "/quest":
-                this.quest_page.load();
+                this.quest_page.appear();
                 break;
             // we don't need 404 not found - simply display the intro page
             case "/":
