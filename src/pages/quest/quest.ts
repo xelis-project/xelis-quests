@@ -164,6 +164,8 @@ export class QuestPage extends Component<any> {
         super.unload();
         this.data = undefined;
         this.unregister_events();
+        this.dialogue.unload();
+        this.question.unload();
     }
 
     on_click = () => {

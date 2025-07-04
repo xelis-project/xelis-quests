@@ -87,6 +87,9 @@ export class Dialogue extends Component<any> {
     unload() {
         super.unload();
         this.unregister_events();
+
+        this.text_typewriter.stop();
+        if (this.voice_audio) this.voice_audio.pause();
     }
 
     appear(props: DialogueProps) {

@@ -20,9 +20,10 @@ export interface QuestionProps {
 export class Question extends Component<any> {
     text_element: HTMLDivElement;
     choices_element: HTMLDivElement;
+    text_typewriter: AudioTypewriter;
 
     question: string;
-    choices: string[];
+    choices: QuestionChoice[];
 
     constructor(app: App, parent: HTMLElement) {
         super(app, parent, `quest-question`);
@@ -37,6 +38,34 @@ export class Question extends Component<any> {
 
         this.question = ``;
         this.choices = [];
+
+        this.text_typewriter = new AudioTypewriter({ app: this.app, element: this.text_element, speed: 15 });
+    }
+
+    unload() {
+        super.unload();
+        this.text_typewriter.removeListener(`finish`, this.on_typewriter_finish);
+        this.text_typewriter.stop();
+        this.choices_element.replaceChildren();
+    }
+
+    on_typewriter_finish = () => {
+        this.choices.forEach((choice, i) => {
+            const question_choice = new QuestionChoiceItem(this.app, this.choices_element, choice);
+            question_choice.load();
+
+            setTimeout(() => {
+                animate(question_choice.element, {
+                    translateX: [`10%`, 0],
+                    opacity: [0, 1],
+                    duration: 500,
+                });
+
+                const appear_audio = new Audio(`/audio/sound_effects/page_transition_6.mp3`);
+                appear_audio.volume = 0.1;
+                this.app.audio.play_audio(`sound_effect`, appear_audio);
+            }, 200 * i);
+        });
     }
 
     appear(props: QuestionProps) {
@@ -47,26 +76,9 @@ export class Question extends Component<any> {
             duration: 500
         });
 
-        const text_typewriter = new AudioTypewriter({ app: this.app, element: this.text_element, speed: 15 });
-        text_typewriter.start(props.text);
-        text_typewriter.addListener(`finish`, () => {
-            props.choices.forEach((choice, i) => {
-                const question_choice = new QuestionChoiceItem(this.app, this.choices_element, choice);
-                question_choice.load();
-
-                setTimeout(() => {
-                    animate(question_choice.element, {
-                        translateX: [`10%`, 0],
-                        opacity: [0, 1],
-                        duration: 500,
-                    });
-
-                    const appear_audio = new Audio(`/audio/sound_effects/page_transition_6.mp3`);
-                    appear_audio.volume = 0.1;
-                    this.app.audio.play_audio(`sound_effect`, appear_audio);
-                }, 200 * i);
-            });
-        });
+        this.text_typewriter.start(props.text);
+        this.choices = props.choices;
+        this.text_typewriter.addListener(`finish`, this.on_typewriter_finish);
     }
 
     leave(complete: () => void) {
@@ -75,7 +87,6 @@ export class Question extends Component<any> {
             duration: 500,
             onComplete: () => {
                 this.unload();
-                this.choices_element.replaceChildren();
                 complete();
             }
         });
