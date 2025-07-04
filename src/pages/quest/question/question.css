@@ -42,3 +42,11 @@
     translate: -2%;
     color: white;
 }
+
+.quest-question-choice.good {
+    color: #7aff7a;
+}
+
+.quest-question-choice.bad {
+    color: #e33d3d;
+}

@@ -107,16 +107,22 @@ class QuestionChoiceItem extends Component<any> {
                     const audio_good_answer = new Audio(`/audio/sound_effects/good_answer_1.mp3`);
                     audio_good_answer.volume = 0.3;
                     this.app.audio.play_audio(`sound_effect`, audio_good_answer);
+
+                    this.element.classList.add(`good`);
                 } else {
                     const audio_bad_answer = new Audio(`/audio/sound_effects/bad_answer_1.mp3`);
                     audio_bad_answer.volume = 0.7;
                     this.app.audio.play_audio(`sound_effect`, audio_bad_answer);
+
+                    this.element.classList.add(`bad`);
                 }
             }
 
-            this.app.quest_page.question.leave(() => {
-                this.app.quest_page.go_to.execute(choice.go_to);
-            });
+            setTimeout(() => {
+                this.app.quest_page.question.leave(() => {
+                    this.app.quest_page.go_to.execute(choice.go_to);
+                });
+            }, 750);
         });
 
         this.element.addEventListener(`mouseenter`, () => {
