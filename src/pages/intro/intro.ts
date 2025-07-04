@@ -57,7 +57,7 @@ export class IntroPage extends Component<any> {
             });
 
             const audio_click = new Audio(`/audio/sound_effects/btn_click_1.mp3`);
-            audio_click.volume = 0.1;
+            audio_click.volume = 0.6;
             this.app.audio.play_audio(`sound_effect`, audio_click);
         });
         this.btn_start_element.addEventListener(`mouseenter`, () => {

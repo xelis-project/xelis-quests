@@ -26,7 +26,7 @@ export class MouseEffects extends Component<any> {
         });
 
         const click_audio = new Audio(`/audio/sound_effects/mouse_click_1.mp3`);
-        click_audio.volume = 1;
+        click_audio.volume = 0.3;
         this.app.audio.play_audio(`sound_effect`, click_audio);
     }
 

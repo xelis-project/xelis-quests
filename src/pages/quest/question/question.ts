@@ -99,6 +99,10 @@ class QuestionChoiceItem extends Component<any> {
         this.element.innerHTML = choice.text;
 
         this.element.addEventListener(`click`, () => {
+            const audio_click = new Audio(`/audio/sound_effects/btn_click_1.mp3`);
+            audio_click.volume = 0.6;
+            this.app.audio.play_audio(`sound_effect`, audio_click);
+
             this.app.quest_page.question.leave(() => {
                 this.app.quest_page.go_to.execute(choice.go_to);
             });
