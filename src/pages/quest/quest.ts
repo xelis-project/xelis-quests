@@ -11,6 +11,8 @@ import queryString from "query-string";
 import { animate } from "animejs";
 
 import quest_1 from './data/quest_1.json';
+import quest_1_shader from './shaders/quest_1.glsl?raw';
+import quest_2_shader from './shaders/quest_2.glsl?raw';
 
 import './quest.css';
 
@@ -49,28 +51,7 @@ export class QuestPage extends Component<any> {
         this.scene_index = 0;
         this.step_index = 0;
 
-        // TODO: create space shader with ellipsis, lines, warping, etc...
-        const shader = `
-            #include <common>
-            uniform vec3 iResolution;
-            uniform float iTime;
-            // By iq: https://www.shadertoy.com/user/iq
-            // license: Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Unported License.
-            void mainImage( out vec4 fragColor, in vec2 fragCoord )
-            {
-                // Normalized pixel coordinates (from 0 to 1)
-                vec2 uv = fragCoord/iResolution.xy;
-                // Time varying pixel color
-                vec3 col = 0.5 + 0.5*cos(iTime+uv.xyx+vec3(0,2,4));
-                // Output to screen
-                fragColor = vec4(col,1.0);
-            }
-            void main() {
-                mainImage(gl_FragColor, gl_FragCoord.xy);
-            }
-        `
-
-        const canvas_shader = new CanvasShader(shader);
+        const canvas_shader = new CanvasShader(quest_1_shader);
         canvas_shader.canvas.classList.add(`quest-canvas`);
         this.element.appendChild(canvas_shader.canvas);
 

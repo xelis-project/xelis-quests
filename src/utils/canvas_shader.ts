@@ -20,8 +20,12 @@ export class CanvasShader {
         const plane = new THREE.PlaneGeometry(2, 2);
 
         this.uniforms = {
+            // shadertoy
             iTime: { value: 0 },
             iResolution: { value: new THREE.Vector3() },
+            // glsl
+            u_time: { value: 0 },
+            u_resolution: { value: new THREE.Vector2(innerWidth, innerHeight) },
             ...uniforms
         };
 
@@ -38,8 +42,12 @@ export class CanvasShader {
         this.resize();
 
         time *= 0.001;
+
         this.uniforms.iResolution.value.set(this.canvas.width, this.canvas.height, 1);
         this.uniforms.iTime.value = time;
+
+        this.uniforms.u_resolution.value.set(this.canvas.width, this.canvas.height);
+        this.uniforms.u_time.value = time;
 
         this.renderer.render(this.scene, this.camera);
         requestAnimationFrame(this.render);
