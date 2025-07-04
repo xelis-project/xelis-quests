@@ -14,7 +14,6 @@ export class IntroPage extends Component<any> {
 
     circuit: Circuit;
     shape_3_element: HTMLDivElement;
-    music: HTMLAudioElement;
 
     constructor(app: App) {
         super(app, app.root, `intro-page`);
@@ -67,15 +66,6 @@ export class IntroPage extends Component<any> {
         });
 
         content.appendChild(this.btn_start_element);
-
-        this.music = new Audio(`/audio/music/music_electric_synth_1.mp3`);
-        this.music.volume = 0.05;
-
-        this.element.addEventListener(`click`, () => {
-            //this.music.currentTime = 0;
-            this.music.play();
-            //this.app.audio.play_audio(`music`, this.music);
-        });
     }
 
     appear() {
@@ -133,7 +123,5 @@ export class IntroPage extends Component<any> {
                 complete();
             }
         });
-
-        this.music.pause();
     }
 }

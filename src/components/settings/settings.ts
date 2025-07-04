@@ -25,7 +25,7 @@ export class Settings extends Component<any> {
 
         this.master_volume_slider = new SettingsSlider();
         this.master_volume_slider.title.innerHTML = `Master Volume`;
-        this.master_volume_slider.input.value = `${app.audio.master_volume * 100}`;
+        this.master_volume_slider.input.value = `${this.app.audio.master_volume * 100}`;
         this.master_volume_slider.input.addEventListener(`input`, (e) => {
             const input = e.target as HTMLInputElement;
             this.app.audio.master_volume = parseInt(input.value) / 100;
@@ -35,30 +35,31 @@ export class Settings extends Component<any> {
 
         this.music_volume_slider = new SettingsSlider();
         this.music_volume_slider.title.innerHTML = `Music Volume`;
-        this.music_volume_slider.input.value = `${app.audio.music_volume * 100}`;
+        this.music_volume_slider.input.value = `${this.app.audio.music_volume * 100}`;
         this.music_volume_slider.input.addEventListener(`input`, (e) => {
             const input = e.target as HTMLInputElement;
-            app.audio.music_volume = parseInt(input.value) / 100;
+            this.app.audio.music_volume = parseInt(input.value) / 100;
+            this.app.audio.apply_background_music_volume();
             this.app.audio.save_settings();
         });
         this.element.appendChild(this.music_volume_slider.element);
 
         this.voice_volume_slider = new SettingsSlider();
         this.voice_volume_slider.title.innerHTML = `Voice Volume`;
-        this.voice_volume_slider.input.value = `${app.audio.voice_volume * 100}`;
+        this.voice_volume_slider.input.value = `${this.app.audio.voice_volume * 100}`;
         this.voice_volume_slider.input.addEventListener(`input`, (e) => {
             const input = e.target as HTMLInputElement;
-            app.audio.voice_volume = parseInt(input.value) / 100;
+            this.app.audio.voice_volume = parseInt(input.value) / 100;
             this.app.audio.save_settings();
         });
         this.element.appendChild(this.voice_volume_slider.element);
 
         this.sound_effect_volume_slider = new SettingsSlider();
         this.sound_effect_volume_slider.title.innerHTML = `Sound Effect Volume`;
-        this.sound_effect_volume_slider.input.value = `${app.audio.sound_effect_volume * 100}`;
+        this.sound_effect_volume_slider.input.value = `${this.app.audio.sound_effect_volume * 100}`;
         this.sound_effect_volume_slider.input.addEventListener(`input`, (e) => {
             const input = e.target as HTMLInputElement;
-            app.audio.sound_effect_volume = parseInt(input.value) / 100;
+            this.app.audio.sound_effect_volume = parseInt(input.value) / 100;
             this.app.audio.save_settings();
         });
         this.element.appendChild(this.sound_effect_volume_slider.element);

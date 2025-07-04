@@ -1,22 +1,46 @@
 type AudioType = `voice` | `sound_effect` | `music`;
 
-export class Audio {
+export class AppAudio {
     master_volume: number;
     voice_volume: number;
     sound_effect_volume: number;
     music_volume: number;
+
+    background_music_init_volume: number;
+    background_music_audio?: HTMLAudioElement;
 
     constructor() {
         this.master_volume = 1;
         this.voice_volume = 1;
         this.sound_effect_volume = 1;
         this.music_volume = 1;
+        this.background_music_init_volume = 0;
 
         this.load_settings();
     }
 
+    play_background_music(audio?: HTMLAudioElement) {
+        if (this.background_music_audio) this.background_music_audio.pause();
+
+        if (audio) {
+            this.background_music_audio = audio;
+            this.background_music_init_volume = audio.volume;
+            audio.volume = audio.volume * this.get_volume(`music`);
+            audio.loop = true;
+            audio.play();
+        } else {
+            this.background_music_audio = undefined;
+        }
+    }
+
+    apply_background_music_volume() {
+        if (this.background_music_audio) {
+            this.background_music_audio.volume = this.background_music_init_volume * this.get_volume(`music`);
+        }
+    }
+
     play_audio(type: AudioType, audio: HTMLAudioElement) {
-        audio.volume = audio.volume * this.master_volume * this.get_volume(type);
+        audio.volume = audio.volume * this.get_volume(type);
         audio.play();
     }
 

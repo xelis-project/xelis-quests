@@ -2,7 +2,7 @@ import { IntroPage } from "./pages/intro/intro";
 import { QuestsPage } from "./pages/quests/quests";
 import { Settings } from "./components/settings/settings";
 import { Header } from "./components/header/header";
-import { Audio } from "./components/audio/audio";
+import { AppAudio } from "./components/app_audio/app_audio";
 import { QuestPage } from "./pages/quest/quest";
 import { MouseEffects } from "./components/mouse_effects/mouse_effects";
 import { EventEmitter } from "./utils/event_emitter";
@@ -24,14 +24,14 @@ export class App extends EventEmitter<AppEventMap> {
 
     header: Header;
     settings: Settings;
-    audio: Audio;
+    audio: AppAudio;
     mouse_effects: MouseEffects
 
     constructor(root: HTMLElement) {
         super();
 
         this.root = root;
-        this.audio = new Audio();
+        this.audio = new AppAudio();
 
         this.mouse_effects = new MouseEffects(this);
         this.mouse_effects.load();
@@ -47,6 +47,16 @@ export class App extends EventEmitter<AppEventMap> {
         this.on_resize();
 
         this.load_page();
+
+        // cannot start audio on page load - browser prevents it until user interacts
+        const first_click = () => {
+            const bg_music = new Audio(`/audio/music/music_electric_synth_1.mp3`);
+            bg_music.volume = 0.05;
+            this.audio.play_background_music(bg_music);
+            document.removeEventListener(`click`, first_click);
+        }
+
+        document.addEventListener(`click`, first_click);
     }
 
     go_to(link: string) {
