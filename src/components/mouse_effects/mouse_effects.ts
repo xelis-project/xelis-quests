@@ -15,9 +15,11 @@ export class MouseEffects extends Component<any> {
         this.element.appendChild(mouse_click_ellipsis);
 
         mouse_click_ellipsis.style.translate = `calc(${e.clientX}px - 2.5rem) calc(${e.clientY}px - 2.5rem)`;
+
+        const rand_scale = 1.5 + Math.random() * 2;
         animate(mouse_click_ellipsis, {
             opacity: [0, 0.5, 0],
-            scale: [0, 1.5],
+            scale: [0, rand_scale],
             duration: 500,
             ease: eases.linear(),
             onComplete: () => {
