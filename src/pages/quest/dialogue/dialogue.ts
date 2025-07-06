@@ -1,4 +1,4 @@
-import { animate } from "animejs";
+import { animate, JSAnimation } from "animejs";
 import { App } from "../../../app";
 import { Component } from "../../../component";
 
@@ -20,6 +20,8 @@ export class Dialogue extends Component<any> {
     dialogues: DialogueData[];
     dialogue_index: number;
     voice_audio?: HTMLAudioElement;
+
+    leave_animation?: JSAnimation;
 
     constructor(app: App, parent: HTMLElement) {
         super(app, parent, `quest-dialogue`);
@@ -52,6 +54,7 @@ export class Dialogue extends Component<any> {
             this.dialogue_index++;
             this.run_dialogue();
         } else {
+            if (this.leave_animation && !this.leave_animation.paused) return;
             this.leave();
         }
     }
@@ -106,7 +109,7 @@ export class Dialogue extends Component<any> {
     }
 
     leave() {
-        animate(this.element, {
+        this.leave_animation = animate(this.element, {
             translateY: [0, `200%`],
             duration: 500,
             onComplete: () => {
