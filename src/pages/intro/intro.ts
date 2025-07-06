@@ -89,7 +89,7 @@ export class IntroPage extends Component<any> {
 
         animate(this.mascot_element, {
             opacity: [0, 1],
-            translateY: [50, 0],
+            translateY: [`5%`, 0],
             duration: 750,
             delay: 750,
             ease: eases.inOutBack(5)
