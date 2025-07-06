@@ -1,7 +1,7 @@
 [
     {
         "slug": "quest-1",
-        "img": "/images/quest_img_1.webp",
+        "img": "/images/quests_bg/quest_img_1.webp",
         "name": "What is XELIS all about?",
         "description": "Meet the mascot, understand the role of XELIS and it's foundation.",
         "time": "3min",
@@ -9,7 +9,7 @@
     },
     {
         "slug": "quest-2",
-        "img": "/images/quest_img_2.webp",
+        "img": "/images/quests_bg/quest_img_2.webp",
         "name": "XELIS innovations and technological advantages",
         "description": "Dive deeper into more complex XELIS structures.",
         "time": "5min",
@@ -17,7 +17,7 @@
     },
     {
         "slug": "quest-3",
-        "img": "/images/quest_img_3.webp",
+        "img": "/images/quests_bg/quest_img_3.webp",
         "name": "XELIS is BlockDAG!",
         "description": "XELIS uses a BlockDAG structure instead of a traditionnal linear blockchain.",
         "time": "5min",

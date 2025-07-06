@@ -3,8 +3,7 @@
         {
             "steps": [
                 {
-                    "background": { "img": "/images/quest_img_1.webp" },
-                    "model": { "img": "/mascot/mascot_04.webp" },
+                    "model": { "img": "/images/mascot/mascot_04.webp" },
                     "dialogue": {
                         "dialogues": [
                             {
@@ -34,7 +33,7 @@
                     }
                 },
                 {
-                    "model": { "img": "/mascot/mascot_11.webp" },
+                    "model": { "img": "/images/mascot/mascot_11.webp" },
                     "question": {
                         "text": "What is XELIS?",
                         "answer": "A decentralized, open source, cryptocurrency blockchain.",
