@@ -1,4 +1,4 @@
-import { animate } from "animejs";
+import { animate, eases } from "animejs";
 import { App } from "../../../app";
 import { Component } from "../../../component";
 
@@ -109,12 +109,24 @@ class QuestionChoiceItem extends Component<any> {
                     this.app.audio.play_audio(`sound_effect`, audio_good_answer);
 
                     this.element.classList.add(`good`);
+
+                    animate(this.app.quest_page.question.element, {
+                        scale: [1, 1.1],
+                        duration: 500,
+                        ease: eases.inOutBack(2)
+                    });
                 } else {
                     const audio_bad_answer = new Audio(`/audio/sound_effects/bad_answer_1.mp3`);
                     audio_bad_answer.volume = 0.7;
                     this.app.audio.play_audio(`sound_effect`, audio_bad_answer);
 
                     this.element.classList.add(`bad`);
+
+                    animate(this.app.quest_page.question.element, {
+                        scale: [1, 0.9],
+                        duration: 500,
+                        ease: eases.inOutBack(2)
+                    });
                 }
             }
 
@@ -122,7 +134,7 @@ class QuestionChoiceItem extends Component<any> {
                 this.app.quest_page.question.leave(() => {
                     this.app.quest_page.go_to.execute(choice.go_to);
                 });
-            }, 750);
+            }, 1000);
         });
 
         this.element.addEventListener(`mouseenter`, () => {
