@@ -11,6 +11,7 @@ export class IntroPage extends Component<any> {
     title_element: HTMLDivElement;
     description_element: HTMLDivElement;
     btn_start_element: HTMLButtonElement;
+    mascot_element: HTMLImageElement;
 
     circuit: Circuit;
     shape_3_element: HTMLDivElement;
@@ -36,6 +37,11 @@ export class IntroPage extends Component<any> {
         const content = document.createElement(`div`);
         content.classList.add(`intro-page-content`);
         this.element.appendChild(content);
+
+             this.mascot_element = document.createElement(`img`);
+        this.mascot_element.src = `/images/mascot/mascot_06.webp`;
+        this.mascot_element.classList.add(`intro-page-mascot`);
+        content.appendChild(this.mascot_element);
 
         this.title_element = document.createElement(`div`);
         this.title_element.innerHTML = `XELIS QUESTS`;
@@ -79,6 +85,14 @@ export class IntroPage extends Component<any> {
         animate(this.element, {
             opacity: [0, 1],
             duration: 1000
+        });
+
+        animate(this.mascot_element, {
+            opacity: [0, 1],
+            translateY: [50, 0],
+            duration: 750,
+            delay: 750,
+            ease: eases.inOutBack(5)
         });
 
         animate(this.title_element, {

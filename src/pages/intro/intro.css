@@ -59,6 +59,15 @@
     max-width: 50rem;
     align-items: start;
     padding: 2rem;
+    position: relative;
+}
+
+.intro-page-mascot {
+    position: absolute;
+    width: 25rem;
+    right: 0;
+    top: -20%;
+    filter: blur(2px) opacity(0.3);
 }
 
 .intro-page-title {
