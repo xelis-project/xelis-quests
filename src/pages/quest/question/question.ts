@@ -9,11 +9,11 @@ import type { GoToProps } from "../go_to/go_to";
 interface QuestionChoice {
     text: string;
     go_to: GoToProps;
+    effect: "good" | "bad" | "neutral";
 }
 
 export interface QuestionProps {
     text: string;
-    answer: string;
     choices: QuestionChoice[];
 }
 
@@ -101,33 +101,52 @@ class QuestionChoiceItem extends Component<any> {
             audio_click.volume = 0.6;
             this.app.audio.play_audio(`sound_effect`, audio_click);
 
-            const question_data = this.app.quest_page.question.data;
-            if (question_data) {
-                if (choice.text === question_data.answer) {
-                    const audio_good_answer = new Audio(`/audio/sound_effects/good_answer_1.mp3`);
-                    audio_good_answer.volume = 0.3;
-                    this.app.audio.play_audio(`sound_effect`, audio_good_answer);
+            switch (choice.effect) {
+                case "good":
+                    {
+                        const audio_select = new Audio(`/audio/sound_effects/good_answer_1.mp3`);
+                        audio_select.volume = 0.3;
+                        this.app.audio.play_audio(`sound_effect`, audio_select);
 
-                    this.element.classList.add(`good`);
+                        this.element.classList.add(`good`);
 
-                    animate(this.app.quest_page.question.element, {
-                        scale: [1, 1.1],
-                        duration: 500,
-                        ease: eases.inOutBack(2)
-                    });
-                } else {
-                    const audio_bad_answer = new Audio(`/audio/sound_effects/bad_answer_1.mp3`);
-                    audio_bad_answer.volume = 0.7;
-                    this.app.audio.play_audio(`sound_effect`, audio_bad_answer);
+                        animate(this.app.quest_page.question.element, {
+                            scale: [1, 1.1],
+                            duration: 500,
+                            ease: eases.inOutBack(2)
+                        });
+                    }
+                    break;
+                case "bad":
+                    {
+                        const audio_select = new Audio(`/audio/sound_effects/bad_answer_1.mp3`);
+                        audio_select.volume = 0.7;
+                        this.app.audio.play_audio(`sound_effect`, audio_select);
 
-                    this.element.classList.add(`bad`);
+                        this.element.classList.add(`bad`);
 
-                    animate(this.app.quest_page.question.element, {
-                        scale: [1, 0.9],
-                        duration: 500,
-                        ease: eases.inOutBack(2)
-                    });
-                }
+                        animate(this.app.quest_page.question.element, {
+                            scale: [1, 0.9],
+                            duration: 500,
+                            ease: eases.inOutBack(3)
+                        });
+                    }
+                    break;
+                case "neutral":
+                    {
+                        const audio_select = new Audio(`/audio/sound_effects/neutral_answer_1.mp3`);
+                        audio_select.volume = 0.1;
+                        this.app.audio.play_audio(`sound_effect`, audio_select);
+
+                        this.element.classList.add(`neutral`);
+
+                        animate(this.app.quest_page.question.element, {
+                            scale: [1, 0.95],
+                            duration: 500,
+                            ease: eases.inOutBack(2)
+                        });
+                    }
+                    break;
             }
 
             setTimeout(() => {

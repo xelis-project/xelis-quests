@@ -50,3 +50,7 @@
 .quest-question-choice.bad {
     color: #e33d3d;
 }
+
+.quest-question-choice.neutral {
+    color: #f7f758;
+}

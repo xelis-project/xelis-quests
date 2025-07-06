@@ -36,23 +36,26 @@
                     "model": { "img": "/images/mascot/mascot_11.webp" },
                     "question": {
                         "text": "What is XELIS?",
-                        "answer": "A decentralized, open source, cryptocurrency blockchain.",
                         "choices": [
                             {
                                 "text": "A decentralized, open source, cryptocurrency blockchain.",
-                                "go_to": { "scene_index": 0, "step_index": 2 }
+                                "go_to": { "scene_index": 0, "step_index": 2 },
+                                "effect": "good"
                             },
                             {
                                 "text": "A cryptocurrency game set in a futuristic world.",
-                                "go_to": { "scene_index": 0, "step_index": 4 }
+                                "go_to": { "scene_index": 0, "step_index": 4 },
+                                "effect": "bad"
                             },
                             {
                                 "text": "A centralized authoritative financial system.",
-                                "go_to": { "scene_index": 0, "step_index": 6 }
+                                "go_to": { "scene_index": 0, "step_index": 6 },
+                                "effect": "bad"
                             },
                             {
                                 "text": "I don't know.",
-                                "go_to": { "scene_index": 0, "step_index": 8 }
+                                "go_to": { "scene_index": 0, "step_index": 8 },
+                                "effect": "neutral"
                             }
                         ]
                     }
