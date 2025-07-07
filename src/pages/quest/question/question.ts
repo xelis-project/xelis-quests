@@ -9,7 +9,7 @@ import type { GoToProps } from "../go_to/go_to";
 interface QuestionChoice {
     text: string;
     go_to: GoToProps;
-    effect: "good" | "bad" | "neutral";
+    effect?: "good" | "bad" | "neutral";
 }
 
 export interface QuestionProps {
