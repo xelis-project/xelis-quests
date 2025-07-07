@@ -9,6 +9,8 @@ import { CanvasShader } from "../../utils/canvas_shader";
 import { GoTo, type GoToProps } from "./go_to/go_to";
 import queryString from "query-string";
 import { animate } from "animejs";
+import { Chapter, type ChapterProps } from "./chapter/chapter";
+import { Video, type VideoProps } from "./video/video";
 
 import quest_1 from './data/quest_1.json';
 import quest_1_shader from './shaders/quest_1.glsl?raw';
@@ -22,6 +24,8 @@ interface QuestStep {
     dialogue?: DialogueProps;
     question?: QuestionProps;
     go_to?: GoToProps;
+    chapter?: ChapterProps;
+    video?: VideoProps;
 }
 
 interface QuestScene {
@@ -38,6 +42,8 @@ export class QuestPage extends Component<any> {
     dialogue: Dialogue;
     question: Question;
     go_to: GoTo;
+    chapter: Chapter;
+    video: Video;
 
     vars: Record<string, any>;
     scene_index: number;
@@ -59,13 +65,17 @@ export class QuestPage extends Component<any> {
         this.model = new Model(app, this.element);
         this.dialogue = new Dialogue(app, this.element);
         this.question = new Question(app, this.element);
+        this.video = new Video(app, this.element);
+        this.chapter = new Chapter(app, this.element);
         this.go_to = new GoTo(app);
     }
 
     forward() {
         if (
             this.dialogue.loaded ||
-            this.question.loaded
+            this.question.loaded ||
+            this.chapter.loaded ||
+            this.video.loaded
         ) return;
 
         if (!this.data) return;
@@ -98,14 +108,10 @@ export class QuestPage extends Component<any> {
 
         if (step.background) {
 
-        } else {
-
         }
 
         if (step.model) {
             this.model.appear(step.model);
-        } else {
-
         }
 
         if (step.dialogue) {
@@ -114,8 +120,14 @@ export class QuestPage extends Component<any> {
 
         if (step.question) {
             this.question.appear(step.question);
-        } else {
+        }
 
+        if (step.video) {
+            this.video.appear(step.video);
+        }
+
+        if (step.chapter) {
+            this.chapter.appear(step.chapter);
         }
     }
 

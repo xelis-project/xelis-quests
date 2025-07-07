@@ -118,13 +118,55 @@
                                 "text": "To continue, XELIS is the world's first blockchain designed to solve the Quadrilemma."
                             },
                             {
-                                "text": "This means it addresses security, privacy, decentralization, and scalability."
+                                "text": "This means it addresses decentralization, security, privacy, and scalability."
                             },
                             {
                                 "text": "Let's explore these key aspects and what sets XELIS apart from the competition."
                             }
                         ]
                     }
+                }
+            ]
+        },
+        {
+            "steps": [
+                {
+                    "model": { "img": "/images/mascot/mascot_12.webp" },
+                    "chapter": { "text": "DECENTRALIZATION" }
+                },
+                {
+                    "dialogue": {
+                        "dialogues": [
+                            {
+                                "text": "First and foremost, the blockchain is what makes XELIS decentralized."
+                            },
+                            {
+                                "text": "Decentralization is the primary goal. It empowers individuals to maintain self-sovereign access and remove control from a single entity."
+                            },
+                            {
+                                "text": "Here is a short video that explains the concept of decentralization."
+                            }
+                        ]
+                    }
+                },
+                {
+                    "video": { "src": "/videos/quest_1/test.mp4" }
+                },
+                {
+                    "dialogue": {
+                        "dialogues": [
+                            {
+                                "text": "I hope that wasn't too much to digest."
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        {
+            "steps": [
+                {
+                    "chapter": { "text": "SECURITY" }
                 }
             ]
         }
