@@ -1,4 +1,4 @@
-import { animate, eases } from "animejs";
+import { animate, eases, JSAnimation, } from "animejs";
 import { App } from "../../../app";
 import { Component } from "../../../component";
 
@@ -9,11 +9,14 @@ export interface ChapterProps {
 }
 
 export class Chapter extends Component<any> {
+    leave_animation?: JSAnimation;
+
     constructor(app: App, parent: HTMLElement) {
         super(app, parent, `quest-chapter`);
     }
 
     on_click = () => {
+        if (this.leave_animation && !this.leave_animation.paused) return;
         this.leave();
     }
 
@@ -52,13 +55,13 @@ export class Chapter extends Component<any> {
     }
 
     leave() {
-        const leave_anim = animate(this.element, {
+        this.leave_animation = animate(this.element, {
             opacity: [1, 0],
             translateY: [0, `-100%`],
             duration: 500,
             onComplete: () => {
                 this.unload();
-                leave_anim.revert();
+                this.leave_animation.revert();
                 this.app.quest_page.forward();
             }
         });
