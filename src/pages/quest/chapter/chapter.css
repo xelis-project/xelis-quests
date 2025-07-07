@@ -1,0 +1,16 @@
+.quest-chapter {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    translate: -50% -50%;
+    font-weight: bold;
+    font-size: 2rem;
+    padding: 2rem;
+    background: rgba(0, 0, 0, 0.5);
+    border-radius: 1rem;
+    backdrop-filter: blur(20px);
+    color: #02FFCF;
+    white-space: nowrap;
+    font-family: Helios;
+    user-select: none;
+}
