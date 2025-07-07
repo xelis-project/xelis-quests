@@ -1,0 +1,30 @@
+- The mascot present himself (hes a robot named XELITE)
+- XELITE explain the goal of XELIS QUESTS (an interactive interface/game to understand XELIS while receiving rewards)
+- XELITE ask "what is XELIS?" (present choices)
+- XELITE explain XELIS in further details with key aspects (decentralization, security, privacy, scalability)
+
+KEY ASPECTS
+    Decentralization
+        - Blockchain
+    Security
+        - Mining (custom algo)
+        - Proofs
+        - Transaction Fees
+        - Client Protocol
+    Privacy
+        - Homomorphic encryption
+        - P2P encrypted network
+        - Confidential Assets
+    Scalability
+        - Layer 1
+        - Boost & Fast Sync
+        - Account Model
+        - Block DAG
+        - Diff Adjustment
+
+DECENTRALIZATION
+    - create an insigthful video with animations about the XELIS blockchain
+        A distributed digital ledger that records the same transactions across computers. Each block contains transactions with timestamp and cryptographic hash of a previous block.
+        Forming an unbreakable chain following consensus rules like proof of work. Computers in the network validate/store copies of the ledger without the need of central authority.
+
+TODO
