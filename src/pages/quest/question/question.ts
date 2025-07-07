@@ -23,6 +23,7 @@ export class Question extends Component<any> {
     text_typewriter: AudioTypewriter;
 
     data?: QuestionProps;
+    choice_selected: boolean;
 
     constructor(app: App, parent: HTMLElement) {
         super(app, parent, `quest-question`);
@@ -36,6 +37,7 @@ export class Question extends Component<any> {
         this.element.appendChild(this.choices_element);
 
         this.text_typewriter = new AudioTypewriter({ app: this.app, element: this.text_element, speed: 15 });
+        this.choice_selected = false;
     }
 
     unload() {
@@ -44,12 +46,13 @@ export class Question extends Component<any> {
         this.text_typewriter.stop();
         this.choices_element.replaceChildren();
         this.data = undefined;
+        this.choice_selected = false;
     }
 
     on_typewriter_finish = () => {
         if (!this.data) return;
         this.data.choices.forEach((choice, i) => {
-            const question_choice = new QuestionChoiceItem(this.app, this.choices_element, choice);
+            const question_choice = new QuestionChoiceItem(this, this.choices_element, choice);
             question_choice.load();
 
             setTimeout(() => {
@@ -92,11 +95,14 @@ export class Question extends Component<any> {
 }
 
 class QuestionChoiceItem extends Component<any> {
-    constructor(app: App, parent: HTMLDivElement, choice: QuestionChoice) {
-        super(app, parent, `quest-question-choice`);
+    constructor(question: Question, parent: HTMLDivElement, choice: QuestionChoice) {
+        super(question.app, parent, `quest-question-choice`);
         this.element.innerHTML = choice.text;
 
         this.element.addEventListener(`click`, () => {
+            if (question.choice_selected) return;
+            question.choice_selected = true;
+
             const audio_click = new Audio(`/audio/sound_effects/btn_click_1.mp3`);
             audio_click.volume = 0.6;
             this.app.audio.play_audio(`sound_effect`, audio_click);
@@ -110,7 +116,7 @@ class QuestionChoiceItem extends Component<any> {
 
                         this.element.classList.add(`good`);
 
-                        animate(this.app.quest_page.question.element, {
+                        animate(question.element, {
                             scale: [1, 1.1],
                             duration: 500,
                             ease: eases.inOutBack(2)
@@ -125,7 +131,7 @@ class QuestionChoiceItem extends Component<any> {
 
                         this.element.classList.add(`bad`);
 
-                        animate(this.app.quest_page.question.element, {
+                        animate(question.element, {
                             scale: [1, 0.9],
                             duration: 500,
                             ease: eases.inOutBack(3)
@@ -140,7 +146,7 @@ class QuestionChoiceItem extends Component<any> {
 
                         this.element.classList.add(`neutral`);
 
-                        animate(this.app.quest_page.question.element, {
+                        animate(question.element, {
                             scale: [1, 0.95],
                             duration: 500,
                             ease: eases.inOutBack(2)
@@ -150,7 +156,7 @@ class QuestionChoiceItem extends Component<any> {
             }
 
             setTimeout(() => {
-                this.app.quest_page.question.leave(() => {
+                question.leave(() => {
                     this.app.quest_page.go_to.execute(choice.go_to);
                 });
             }, 1000);
