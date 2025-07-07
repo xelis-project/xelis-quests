@@ -1,6 +1,7 @@
 import { animate, eases } from "animejs";
 import { App } from "../../../app";
 import { Component } from "../../../component";
+import * as icons from '../../../assets/icons';
 
 import './video.css';
 
@@ -22,7 +23,7 @@ export class Video extends Component<any> {
 
         this.btn_continue = document.createElement(`button`);
         this.btn_continue.classList.add(`quest-video-btn-continue`);
-        this.btn_continue.innerHTML = `CONTINUE`;
+        this.btn_continue.innerHTML = `${icons.arrow()}CONTINUE`;
         this.btn_continue.addEventListener(`click`, () => {
             this.leave();
         });
