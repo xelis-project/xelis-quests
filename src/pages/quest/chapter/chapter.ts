@@ -61,7 +61,7 @@ export class Chapter extends Component<any> {
             duration: 500,
             onComplete: () => {
                 this.unload();
-                this.leave_animation.revert();
+                if (this.leave_animation) this.leave_animation.revert();
                 this.app.quest_page.forward();
             }
         });
