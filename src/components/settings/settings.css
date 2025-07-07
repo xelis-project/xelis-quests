@@ -23,6 +23,7 @@
     opacity: .8;
     color: white;
     transition: opacity .25s;
+    user-select: none;
 }
 
 .settings-btn-close:hover {

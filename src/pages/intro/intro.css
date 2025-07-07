@@ -97,6 +97,7 @@
     display: flex;
     gap: .5rem;
     align-items: center;
+    user-select: none;
 }
 
 .intro-page-start-btn svg {
