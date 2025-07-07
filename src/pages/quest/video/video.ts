@@ -37,6 +37,10 @@ export class Video extends Component<any> {
         this.video_element.muted = false;
         this.video_element.autoplay = true;
 
+        const audio = new Audio(`/audio/sound_effects/page_transition_7.mp3`);
+        audio.volume = 1;
+        this.app.audio.play_audio(`sound_effect`, audio);
+
         animate(this.element, {
             opacity: [.5, 1],
             scale: [1.3, 1],
