@@ -2,7 +2,7 @@ import type { App } from "../../app";
 import { Component } from "../../component";
 
 import { Dialogue, type DialogueProps } from "./dialogue/dialogue";
-import { Background, type BackgroundProps } from "./background/background";
+import { type BackgroundProps } from "./background/background";
 import { Model, type ModelProps } from "./model/model";
 import { Question, type QuestionProps } from "./question/question";
 import { CanvasShader } from "../../utils/canvas_shader";
@@ -14,7 +14,7 @@ import { Video, type VideoProps } from "./video/video";
 
 import quest_1 from './data/quest_1.json';
 import quest_1_shader from './shaders/quest_1.glsl?raw';
-import quest_2_shader from './shaders/quest_2.glsl?raw';
+// import quest_2_shader from './shaders/quest_2.glsl?raw';
 
 import './quest.css';
 
