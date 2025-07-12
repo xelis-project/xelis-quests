@@ -13,6 +13,7 @@ export class Header extends Component<any> {
     btn_quests_element: HTMLButtonElement;
 
     btn_settings_element: HTMLButtonElement;
+    btn_fullscreen_element: HTMLButtonElement;
 
     constructor(app: App) {
         super(app, app.root, `header`);
@@ -54,9 +55,13 @@ export class Header extends Component<any> {
         });
         menu_element.appendChild(this.btn_quests_element);
 
+        const btn_content_element = document.createElement(`div`);
+        content_element.appendChild(btn_content_element);
+
         this.btn_settings_element = document.createElement(`button`);
-        this.btn_settings_element.innerHTML = icons.settings()
+        this.btn_settings_element.innerHTML = icons.settings();
         this.btn_settings_element.classList.add(`header-btn-settings`);
+        this.btn_settings_element.title = `Settings`;
         this.btn_settings_element.addEventListener(`click`, () => {
             this.app.settings.appear();
         });
@@ -65,7 +70,26 @@ export class Header extends Component<any> {
             audio_hover.volume = 0.1;
             this.app.audio.play_audio(`sound_effect`, audio_hover);
         });
-        content_element.appendChild(this.btn_settings_element);
+        btn_content_element.appendChild(this.btn_settings_element);
+
+        this.btn_fullscreen_element = document.createElement(`button`);
+        this.btn_fullscreen_element.innerHTML = icons.fullscreen();
+        this.btn_fullscreen_element.title = `Toggle fullscreen`;
+        this.btn_fullscreen_element.classList.add(`header-btn-fullscreen`);
+        this.btn_fullscreen_element.addEventListener(`click`, () => {
+            const is_fullscreen = this.app.toggle_fullscreen();
+            if (is_fullscreen) {
+                this.btn_fullscreen_element.innerHTML = icons.fullscreen_exit();
+            } else {
+                this.btn_fullscreen_element.innerHTML = icons.fullscreen();
+            }
+        });
+        this.btn_fullscreen_element.addEventListener(`mouseenter`, () => {
+            const audio_hover = new Audio(`/audio/sound_effects/btn_hover_1.mp3`);
+            audio_hover.volume = 0.1;
+            this.app.audio.play_audio(`sound_effect`, audio_hover);
+        });
+        btn_content_element.appendChild(this.btn_fullscreen_element);
     }
 
     highlight_menu_btn() {

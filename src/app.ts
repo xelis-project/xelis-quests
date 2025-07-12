@@ -59,6 +59,16 @@ export class App extends EventEmitter<AppEventMap> {
         document.addEventListener(`click`, first_click);
     }
 
+    toggle_fullscreen() {
+        if (!document.fullscreenElement) {
+            document.documentElement.requestFullscreen();
+            return true;
+        } else {
+            document.exitFullscreen();
+            return false;
+        }
+    }
+
     go_to(link: string) {
         window.history.pushState(null, ``, link);
         this.load_page();

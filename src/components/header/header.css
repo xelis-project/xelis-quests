@@ -72,3 +72,17 @@
 .header-btn-settings:hover {
     rotate: 45deg;
 }
+
+.header-btn-fullscreen {
+    width: 3rem;
+    height: 3rem;
+    border: none;
+    background: transparent;
+    color: #02FFCF;
+    cursor: pointer;
+    transition: scale .25s;
+}
+
+.header-btn-fullscreen:hover {
+    scale: .9;
+}
