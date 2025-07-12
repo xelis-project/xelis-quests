@@ -11,6 +11,7 @@ import queryString from "query-string";
 import { animate } from "animejs";
 import { Chapter, type ChapterProps } from "./chapter/chapter";
 import { Video, type VideoProps } from "./video/video";
+import { Alert, type AlertProps } from "./alert/alert";
 
 import quest_1 from './data/quest_1.json';
 import quest_1_shader from './shaders/quest_1.glsl?raw';
@@ -26,6 +27,7 @@ interface QuestStep {
     go_to?: GoToProps;
     chapter?: ChapterProps;
     video?: VideoProps;
+    alert?: AlertProps;
 }
 
 interface QuestScene {
@@ -44,6 +46,7 @@ export class QuestPage extends Component<any> {
     go_to: GoTo;
     chapter: Chapter;
     video: Video;
+    alert: Alert;
 
     vars: Record<string, any>;
     scene_index: number;
@@ -67,6 +70,7 @@ export class QuestPage extends Component<any> {
         this.question = new Question(app, this.element);
         this.video = new Video(app, this.element);
         this.chapter = new Chapter(app, this.element);
+        this.alert = new Alert(app, app.root);
         this.go_to = new GoTo(app);
     }
 
@@ -128,6 +132,10 @@ export class QuestPage extends Component<any> {
 
         if (step.chapter) {
             this.chapter.appear(step.chapter);
+        }
+
+        if (step.alert) {
+            this.alert.appear(step.alert);
         }
     }
 

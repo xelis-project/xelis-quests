@@ -4,6 +4,7 @@
             "steps": [
                 {
                     "model": { "img": "/images/mascot/mascot_04.webp" },
+                    "alert": { "text": "Touch or click anywhere to advance!" },
                     "dialogue": {
                         "dialogues": [
                             {
