@@ -68,6 +68,7 @@
     right: 0;
     top: -20%;
     filter: blur(2px) opacity(0.3);
+    -webkit-user-drag: none;
 }
 
 .intro-page-title {
