@@ -7,6 +7,7 @@ import './settings.css';
 export class Settings extends Component<any> {
     btn_close: HTMLButtonElement;
 
+    typewriter_audio_enabled: SettingsCheckbox;
     master_volume_slider: SettingsSlider;
     music_volume_slider: SettingsSlider;
     voice_volume_slider: SettingsSlider;
@@ -22,6 +23,16 @@ export class Settings extends Component<any> {
             this.leave();
         });
         this.element.appendChild(this.btn_close);
+
+        this.typewriter_audio_enabled = new SettingsCheckbox();
+        this.typewriter_audio_enabled.text.innerHTML = `Typewriter audio enabled`;
+        this.typewriter_audio_enabled.input.checked = this.app.audio.typewriter_audio_enabled;
+        this.typewriter_audio_enabled.input.addEventListener(`input`, (e) => {
+            const input = e.target as HTMLInputElement;
+            this.app.audio.typewriter_audio_enabled = input.checked;
+            this.app.audio.save_settings();
+        });
+        this.element.appendChild(this.typewriter_audio_enabled.element);
 
         this.master_volume_slider = new SettingsSlider();
         this.master_volume_slider.title.innerHTML = `Master Volume`;
@@ -108,5 +119,32 @@ class SettingsSlider {
         this.input.max = `100`;
         this.input.value = `100`;
         this.element.appendChild(this.input);
+    }
+}
+
+class SettingsCheckbox {
+    element: HTMLDivElement;
+    text: HTMLDivElement;
+    input: HTMLInputElement;
+
+    constructor() {
+        this.element = document.createElement(`div`);
+        this.element.classList.add(`settings-checkbox`);
+
+        this.text = document.createElement(`div`);
+        this.element.appendChild(this.text);
+
+        const container = document.createElement(`div`);
+        container.classList.add(`settings-checkbox-container`);
+
+        this.input = document.createElement(`input`);
+        this.input.type = `checkbox`;
+        container.appendChild(this.input);
+
+        const checkmark = document.createElement(`div`);
+        checkmark.classList.add(`settings-checkbox-checkmark`);
+        container.appendChild(checkmark);
+
+        this.element.appendChild(container);
     }
 }

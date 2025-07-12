@@ -9,12 +9,15 @@ export class AppAudio {
     background_music_init_volume: number;
     background_music_audio?: HTMLAudioElement;
 
+    typewriter_audio_enabled: boolean;
+
     constructor() {
         this.master_volume = 1;
         this.voice_volume = 1;
         this.sound_effect_volume = 1;
         this.music_volume = 1;
         this.background_music_init_volume = 0;
+        this.typewriter_audio_enabled = true;
 
         this.load_settings();
     }
@@ -61,7 +64,7 @@ export class AppAudio {
         return this.master_volume * type_volume;
     }
 
-    parse_volume(value: string | null, default_value: number) {
+    parse_volume(value: any, default_value: number) {
         try {
             if (value) {
                 const volume = parseFloat(value);
@@ -74,6 +77,14 @@ export class AppAudio {
         return default_value;
     }
 
+    parse_bool(value: any, default_value: boolean) {
+        if (value === true || value === false) {
+            return value;
+        }
+
+        return default_value;
+    }
+
     load_settings() {
         let audio_settings_json = window.localStorage.getItem(`audio_settings`);
         if (audio_settings_json) {
@@ -82,6 +93,7 @@ export class AppAudio {
             this.music_volume = this.parse_volume(audio_settings.music_volume, 1);
             this.voice_volume = this.parse_volume(audio_settings.voice_volume, 1);
             this.sound_effect_volume = this.parse_volume(audio_settings.sound_effect_volume, 1);
+            this.typewriter_audio_enabled = this.parse_bool(audio_settings.typewriter_audio_enabled, true);
         }
     }
 
@@ -90,7 +102,8 @@ export class AppAudio {
             master_volume: this.master_volume,
             voice_volume: this.voice_volume,
             sound_effect_volume: this.sound_effect_volume,
-            music_volume: this.music_volume
+            music_volume: this.music_volume,
+            typewriter_audio_enabled: this.typewriter_audio_enabled
         };
 
         window.localStorage.setItem(`audio_settings`, JSON.stringify(audio_settings));

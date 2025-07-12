@@ -40,7 +40,7 @@
     color: rgba(255, 255, 255, 0.5);
 }
 
-.settings-slider input[type="range"] {
+.settings-slider input {
     appearance: none;
     background: transparent;
     cursor: pointer;
@@ -49,18 +49,65 @@
     height: .8rem;
 }
 
-.settings-slider input[type="range"]:hover {
+.settings-slider input:hover {
     opacity: 1;
 }
 
-.settings-slider input[type="range"]::-webkit-slider-thumb {
+.settings-slider input::-webkit-slider-thumb {
     appearance: none;
     background-color: #02FFCF;
     height: 100%;
     width: .8rem;
 }
 
-.settings-slider input[type="range"]::-webkit-slider-runnable-track {
+.settings-slider input::-webkit-slider-runnable-track {
     background: rgba(2, 255, 209, 0.1);
     height: 100%;
+}
+
+.settings-checkbox {
+    display: flex;
+    gap: .5rem;
+    flex-direction: row;
+}
+
+.settings-checkbox> :first-child {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.settings-checkbox-container {
+    position: relative;
+    height: 1rem;
+    width: 1rem;
+    background: rgba(2, 255, 209, 0.1);
+}
+
+.settings-checkbox input {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.settings-checkbox-container:hover .settings-checkbox-checkmark {
+    background: rgba(2, 255, 209, .5);
+}
+
+.settings-checkbox-container input:checked~.settings-checkbox-checkmark {
+    background: rgba(2, 255, 209, 1);
+}
+
+.settings-checkbox-checkmark {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    translate: -50% -50%;
+    height: 60%;
+    width: 60%;
+    cursor: pointer;
+    background: rgba(2, 255, 209, 0.1);
+    pointer-events: none;
+    transition: all .25s;
 }
