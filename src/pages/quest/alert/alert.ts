@@ -1,4 +1,4 @@
-import { animate, eases } from "animejs";
+import { animate, eases, JSAnimation } from "animejs";
 import type { App } from "../../../app";
 import { Component } from "../../../component";
 import * as icons from '../../../assets/icons';
@@ -10,6 +10,7 @@ export interface AlertProps {
 }
 
 export class Alert extends Component<any> {
+    leave_animation?: JSAnimation;
     constructor(app: App, parent: HTMLElement) {
         super(app, parent, `quest-alert`);
     }
@@ -26,7 +27,7 @@ export class Alert extends Component<any> {
     }
 
     leave() {
-        animate(this.element, {
+        this.leave_animation = animate(this.element, {
             translateX: [0, `100%`],
             duration: 250,
             ease: eases.inOutBack(5),
@@ -37,6 +38,7 @@ export class Alert extends Component<any> {
     }
 
     on_click = () => {
+        if (this.leave_animation && !this.leave_animation.paused) return;
         this.leave();
     }
 
