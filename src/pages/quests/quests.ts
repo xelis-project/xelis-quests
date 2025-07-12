@@ -1,4 +1,4 @@
-import { animate, eases, stagger } from "animejs";
+import { animate, eases, stagger, waapi } from "animejs";
 import type { App } from "../../app";
 import './quests.css';
 
@@ -105,7 +105,7 @@ export class QuestsPage extends Component<any> {
     }
 
     leave(complete: () => void) {
-        const hide_animation = animate(this.element, {
+        const hide_animation = waapi.animate(this.element, {
             scale: [1, 2],
             rotate: [`0`, `50deg`],
             opacity: [1, 0],
