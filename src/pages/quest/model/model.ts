@@ -6,6 +6,7 @@ import './model.css';
 
 export interface ModelProps {
     img: string;
+    flip?: boolean;
 }
 
 export class Model extends Component<any> {
@@ -22,6 +23,11 @@ export class Model extends Component<any> {
     appear(props: ModelProps) {
         this.load();
         this.model_element.src = props.img;
+
+        this.model_element.style.removeProperty(`scale`);
+        if (props.flip) {
+            this.model_element.style.scale = `-1 1`;
+        }
 
         const appear_audio = new Audio(`/audio/sound_effects/appear_pop_1.mp3`);
         appear_audio.volume = 0.5;

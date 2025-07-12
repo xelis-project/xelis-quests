@@ -34,7 +34,7 @@
                     }
                 },
                 {
-                    "model": { "img": "/images/mascot/mascot_11.webp" },
+                    "model": { "img": "/images/mascot/mascot_11.webp", "flip": true },
                     "question": {
                         "text": "What is XELIS?",
                         "choices": [
