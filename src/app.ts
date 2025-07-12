@@ -99,7 +99,9 @@ export class App extends EventEmitter<AppEventMap> {
     }
 
     set_font_size() {
-        const size = 0.012727 * window.innerWidth + 7.4182;
+        // TODO: find something better for both desktop and mobile
+        // const size = 0.012727 * window.innerWidth + 7.4182;
+        const size = 0.012727 * window.innerHeight + 7.4182;
         document.documentElement.style.fontSize = `${size}px`;
     }
 
