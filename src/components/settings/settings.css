@@ -6,11 +6,21 @@
     background-color: rgba(0, 0, 0, 0.4);
     z-index: 2;
     font-family: Helios;
+    padding: 5rem 10rem;
+    box-sizing: border-box;
+}
+
+.settings-header {
     display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    gap: 1rem;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+}
+
+.settings-title {
+    font-weight: bold;
+    font-size: 2rem;
+    opacity: .2;
+    color: white;
 }
 
 .settings-btn-close {
@@ -20,10 +30,20 @@
     font-weight: bold;
     font-size: 1.5rem;
     cursor: pointer;
-    opacity: .8;
+    opacity: .5;
     color: white;
     transition: opacity .25s;
     user-select: none;
+}
+
+.settings-content {
+    overflow-y: scroll;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    height: 80%;
+    box-sizing: border-box;
+    padding-right: 1rem;
 }
 
 .settings-btn-close:hover {

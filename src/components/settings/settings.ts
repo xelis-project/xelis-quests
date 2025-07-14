@@ -16,13 +16,27 @@ export class Settings extends Component<any> {
     constructor(app: App) {
         super(app, app.root, `settings`);
 
+
+        const header_element = document.createElement(`div`);
+        header_element.classList.add(`settings-header`);
+        this.element.appendChild(header_element);
+
+        const title_element = document.createElement(`div`);
+        title_element.innerHTML = `SETTINGS`;
+        title_element.classList.add(`settings-title`);
+        header_element.appendChild(title_element);
+
         this.btn_close = document.createElement(`button`);
         this.btn_close.classList.add(`settings-btn-close`);
         this.btn_close.innerHTML = `GO BACK`;
         this.btn_close.addEventListener(`click`, () => {
             this.leave();
         });
-        this.element.appendChild(this.btn_close);
+        header_element.appendChild(this.btn_close);
+
+        const content_element = document.createElement(`div`);
+        content_element.classList.add(`settings-content`);
+        this.element.appendChild(content_element);
 
         this.typewriter_audio_enabled = new SettingsCheckbox();
         this.typewriter_audio_enabled.text.innerHTML = `Typewriter audio enabled`;
@@ -32,7 +46,7 @@ export class Settings extends Component<any> {
             this.app.audio.typewriter_audio_enabled = input.checked;
             this.app.audio.save_settings();
         });
-        this.element.appendChild(this.typewriter_audio_enabled.element);
+        content_element.appendChild(this.typewriter_audio_enabled.element);
 
         this.master_volume_slider = new SettingsSlider();
         this.master_volume_slider.title.innerHTML = `Master Volume`;
@@ -42,7 +56,7 @@ export class Settings extends Component<any> {
             this.app.audio.master_volume = parseInt(input.value) / 100;
             this.app.audio.save_settings();
         });
-        this.element.appendChild(this.master_volume_slider.element);
+        content_element.appendChild(this.master_volume_slider.element);
 
         this.music_volume_slider = new SettingsSlider();
         this.music_volume_slider.title.innerHTML = `Music Volume`;
@@ -53,7 +67,7 @@ export class Settings extends Component<any> {
             this.app.audio.apply_background_music_volume();
             this.app.audio.save_settings();
         });
-        this.element.appendChild(this.music_volume_slider.element);
+        content_element.appendChild(this.music_volume_slider.element);
 
         this.voice_volume_slider = new SettingsSlider();
         this.voice_volume_slider.title.innerHTML = `Voice Volume`;
@@ -63,7 +77,7 @@ export class Settings extends Component<any> {
             this.app.audio.voice_volume = parseInt(input.value) / 100;
             this.app.audio.save_settings();
         });
-        this.element.appendChild(this.voice_volume_slider.element);
+        content_element.appendChild(this.voice_volume_slider.element);
 
         this.sound_effect_volume_slider = new SettingsSlider();
         this.sound_effect_volume_slider.title.innerHTML = `Sound Effect Volume`;
@@ -73,7 +87,7 @@ export class Settings extends Component<any> {
             this.app.audio.sound_effect_volume = parseInt(input.value) / 100;
             this.app.audio.save_settings();
         });
-        this.element.appendChild(this.sound_effect_volume_slider.element);
+        content_element.appendChild(this.sound_effect_volume_slider.element);
     }
 
     appear() {
