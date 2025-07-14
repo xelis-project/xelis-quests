@@ -45,11 +45,14 @@ export class QuestsPage extends Component<any> {
 
     load() {
         super.load();
+        // disable vertical scroll when leaving page - otherwise the leave animation is zooming in and scrolling
+        document.body.style.overflowY = `hidden`;
         this.register_events();
     }
 
     unload() {
         super.unload();
+        document.body.style.removeProperty(`hidden`);
         this.unregister_events();
     }
 
