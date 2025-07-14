@@ -1,6 +1,7 @@
 import { animate, eases } from "animejs";
 import type { App } from "../../app";
 import { Component } from "../../component";
+import { ElementMatrix } from "../../utils/element_matrix";
 
 import './mouse_effects.css';
 
@@ -14,7 +15,10 @@ export class MouseEffects extends Component<any> {
         mouse_click_ellipsis.classList.add(`mouse-effects-click`);
         this.element.appendChild(mouse_click_ellipsis);
 
-        mouse_click_ellipsis.style.translate = `calc(${e.clientX}px - 2.5rem) calc(${e.clientY}px - 2.5rem)`;
+        const root_matrix = new ElementMatrix(this.app.root);
+        const point = root_matrix.get_world_point(e.clientX, e.clientY);
+
+        mouse_click_ellipsis.style.translate = `calc(${point.x}px - 2.5rem) calc(${point.y}px - 2.5rem)`;
 
         const rand_scale = 1.5 + Math.random() * 2;
         animate(mouse_click_ellipsis, {
