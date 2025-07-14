@@ -17,8 +17,6 @@ export class Settings extends Component<any> {
     constructor(app: App) {
         super(app, app.root, `settings`);
 
-        this.load_settings();
-
         const header_element = document.createElement(`div`);
         header_element.classList.add(`settings-header`);
         this.element.appendChild(header_element);
@@ -42,13 +40,20 @@ export class Settings extends Component<any> {
 
         this.dialogue_speed = new SettingsNumber();
         this.dialogue_speed.text.innerHTML = `Dialogue speed`;
-        this.dialogue_speed.input.min = `0`;
-        this.dialogue_speed.input.max = `100`;
+        this.dialogue_speed.input.min = `10`;
+        this.dialogue_speed.input.max = `50`;
+        this.dialogue_speed.input.addEventListener(`input`, (e) => {
+            const input = e.target as HTMLInputElement;
+            this.app.quest_page.dialogue.text_typewriter.speed = input.valueAsNumber;
+            this.app.quest_page.question.text_typewriter.speed = input.valueAsNumber;;
+            this.save_settings();
+        });
+
         content_element.appendChild(this.dialogue_speed.element);
 
         this.typewriter_audio_enabled = new SettingsCheckbox();
         this.typewriter_audio_enabled.text.innerHTML = `Typewriter audio enabled`;
-        this.typewriter_audio_enabled.input.checked = this.app.audio.typewriter_audio_enabled;
+
         this.typewriter_audio_enabled.input.addEventListener(`input`, (e) => {
             const input = e.target as HTMLInputElement;
             this.app.audio.typewriter_audio_enabled = input.checked;
@@ -58,7 +63,7 @@ export class Settings extends Component<any> {
 
         this.master_volume_slider = new SettingsSlider();
         this.master_volume_slider.title.innerHTML = `Master Volume`;
-        this.master_volume_slider.input.value = `${this.app.audio.master_volume * 100}`;
+
         this.master_volume_slider.input.addEventListener(`input`, (e) => {
             const input = e.target as HTMLInputElement;
             this.app.audio.master_volume = parseInt(input.value) / 100;
@@ -68,7 +73,7 @@ export class Settings extends Component<any> {
 
         this.music_volume_slider = new SettingsSlider();
         this.music_volume_slider.title.innerHTML = `Music Volume`;
-        this.music_volume_slider.input.value = `${this.app.audio.music_volume * 100}`;
+
         this.music_volume_slider.input.addEventListener(`input`, (e) => {
             const input = e.target as HTMLInputElement;
             this.app.audio.music_volume = parseInt(input.value) / 100;
@@ -79,7 +84,7 @@ export class Settings extends Component<any> {
 
         this.voice_volume_slider = new SettingsSlider();
         this.voice_volume_slider.title.innerHTML = `Voice Volume`;
-        this.voice_volume_slider.input.value = `${this.app.audio.voice_volume * 100}`;
+
         this.voice_volume_slider.input.addEventListener(`input`, (e) => {
             const input = e.target as HTMLInputElement;
             this.app.audio.voice_volume = parseInt(input.value) / 100;
@@ -89,13 +94,22 @@ export class Settings extends Component<any> {
 
         this.sound_effect_volume_slider = new SettingsSlider();
         this.sound_effect_volume_slider.title.innerHTML = `Sound Effect Volume`;
-        this.sound_effect_volume_slider.input.value = `${this.app.audio.sound_effect_volume * 100}`;
+
         this.sound_effect_volume_slider.input.addEventListener(`input`, (e) => {
             const input = e.target as HTMLInputElement;
             this.app.audio.sound_effect_volume = parseInt(input.value) / 100;
             this.save_settings();
         });
         content_element.appendChild(this.sound_effect_volume_slider.element);
+    }
+
+    set_values() {
+        this.dialogue_speed.input.value = `${this.app.quest_page.dialogue.text_typewriter.speed}`;
+        this.typewriter_audio_enabled.input.checked = this.app.audio.typewriter_audio_enabled;
+        this.master_volume_slider.input.value = `${this.app.audio.master_volume * 100}`;
+        this.music_volume_slider.input.value = `${this.app.audio.music_volume * 100}`;
+        this.voice_volume_slider.input.value = `${this.app.audio.voice_volume * 100}`;
+        this.sound_effect_volume_slider.input.value = `${this.app.audio.sound_effect_volume * 100}`;
     }
 
     appear() {
@@ -122,12 +136,23 @@ export class Settings extends Component<any> {
         });
     }
 
+    parse_number(value: any, default_value: number) {
+        try {
+            if (value) {
+                const nbr = parseFloat(value);
+                return nbr;
+            }
+        } catch { }
+
+        return default_value;
+    }
+
     parse_volume(value: any, default_value: number) {
         try {
             if (value) {
                 const volume = parseFloat(value);
                 if (volume >= 0 && volume <= 1) {
-                    return volume as number;
+                    return volume;
                 }
             }
         } catch { }
@@ -147,11 +172,17 @@ export class Settings extends Component<any> {
         let settings_json = window.localStorage.getItem(`settings`);
         if (settings_json) {
             const settings = JSON.parse(settings_json);
+
             this.app.audio.master_volume = this.parse_volume(settings.master_volume, 1);
             this.app.audio.music_volume = this.parse_volume(settings.music_volume, 1);
             this.app.audio.voice_volume = this.parse_volume(settings.voice_volume, 1);
             this.app.audio.sound_effect_volume = this.parse_volume(settings.sound_effect_volume, 1);
             this.app.audio.typewriter_audio_enabled = this.parse_bool(settings.typewriter_audio_enabled, true);
+
+            this.app.quest_page.dialogue.text_typewriter.speed = this.parse_number(settings.dialogue_speed, 15);
+            this.app.quest_page.question.text_typewriter.speed = this.parse_number(settings.dialogue_speed, 15);
+
+            this.set_values();
         }
     }
 
@@ -161,7 +192,8 @@ export class Settings extends Component<any> {
             voice_volume: this.app.audio.voice_volume,
             sound_effect_volume: this.app.audio.sound_effect_volume,
             music_volume: this.app.audio.music_volume,
-            typewriter_audio_enabled: this.app.audio.typewriter_audio_enabled
+            typewriter_audio_enabled: this.app.audio.typewriter_audio_enabled,
+            dialogue_speed: this.app.quest_page.dialogue.text_typewriter.speed
         };
 
         window.localStorage.setItem(`settings`, JSON.stringify(settings));
@@ -229,7 +261,6 @@ class SettingsNumber {
         this.element.appendChild(this.text);
 
         const container = document.createElement(`div`);
-        container.classList.add(`settings-asd`);
 
         this.input = document.createElement(`input`);
         this.input.type = `number`;

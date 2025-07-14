@@ -44,6 +44,7 @@ export class App extends EventEmitter<AppEventMap> {
         this.quests_page = new QuestsPage(this);
         this.quest_page = new QuestPage(this);
 
+        this.settings.load_settings();
         this.register_events();
         this.on_resize();
         this.load_page();
