@@ -147,7 +147,6 @@
     background: rgba(2, 255, 209, 0.1);
     padding: .5rem;
     outline: none;
-    cursor: pointer;
     opacity: .6;
     transition: opacity .25s;
     font-size: 1rem;
