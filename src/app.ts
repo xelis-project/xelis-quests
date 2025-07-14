@@ -31,6 +31,7 @@ export class App extends EventEmitter<AppEventMap> {
         super();
 
         this.root = root;
+        this.root.classList.add(`app`);
         this.audio = new AppAudio();
 
         this.mouse_effects = new MouseEffects(this);
@@ -98,15 +99,18 @@ export class App extends EventEmitter<AppEventMap> {
         this.emit("page_load");
     }
 
-    set_font_size() {
-        // TODO: find something better for both desktop and mobile
-        // const size = 0.012727 * window.innerWidth + 7.4182;
-        const size = 0.012727 * window.innerHeight + 7.4182;
-        document.documentElement.style.fontSize = `${size}px`;
+    update_size() {
+        const s1 = window.innerWidth / 1920;
+        const s2 = window.innerHeight / 1080;
+        const s = Math.min(s1, s2);
+
+        this.root.style.width = `1920px`;
+        this.root.style.height = `1080px`;
+        this.root.style.transform = `scale3d(${s}, ${s}, 1)  translate3d(-50%, -50%, 0px)`;
     }
 
     on_resize = () => {
-        this.set_font_size();
+        this.update_size();
     }
 
     on_pop_state = (_e: PopStateEvent) => {
@@ -114,7 +118,7 @@ export class App extends EventEmitter<AppEventMap> {
     }
 
     register_events() {
-        window.addEventListener(`resize`, this.on_resize);
         window.addEventListener(`popstate`, this.on_pop_state);
+        window.addEventListener(`resize`, this.on_resize);
     }
 }
