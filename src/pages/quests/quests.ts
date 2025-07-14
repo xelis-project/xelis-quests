@@ -110,7 +110,7 @@ export class QuestsPage extends Component<any> {
     leave(complete: () => void) {
         const hide_animation = waapi.animate(this.element, {
             scale: [1, 2],
-            rotate: [`0`, `50deg`],
+            rotate: [0, 50],
             opacity: [1, 0],
             duration: 500,
             ease: eases.inCubic,
