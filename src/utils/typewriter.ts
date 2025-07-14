@@ -61,12 +61,14 @@ export class Typewriter extends EventEmitter<TypewriterEventMap> {
         this.active = true;
         this.write_character();
         this.emit(`start`);
+        this.element.style.userSelect = `none`;
     }
 
     stop() {
         if (this.active) this.emit('stop');
         this.active = false;
         clearTimeout(this.char_timeout_id);
+        this.element.style.removeProperty(`user-select`);
     }
 
     finish() {
