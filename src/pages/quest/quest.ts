@@ -75,13 +75,6 @@ export class QuestPage extends Component<any> {
     }
 
     forward() {
-        if (
-            this.dialogue.loaded ||
-            this.question.loaded ||
-            this.chapter.loaded ||
-            this.video.loaded
-        ) return;
-
         if (!this.data) return;
         const scene = this.data.scenes[this.scene_index];
         if (scene) {
@@ -159,7 +152,6 @@ export class QuestPage extends Component<any> {
         }
 
         this.run_scene();
-        this.register_events();
     }
 
     appear() {
@@ -184,20 +176,7 @@ export class QuestPage extends Component<any> {
     unload() {
         super.unload();
         this.data = undefined;
-        this.unregister_events();
         this.dialogue.unload();
         this.question.unload();
-    }
-
-    on_click = () => {
-        this.forward();
-    }
-
-    register_events() {
-        this.element.addEventListener(`click`, this.on_click);
-    }
-
-    unregister_events() {
-        this.element.removeEventListener(`click`, this.on_click);
     }
 }
