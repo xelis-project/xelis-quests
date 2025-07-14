@@ -59,6 +59,11 @@
     translate: 0 2%;
 }
 
+.header-btn-content {
+    display: flex;
+    gap: .5rem;
+}
+
 .header-btn-settings {
     width: 3rem;
     height: 3rem;

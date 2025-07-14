@@ -56,6 +56,7 @@ export class Header extends Component<any> {
         menu_element.appendChild(this.btn_quests_element);
 
         const btn_content_element = document.createElement(`div`);
+        btn_content_element.classList.add(`header-btn-content`);
         content_element.appendChild(btn_content_element);
 
         this.btn_settings_element = document.createElement(`button`);
