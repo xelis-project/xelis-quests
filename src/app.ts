@@ -46,7 +46,6 @@ export class App extends EventEmitter<AppEventMap> {
 
         this.register_events();
         this.on_resize();
-
         this.load_page();
 
         // cannot start audio on page load - browser prevents it until user interacts
