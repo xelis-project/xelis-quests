@@ -131,3 +131,25 @@
     pointer-events: none;
     transition: all .25s;
 }
+
+.settings-number {
+    display: flex;
+    gap: .5rem;
+    flex-direction: column;
+}
+
+.settings-number> :first-child {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.settings-number input {
+    border: none;
+    background: rgba(2, 255, 209, 0.1);
+    padding: .5rem;
+    outline: none;
+    cursor: pointer;
+    opacity: .6;
+    transition: opacity .25s;
+    font-size: 1rem;
+    color: #02FFCF;
+}

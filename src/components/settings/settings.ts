@@ -8,6 +8,7 @@ export class Settings extends Component<any> {
     btn_close: HTMLButtonElement;
 
     typewriter_audio_enabled: SettingsCheckbox;
+    dialogue_speed: SettingsNumber;
     master_volume_slider: SettingsSlider;
     music_volume_slider: SettingsSlider;
     voice_volume_slider: SettingsSlider;
@@ -37,6 +38,12 @@ export class Settings extends Component<any> {
         const content_element = document.createElement(`div`);
         content_element.classList.add(`settings-content`);
         this.element.appendChild(content_element);
+
+        this.dialogue_speed = new SettingsNumber();
+        this.dialogue_speed.text.innerHTML = `Dialogue speed`;
+        this.dialogue_speed.input.min = `0`;
+        this.dialogue_speed.input.max = `100`;
+        content_element.appendChild(this.dialogue_speed.element);
 
         this.typewriter_audio_enabled = new SettingsCheckbox();
         this.typewriter_audio_enabled.text.innerHTML = `Typewriter audio enabled`;
@@ -158,6 +165,29 @@ class SettingsCheckbox {
         const checkmark = document.createElement(`div`);
         checkmark.classList.add(`settings-checkbox-checkmark`);
         container.appendChild(checkmark);
+
+        this.element.appendChild(container);
+    }
+}
+
+class SettingsNumber {
+    element: HTMLDivElement;
+    text: HTMLDivElement;
+    input: HTMLInputElement;
+
+    constructor() {
+        this.element = document.createElement(`div`);
+        this.element.classList.add(`settings-number`);
+
+        this.text = document.createElement(`div`);
+        this.element.appendChild(this.text);
+
+        const container = document.createElement(`div`);
+        container.classList.add(`settings-asd`);
+
+        this.input = document.createElement(`input`);
+        this.input.type = `number`;
+        container.appendChild(this.input);
 
         this.element.appendChild(container);
     }
