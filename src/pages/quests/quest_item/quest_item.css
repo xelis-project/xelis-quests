@@ -61,12 +61,16 @@
     font-size: .9rem;
     padding: .5rem 1rem;
     color: #02FFCF;
-    cursor: pointer;
     transition: translate .25s, background-color .25s, color .25s;
 }
 
-.quest-item-start-btn:hover {
+.quest-item-start-btn:disabled {
+    opacity: .3;
+}
+
+.quest-item-start-btn:not([disabled]):hover {
     translate: 1% 0;
     background-color: #02FFCF;
     color: black;
+    cursor: pointer;
 }

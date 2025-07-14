@@ -4,6 +4,7 @@ import { Component } from "../../../component";
 import './quest_item.css';
 
 interface QuestItemProps {
+    enabled: boolean;
     slug: string;
     img: string;
     name: string;
@@ -55,21 +56,28 @@ export class QuestItem extends Component<any> {
         this.btn_start_element = document.createElement(`button`);
         this.btn_start_element.classList.add(`quest-item-start-btn`);
         this.btn_start_element.innerHTML = `Start Quest`;
-        this.btn_start_element.addEventListener(`mouseenter`, () => {
-            const audio_hover = new Audio(`/audio/sound_effects/btn_hover_1.mp3`);
-            audio_hover.volume = 0.1;
-            this.app.audio.play_audio(`sound_effect`, audio_hover);
-        });
-        this.btn_start_element.addEventListener(`click`, () => {
-            const audio_transition = new Audio('/audio/sound_effects/page_transition_5.mp3');
-            audio_transition.playbackRate = 1.4;
-            audio_transition.volume = 0.5;
-            this.app.audio.play_audio(`sound_effect`, audio_transition);
 
-            this.app.quests_page.leave(() => {
-                this.app.go_to(`/quest?slug=${props.slug}`);
+        if (props.enabled) {
+            this.btn_start_element.title = `The module is ready.`;
+            this.btn_start_element.addEventListener(`mouseenter`, () => {
+                const audio_hover = new Audio(`/audio/sound_effects/btn_hover_1.mp3`);
+                audio_hover.volume = 0.1;
+                this.app.audio.play_audio(`sound_effect`, audio_hover);
             });
-        });
+            this.btn_start_element.addEventListener(`click`, () => {
+                const audio_transition = new Audio('/audio/sound_effects/page_transition_5.mp3');
+                audio_transition.playbackRate = 1.4;
+                audio_transition.volume = 0.5;
+                this.app.audio.play_audio(`sound_effect`, audio_transition);
+
+                this.app.quests_page.leave(() => {
+                    this.app.go_to(`/quest?slug=${props.slug}`);
+                });
+            });
+        } else {
+            this.btn_start_element.disabled = true;
+            this.btn_start_element.title = `The modules is disabled or still under construction.`;
+        }
 
         action_content.appendChild(this.btn_start_element);
 
