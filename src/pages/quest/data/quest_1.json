@@ -3,6 +3,7 @@
         {
             "steps": [
                 {
+                    "background": { "shader": "quest_1_shader" },
                     "model": { "img": "/images/mascot/mascot_04.webp" },
                     "alert": { "text": "Touch or click anywhere to advance!" },
                     "dialogue": {
@@ -34,7 +35,10 @@
                     }
                 },
                 {
-                    "model": { "img": "/images/mascot/mascot_11.webp", "flip": true },
+                    "model": {
+                        "img": "/images/mascot/mascot_11.webp",
+                        "flip": true
+                    },
                     "question": {
                         "text": "What is XELIS?",
                         "choices": [

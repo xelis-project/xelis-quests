@@ -7,15 +7,21 @@ export class CanvasShader {
     renderer: THREE.WebGLRenderer;
     camera: THREE.OrthographicCamera;
     scene: THREE.Scene;
-    uniforms: Uniforms;
+    uniforms?: Uniforms;
 
-    constructor(fragment_shader: string, uniforms?: Uniforms) {
+    constructor() {
         this.canvas = document.createElement(`canvas`);
         this.renderer = new THREE.WebGLRenderer({ antialias: true, canvas: this.canvas });
         this.renderer.autoClearColor = false;
 
         this.camera = new THREE.OrthographicCamera(-1, 1, 1, -1, -1, 1);
         this.scene = new THREE.Scene();
+
+        requestAnimationFrame(this.render);
+    }
+
+    set_shader(fragment_shader: string, uniforms?: Uniforms) {
+        this.scene.clear();
 
         const plane = new THREE.PlaneGeometry(2, 2);
 
@@ -35,7 +41,6 @@ export class CanvasShader {
         });
 
         this.scene.add(new THREE.Mesh(plane, material));
-        requestAnimationFrame(this.render);
     }
 
     render = (time: number) => {
@@ -43,11 +48,13 @@ export class CanvasShader {
 
         time *= 0.001;
 
-        this.uniforms.iResolution.value.set(this.canvas.width, this.canvas.height, 1);
-        this.uniforms.iTime.value = time;
+        if (this.uniforms) {
+            this.uniforms.iResolution.value.set(this.canvas.width, this.canvas.height, 1);
+            this.uniforms.iTime.value = time;
 
-        this.uniforms.u_resolution.value.set(this.canvas.width, this.canvas.height);
-        this.uniforms.u_time.value = time;
+            this.uniforms.u_resolution.value.set(this.canvas.width, this.canvas.height);
+            this.uniforms.u_time.value = time;
+        }
 
         this.renderer.render(this.scene, this.camera);
         requestAnimationFrame(this.render);

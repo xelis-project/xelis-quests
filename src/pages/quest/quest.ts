@@ -2,10 +2,9 @@ import type { App } from "../../app";
 import { Component } from "../../component";
 
 import { Dialogue, type DialogueProps } from "./dialogue/dialogue";
-import { type BackgroundProps } from "./background/background";
+import { Background, type BackgroundProps } from "./background/background";
 import { Model, type ModelProps } from "./model/model";
 import { Question, type QuestionProps } from "./question/question";
-import { CanvasShader } from "../../utils/canvas_shader";
 import { GoTo, type GoToProps } from "./go_to/go_to";
 import queryString from "query-string";
 import { animate } from "animejs";
@@ -14,8 +13,6 @@ import { Video, type VideoProps } from "./video/video";
 import { Alert, type AlertProps } from "./alert/alert";
 
 import quest_1 from './data/quest_1.json';
-import quest_1_shader from './shaders/quest_1.glsl?raw';
-// import quest_2_shader from './shaders/quest_2.glsl?raw';
 
 import './quest.css';
 
@@ -39,7 +36,7 @@ interface QuestData {
 }
 
 export class QuestPage extends Component<any> {
-    //background: Background;
+    background: Background;
     model: Model;
     dialogue: Dialogue;
     question: Question;
@@ -60,11 +57,7 @@ export class QuestPage extends Component<any> {
         this.scene_index = 0;
         this.step_index = 0;
 
-        const canvas_shader = new CanvasShader(quest_1_shader);
-        canvas_shader.canvas.classList.add(`quest-canvas`);
-        this.element.appendChild(canvas_shader.canvas);
-
-        //this.background = new Background(app, this.element);
+        this.background = new Background(app, this.element);
         this.model = new Model(app, this.element);
         this.dialogue = new Dialogue(app, this.element);
         this.question = new Question(app, this.element);
@@ -104,7 +97,7 @@ export class QuestPage extends Component<any> {
         }
 
         if (step.background) {
-
+            this.background.appear(step.background);
         }
 
         if (step.model) {
