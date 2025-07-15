@@ -20,7 +20,6 @@ export class QuestItem extends Component<any> {
     btn_start_element: HTMLButtonElement;
     time_element: HTMLDivElement;
     reward_element: HTMLDivElement;
-    complete_status_element: HTMLDivElement;
 
     constructor(app: App, parent: HTMLElement, props: QuestItemProps) {
         super(app, parent, `quest-item`);
@@ -94,9 +93,11 @@ export class QuestItem extends Component<any> {
         this.reward_element.innerHTML = props.reward;
         details_content.appendChild(this.reward_element);
 
-        this.complete_status_element = document.createElement(`div`);
-        this.complete_status_element.classList.add(`quest-item-status`);
-        this.complete_status_element.innerHTML = `COMPLETED`;
-        this.element.appendChild(this.complete_status_element);
+        if (this.app.quests_page.is_quest_completed(props.slug)) {
+            const complete_status_element = document.createElement(`div`);
+            complete_status_element.classList.add(`quest-item-status`);
+            complete_status_element.innerHTML = `COMPLETED`;
+            this.element.appendChild(complete_status_element);
+        }
     }
 }

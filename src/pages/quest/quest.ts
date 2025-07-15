@@ -72,6 +72,8 @@ export class QuestPage extends Component<any> {
 
         // the module is finished
         if (this.scene_index >= this.data.scenes.length - 1) {
+            const slug = this.get_slug();
+            if (slug) this.app.quests_page.set_quest_completed(slug);
             this.app.go_to(`/quests`);
             return;
         }
@@ -132,9 +134,14 @@ export class QuestPage extends Component<any> {
         }
     }
 
-    set_data_from_querystring() {
+    get_slug() {
         const parsed = queryString.parse(window.location.search);
-        switch (parsed.slug) {
+        if (typeof parsed.slug === `string`) return parsed.slug;
+    }
+
+    set_data_from_querystring() {
+        const slug = this.get_slug();
+        switch (slug) {
             case "quest-1":
                 this.data = quest_1;
                 break;

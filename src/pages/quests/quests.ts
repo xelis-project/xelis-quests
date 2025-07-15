@@ -10,14 +10,12 @@ import { Component } from "../../component";
 export class QuestsPage extends Component<any> {
     title_element: HTMLDivElement;
     description_element: HTMLDivElement;
-    quest_items: QuestItem[];
+    quests_content: HTMLDivElement;
 
     circuit: Circuit;
 
     constructor(app: App) {
         super(app, app.root, "quests-page", "scrollbar-1");
-
-        this.quest_items = [];
 
         this.circuit = new Circuit(app, this.element);
         this.circuit.load();
@@ -32,20 +30,22 @@ export class QuestsPage extends Component<any> {
         this.description_element.classList.add(`quests-page-description`);
         this.element.appendChild(this.description_element);
 
-        const content = document.createElement(`div`);
-        content.classList.add(`quests-page-content`);
-        this.element.appendChild(content);
+        this.quests_content = document.createElement(`div`);
+        this.quests_content.classList.add(`quests-page-content`);
+        this.element.appendChild(this.quests_content);
 
-        quests.forEach((q) => {
-            const quest_item = new QuestItem(app, content, q);
-            quest_item.load();
-            this.quest_items.push(quest_item);
-        });
+
     }
 
     load() {
         super.load();
         this.register_events();
+
+        this.quests_content.replaceChildren();
+        quests.forEach((q) => {
+            const quest_item = new QuestItem(this.app, this.quests_content, q);
+            quest_item.load();
+        });
     }
 
     unload() {
@@ -91,8 +91,7 @@ export class QuestsPage extends Component<any> {
             delay: 250
         });
 
-        const quest_item_elements = this.quest_items.map(x => x.element);
-        animate(quest_item_elements, {
+        animate(this.quests_content.children, {
             scale: [0.9, 1],
             opacity: [0, 1],
             duration: 1000,
@@ -121,5 +120,15 @@ export class QuestsPage extends Component<any> {
                 complete();
             }
         });
+    }
+
+    set_quest_completed(slug: string) {
+        window.localStorage.setItem(`${slug}-completed`, `true`);
+    }
+
+    is_quest_completed(slug: string) {
+        const data =  window.localStorage.getItem(`${slug}-completed`);
+        if (data === `true`) return true;
+        return false;
     }
 }
