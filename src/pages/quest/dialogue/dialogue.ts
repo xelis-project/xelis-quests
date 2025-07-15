@@ -1,10 +1,10 @@
 import { animate, JSAnimation } from "animejs";
 import { App } from "../../../app";
 import { Component } from "../../../component";
+import { AudioTypewriter } from "../../../components/audio_typewriter/audio_typewriter";
+import * as icons from '../../../assets/icons';
 
 import './dialogue.css';
-import { AudioTypewriter } from "../../../components/audio_typewriter/audio_typewriter";
-
 interface DialogueData {
     text: string;
     voice?: { src: string, volume: number };
@@ -20,6 +20,7 @@ export class Dialogue extends Component<any> {
     dialogues: DialogueData[];
     dialogue_index: number;
     voice_audio?: HTMLAudioElement;
+    next_arrow_element: HTMLDivElement;
 
     leave_animation?: JSAnimation;
 
@@ -30,6 +31,11 @@ export class Dialogue extends Component<any> {
         this.text_element.classList.add(`quest-dialogue-text`);
         this.element.appendChild(this.text_element);
 
+        this.next_arrow_element = document.createElement(`div`);
+        this.next_arrow_element.classList.add(`quest-dialogue-next-arrow`);
+        this.next_arrow_element.innerHTML = icons.triangle();
+        this.element.appendChild(this.next_arrow_element);
+
         this.dialogue_index = 0;
         this.dialogues = [];
 
@@ -37,6 +43,14 @@ export class Dialogue extends Component<any> {
             app,
             speed: 25,
             element: this.text_element,
+        });
+
+        this.text_typewriter.addListener('start', () => {
+            this.next_arrow_element.classList.remove(`show`);
+        });
+
+        this.text_typewriter.addListener('finish', () => {
+            this.next_arrow_element.classList.add(`show`);
         });
     }
 
