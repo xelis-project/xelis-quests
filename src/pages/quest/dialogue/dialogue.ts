@@ -35,7 +35,7 @@ export class Dialogue extends Component<any> {
 
         this.text_typewriter = new AudioTypewriter({
             app,
-            speed: 15,
+            speed: 25,
             element: this.text_element,
         });
     }

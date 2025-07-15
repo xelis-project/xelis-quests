@@ -179,8 +179,8 @@ export class Settings extends Component<any> {
             this.app.audio.sound_effect_volume = this.parse_volume(settings.sound_effect_volume, 1);
             this.app.audio.dialogue_audio_enabled = this.parse_bool(settings.dialogue_audio_enabled, true);
 
-            this.app.quest_page.dialogue.text_typewriter.speed = this.parse_number(settings.dialogue_speed, 15);
-            this.app.quest_page.question.text_typewriter.speed = this.parse_number(settings.dialogue_speed, 15);
+            this.app.quest_page.dialogue.text_typewriter.speed = this.parse_number(settings.dialogue_speed, 25);
+            this.app.quest_page.question.text_typewriter.speed = this.parse_number(settings.dialogue_speed, 25);
         }
 
         this.set_values();

@@ -36,7 +36,7 @@ export class Question extends Component<any> {
         this.choices_element.classList.add(`quest-question-choices`);
         this.element.appendChild(this.choices_element);
 
-        this.text_typewriter = new AudioTypewriter({ app: this.app, element: this.text_element, speed: 15 });
+        this.text_typewriter = new AudioTypewriter({ app: this.app, element: this.text_element, speed: 25 });
         this.choice_selected = false;
     }
 
