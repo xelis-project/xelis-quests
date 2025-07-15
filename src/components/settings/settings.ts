@@ -7,7 +7,7 @@ import './settings.css';
 export class Settings extends Component<any> {
     btn_close: HTMLButtonElement;
 
-    typewriter_audio_enabled: SettingsCheckbox;
+    dialogue_audio_enabled: SettingsCheckbox;
     dialogue_speed: SettingsNumber;
     master_volume_slider: SettingsSlider;
     music_volume_slider: SettingsSlider;
@@ -51,15 +51,15 @@ export class Settings extends Component<any> {
 
         content_element.appendChild(this.dialogue_speed.element);
 
-        this.typewriter_audio_enabled = new SettingsCheckbox();
-        this.typewriter_audio_enabled.text.innerHTML = `Typewriter audio enabled`;
+        this.dialogue_audio_enabled = new SettingsCheckbox();
+        this.dialogue_audio_enabled.text.innerHTML = `Dialogue audio enabled`;
 
-        this.typewriter_audio_enabled.input.addEventListener(`input`, (e) => {
+        this.dialogue_audio_enabled.input.addEventListener(`input`, (e) => {
             const input = e.target as HTMLInputElement;
-            this.app.audio.typewriter_audio_enabled = input.checked;
+            this.app.audio.dialogue_audio_enabled = input.checked;
             this.save_settings();
         });
-        content_element.appendChild(this.typewriter_audio_enabled.element);
+        content_element.appendChild(this.dialogue_audio_enabled.element);
 
         this.master_volume_slider = new SettingsSlider();
         this.master_volume_slider.title.innerHTML = `Master Volume`;
@@ -105,7 +105,7 @@ export class Settings extends Component<any> {
 
     set_values() {
         this.dialogue_speed.input.value = `${this.app.quest_page.dialogue.text_typewriter.speed}`;
-        this.typewriter_audio_enabled.input.checked = this.app.audio.typewriter_audio_enabled;
+        this.dialogue_audio_enabled.input.checked = this.app.audio.dialogue_audio_enabled;
         this.master_volume_slider.input.value = `${this.app.audio.master_volume * 100}`;
         this.music_volume_slider.input.value = `${this.app.audio.music_volume * 100}`;
         this.voice_volume_slider.input.value = `${this.app.audio.voice_volume * 100}`;
@@ -177,13 +177,13 @@ export class Settings extends Component<any> {
             this.app.audio.music_volume = this.parse_volume(settings.music_volume, 1);
             this.app.audio.voice_volume = this.parse_volume(settings.voice_volume, 1);
             this.app.audio.sound_effect_volume = this.parse_volume(settings.sound_effect_volume, 1);
-            this.app.audio.typewriter_audio_enabled = this.parse_bool(settings.typewriter_audio_enabled, true);
+            this.app.audio.dialogue_audio_enabled = this.parse_bool(settings.dialogue_audio_enabled, true);
 
             this.app.quest_page.dialogue.text_typewriter.speed = this.parse_number(settings.dialogue_speed, 15);
             this.app.quest_page.question.text_typewriter.speed = this.parse_number(settings.dialogue_speed, 15);
-
-            this.set_values();
         }
+
+        this.set_values();
     }
 
     save_settings() {
@@ -192,7 +192,7 @@ export class Settings extends Component<any> {
             voice_volume: this.app.audio.voice_volume,
             sound_effect_volume: this.app.audio.sound_effect_volume,
             music_volume: this.app.audio.music_volume,
-            typewriter_audio_enabled: this.app.audio.typewriter_audio_enabled,
+            dialogue_audio_enabled: this.app.audio.dialogue_audio_enabled,
             dialogue_speed: this.app.quest_page.dialogue.text_typewriter.speed
         };
 
