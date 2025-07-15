@@ -63,7 +63,7 @@ export class QuestPage extends Component<any> {
         this.question = new Question(app, this.element);
         this.video = new Video(app, this.element);
         this.chapter = new Chapter(app, this.element);
-        this.alert = new Alert(app, app.root);
+        this.alert = new Alert(app, app.root); // parent is root otherwise the backdrop blur is flickering
         this.go_to = new GoTo(app);
     }
 
