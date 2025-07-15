@@ -105,6 +105,9 @@ export class QuestsPage extends Component<any> {
     }
 
     leave(complete: () => void) {
+        // disable vertical scroll when leaving page - otherwise the leave animation is zooming in and scrolling
+        this.element.style.overflow = `hidden`;
+
         const hide_animation = waapi.animate(this.element, {
             scale: [1, 2],
             rotate: [0, 50],
@@ -114,6 +117,7 @@ export class QuestsPage extends Component<any> {
             onComplete: () => {
                 this.unload();
                 hide_animation.revert();
+                this.element.style.removeProperty(`overflow`);
                 complete();
             }
         });

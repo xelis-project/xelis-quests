@@ -9,6 +9,9 @@
     font-family: Helios;
     padding: 0 5rem;
     background-color: rgb(11, 11, 11);
+    overflow: auto;
+    box-sizing: border-box;
+    z-index: 1;
 }
 
 .quests-page-title {
