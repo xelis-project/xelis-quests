@@ -6,6 +6,7 @@ import { AppAudio } from "./components/app_audio/app_audio";
 import { QuestPage } from "./pages/quest/quest";
 import { MouseEffects } from "./components/mouse_effects/mouse_effects";
 import { EventEmitter } from "./utils/event_emitter";
+import { Notification } from "./components/notification/notification";
 
 import 'reset-css/reset.css';
 import './font_types.css';
@@ -26,7 +27,8 @@ export class App extends EventEmitter<AppEventMap> {
     header: Header;
     settings: Settings;
     audio: AppAudio;
-    mouse_effects: MouseEffects
+    mouse_effects: MouseEffects;
+    notification: Notification;
 
     constructor(root: HTMLElement) {
         super();
@@ -40,6 +42,8 @@ export class App extends EventEmitter<AppEventMap> {
         this.header = new Header(this);
         this.header.load();
         this.settings = new Settings(this);
+        this.notification = new Notification(this);
+        this.notification.load();
 
         this.intro_page = new IntroPage(this);
         this.quests_page = new QuestsPage(this);

@@ -74,6 +74,7 @@ export class QuestPage extends Component<any> {
         if (this.scene_index >= this.data.scenes.length - 1) {
             const slug = this.get_slug();
             if (slug) this.app.quests_page.set_quest_completed(slug);
+            this.app.notification.show({ content: "Quest completed and saved.", type: "success", duration: 3000 });
             this.app.go_to(`/quests`);
             return;
         }

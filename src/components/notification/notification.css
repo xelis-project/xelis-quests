@@ -1,0 +1,34 @@
+.notification {
+    position: fixed;
+    right: 0;
+    top: 1rem;
+    padding: 1rem;
+    font-family: Helios;
+    font-weight: bold;
+    transition: .5s all;
+    opacity: 0;
+    translate: 100% 0 0;
+    z-index: 3;
+}
+
+.notification.error {
+    box-shadow: 0 0 50px rgba(255, 2, 44, 0.2);
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(10px);
+    border: thin solid rgba(255, 2, 57, 0.5);
+    border-right: none;
+    color: white;
+    opacity: 1;
+    translate: 0 0 0;
+}
+
+.notification.success {
+    box-shadow: 0 0 50px rgba(2, 255, 209, 0.2);
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(10px);
+    border: thin solid rgba(2, 255, 209, 0.5);
+    border-right: none;
+    color: white;
+    opacity: 1;
+    translate: 0 0 0;
+}
