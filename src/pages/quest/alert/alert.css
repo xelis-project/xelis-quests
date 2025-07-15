@@ -3,7 +3,7 @@
     position: fixed;
     top: 2rem;
     right: 0;
-    z-index: 1;
+    z-index: 5;
     color: #e4e900;
     background: rgb(255 255 255 / 0%);
     padding: 1rem 4rem 1rem 1.5rem;
