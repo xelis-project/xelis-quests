@@ -10,6 +10,7 @@ import { EventEmitter } from "./utils/event_emitter";
 import 'reset-css/reset.css';
 import './font_types.css';
 import './app.css';
+import './scrollbar.css';
 
 interface AppEventMap {
     page_load: any;

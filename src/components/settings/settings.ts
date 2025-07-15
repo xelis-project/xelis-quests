@@ -35,7 +35,7 @@ export class Settings extends Component<any> {
         header_element.appendChild(this.btn_close);
 
         const content_element = document.createElement(`div`);
-        content_element.classList.add(`settings-content`);
+        content_element.classList.add(`settings-content`, `scrollbar-1`);
         this.element.appendChild(content_element);
 
         this.dialogue_speed = new SettingsNumber();

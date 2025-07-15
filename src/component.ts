@@ -7,13 +7,13 @@ export class Component<T extends EventEmitterMap> extends EventEmitter<T> {
     element: HTMLElement;
     loaded: boolean;
 
-    constructor(app: App, parent: HTMLElement, classname?: string) {
+    constructor(app: App, parent: HTMLElement, ...classname: string[]) {
         super();
 
         this.app = app;
         this.parent = parent;
         this.element = document.createElement(`div`);
-        if (classname) this.element.classList.add(classname);
+        if (classname) this.element.classList.add(...classname);
         this.loaded = false;
     }
 

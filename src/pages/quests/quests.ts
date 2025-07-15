@@ -15,7 +15,7 @@ export class QuestsPage extends Component<any> {
     circuit: Circuit;
 
     constructor(app: App) {
-        super(app, app.root, "quests-page");
+        super(app, app.root, "quests-page", "scrollbar-1");
 
         this.quest_items = [];
 
