@@ -172,6 +172,87 @@
             "steps": [
                 {
                     "chapter": { "text": "SECURITY" }
+                },
+                {
+                    "dialogue": {
+                        "dialogues": [
+                            {
+                                "text": "Security is paramount when dealing with a financial system, whether it's centralized or decentralized."
+                            },
+                            {
+                                "text": "Like previously state, the blockchain is essentially a network of nodes, each adhering to the same set of rules."
+                            },
+                            {
+                                "text": "The validation logics are rigorously enforced in the protocol to ensure it's integrity."
+                            },
+                            {
+                                "text": "This involves various processes check, including mining hash verifications, ZK proofs, balance proofs and much more."
+                            },
+                            {
+                                "text": "TODO"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        {
+            "steps": [
+                {
+                    "model": { "img": "/images/mascot/mascot_12.webp" },
+                    "chapter": { "text": "PRIVACY" }
+                },
+                {
+                    "dialogue": {
+                        "dialogues": [
+                            {
+                                "text": "TODO"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        {
+            "steps": [
+                {
+                    "model": { "img": "/images/mascot/mascot_12.webp" },
+                    "chapter": { "text": "SCALABITY" }
+                },
+                {
+                    "dialogue": {
+                        "dialogues": [
+                            {
+                                "text": "TODO"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        {
+            "steps": [
+                {
+                    "model": { "img": "/images/mascot/mascot_12.webp" },
+                    "dialogue": {
+                        "dialogues": [
+                            {
+                                "text": "So yeah, this is what makes XELIS very competitive."
+                            },
+                            {
+                                "text": "XELIS was built after watching over 15 years of blockchain innovation."
+                            },
+                            {
+                                "text": "It's made from the ground up to tackle all the challenges that have emerged."
+                            },
+                            {
+                                "text": "This module was an introduction and is finished. You can claim your reward by linking your Discord."
+                            },
+                            {
+                                "text": "See you around."
+                            }
+                        ]
+                    }
                 }
             ]
         }
