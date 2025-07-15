@@ -69,6 +69,13 @@ export class QuestPage extends Component<any> {
 
     forward() {
         if (!this.data) return;
+
+        // the module is finished
+        if (this.scene_index >= this.data.scenes.length - 1) {
+            this.app.go_to(`/quests`);
+            return;
+        }
+
         const scene = this.data.scenes[this.scene_index];
         if (scene) {
             const next_step = scene.steps[this.step_index + 1];
