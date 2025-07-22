@@ -109,6 +109,7 @@ export class App extends EventEmitter<AppEventMap> {
                 break;
         }
 
+        this.localization.update_elements();
         this.emit("page_load");
     }
 
