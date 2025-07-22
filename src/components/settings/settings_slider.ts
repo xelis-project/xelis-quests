@@ -24,7 +24,7 @@ export class SettingsSlider {
         this.input_element.max = `100`;
         this.input_element.value = `100`;
 
-        this.input_element.addEventListener(`input`, (e) => {
+        this.input_element.addEventListener(`input`, () => {
             this.percentage_element.innerHTML = `${this.input_element.value}%`;
         });
 
