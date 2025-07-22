@@ -2,7 +2,7 @@ import { animate, eases } from 'animejs';
 import type { App } from '../../app';
 
 import './intro.css';
-import * as icons from '../../assets/icons';
+import * as icons from '../../assets/svg/icons';
 import { Circuit } from '../../components/circuit/circuit';
 import { Component } from '../../component';
 

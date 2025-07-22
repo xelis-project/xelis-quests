@@ -1,8 +1,8 @@
 import { animate, eases } from "animejs";
 import type { App } from "../../app";
-import { xelis_logo } from "../../assets/xelis";
+import { xelis_logo } from "../../assets/svg/xelis";
 import { Component } from "../../component";
-import * as icons from "../../assets/icons";
+import * as icons from "../../assets/svg/icons";
 
 import './header.css';
 

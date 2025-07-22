@@ -1,7 +1,7 @@
 import { animate, eases } from "animejs";
 import { App } from "../../../app";
 import { Component } from "../../../component";
-import * as icons from '../../../assets/icons';
+import * as icons from '../../../assets/svg/icons';
 
 import './video.css';
 

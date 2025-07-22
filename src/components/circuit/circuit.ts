@@ -1,6 +1,6 @@
 import { animate, eases, stagger, svg, utils } from "animejs";
 import { Component } from "../../component";
-import { circuit } from '../../assets/circuit';
+import { circuit } from '../../assets/svg/circuit';
 
 import './circuit.css';
 import type { App } from "../../app";

@@ -2,7 +2,7 @@ import { animate, JSAnimation } from "animejs";
 import { App } from "../../../app";
 import { Component } from "../../../component";
 import { AudioTypewriter } from "../../../components/audio_typewriter/audio_typewriter";
-import * as icons from '../../../assets/icons';
+import * as icons from '../../../assets/svg/icons';
 
 import './dialogue.css';
 interface DialogueData {
