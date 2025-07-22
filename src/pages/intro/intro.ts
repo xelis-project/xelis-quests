@@ -50,11 +50,11 @@ export class IntroPage extends Component<any> {
 
         this.description_element = document.createElement(`div`);
         this.description_element.classList.add(`intro-page-description`);
-        this.description_element.innerHTML = `Explore the XELIS Blockchain and its ecosystem. Earn rewards by completing educational quests.`;
+        this.app.localization.set_element_text(this.description_element, `Explore the XELIS Blockchain and its ecosystem. Earn rewards by completing educational quests.`);
         content.appendChild(this.description_element);
 
         this.btn_start_element = document.createElement(`button`);
-        this.btn_start_element.innerHTML = `${icons.play()} Start`;
+        this.app.localization.set_element_text(this.btn_start_element, "{} Start", [icons.play()])
         this.btn_start_element.classList.add(`intro-page-start-btn`);
         this.btn_start_element.addEventListener(`click`, () => {
             this.leave(() => {

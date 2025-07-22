@@ -3,6 +3,7 @@ import type { App } from "../../app";
 import { Component } from "../../component";
 
 import './settings.css';
+import { supported_languages, type Lang } from "../../localization";
 
 export class Settings extends Component<any> {
     btn_close: HTMLButtonElement;
@@ -22,13 +23,13 @@ export class Settings extends Component<any> {
         this.element.appendChild(header_element);
 
         const title_element = document.createElement(`div`);
-        title_element.innerHTML = `SETTINGS`;
+        this.app.localization.set_element_text(title_element, "SETTINGS");
         title_element.classList.add(`settings-title`);
         header_element.appendChild(title_element);
 
         this.btn_close = document.createElement(`button`);
         this.btn_close.classList.add(`settings-btn-close`);
-        this.btn_close.innerHTML = `GO BACK`;
+        this.app.localization.set_element_text(this.btn_close, "GO BACK");
         this.btn_close.addEventListener(`click`, () => {
             this.leave();
         });
@@ -37,6 +38,21 @@ export class Settings extends Component<any> {
         const content_element = document.createElement(`div`);
         content_element.classList.add(`settings-content`, `scrollbar-1`);
         this.element.appendChild(content_element);
+
+        const select_lang_element = document.createElement(`select`);
+        supported_languages.forEach((lang) => {
+            const opt = document.createElement(`option`);
+            opt.innerText = lang.title;
+            opt.value = lang.key;
+            select_lang_element.appendChild(opt);
+            opt.selected = this.app.localization.lang === opt.value;
+        });
+        select_lang_element.addEventListener(`change`, () => {
+            this.app.localization.set_lang(select_lang_element.value as Lang);
+            this.app.localization.save_lang();
+            this.app.localization.update_elements();
+        });
+        content_element.appendChild(select_lang_element);
 
         this.dialogue_speed = new SettingsNumber();
         this.dialogue_speed.text.innerHTML = `Dialogue speed`;

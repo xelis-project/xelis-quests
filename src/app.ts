@@ -12,6 +12,7 @@ import 'reset-css/reset.css';
 import './font_types.css';
 import './app.css';
 import './scrollbar.css';
+import { Localization } from "./localization";
 
 interface AppEventMap {
     page_load: any;
@@ -19,6 +20,8 @@ interface AppEventMap {
 
 export class App extends EventEmitter<AppEventMap> {
     root: HTMLElement;
+
+    localization: Localization;
 
     intro_page: IntroPage;
     quests_page: QuestsPage;
@@ -35,13 +38,18 @@ export class App extends EventEmitter<AppEventMap> {
 
         this.root = root;
         this.root.classList.add(`app`);
-        this.audio = new AppAudio();
 
+        this.localization = new Localization();
+        this.localization.load_lang();
+
+        this.audio = new AppAudio();
+        this.settings = new Settings(this);
+        
         this.mouse_effects = new MouseEffects(this);
         this.mouse_effects.load();
         this.header = new Header(this);
         this.header.load();
-        this.settings = new Settings(this);
+
         this.notification = new Notification(this);
         this.notification.load();
 
