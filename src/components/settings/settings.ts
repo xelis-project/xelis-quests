@@ -11,7 +11,7 @@ import './settings.css';
 export class Settings extends Component<any> {
     btn_close: HTMLButtonElement;
 
-    dialogue_audio_enabled: SettingsCheckbox;
+    dialogue_typing_sound_effect_enabled: SettingsCheckbox;
     dialogue_speed: SettingsNumber;
     master_volume_slider: SettingsSlider;
     music_volume_slider: SettingsSlider;
@@ -70,15 +70,15 @@ export class Settings extends Component<any> {
 
         content_element.appendChild(this.dialogue_speed.element);
 
-        this.dialogue_audio_enabled = new SettingsCheckbox();
-        this.dialogue_audio_enabled.text_element.innerHTML = `Dialogue audio enabled`;
+        this.dialogue_typing_sound_effect_enabled = new SettingsCheckbox();
+        this.dialogue_typing_sound_effect_enabled.text_element.innerHTML = `Dialogue typing sound effect`;
 
-        this.dialogue_audio_enabled.input_element.addEventListener(`input`, (e) => {
+        this.dialogue_typing_sound_effect_enabled.input_element.addEventListener(`input`, (e) => {
             const input = e.target as HTMLInputElement;
-            this.app.audio.dialogue_audio_enabled = input.checked;
+            this.app.audio.dialogue_typing_sound_effect_enabled = input.checked;
             this.save_settings();
         });
-        content_element.appendChild(this.dialogue_audio_enabled.element);
+        content_element.appendChild(this.dialogue_typing_sound_effect_enabled.element);
 
         this.master_volume_slider = new SettingsSlider();
         this.master_volume_slider.title_element.innerHTML = `Master Volume`;
@@ -124,7 +124,7 @@ export class Settings extends Component<any> {
 
     set_values() {
         this.dialogue_speed.input_element.value = `${this.app.quest_page.dialogue.text_typewriter.speed}`;
-        this.dialogue_audio_enabled.input_element.checked = this.app.audio.dialogue_audio_enabled;
+        this.dialogue_typing_sound_effect_enabled.input_element.checked = this.app.audio.dialogue_typing_sound_effect_enabled;
         this.master_volume_slider.set_value(this.app.audio.master_volume * 100);
         this.music_volume_slider.set_value(this.app.audio.music_volume * 100);
         this.voice_volume_slider.set_value(this.app.audio.voice_volume * 100);
@@ -196,7 +196,7 @@ export class Settings extends Component<any> {
             this.app.audio.music_volume = this.parse_volume(settings.music_volume, 1);
             this.app.audio.voice_volume = this.parse_volume(settings.voice_volume, 1);
             this.app.audio.sound_effect_volume = this.parse_volume(settings.sound_effect_volume, 1);
-            this.app.audio.dialogue_audio_enabled = this.parse_bool(settings.dialogue_audio_enabled, true);
+            this.app.audio.dialogue_typing_sound_effect_enabled = this.parse_bool(settings.dialogue_typing_sound_effect_enabled, true);
 
             this.app.quest_page.dialogue.text_typewriter.speed = this.parse_number(settings.dialogue_speed, 25);
             this.app.quest_page.question.text_typewriter.speed = this.parse_number(settings.dialogue_speed, 25);
@@ -211,7 +211,7 @@ export class Settings extends Component<any> {
             voice_volume: this.app.audio.voice_volume,
             sound_effect_volume: this.app.audio.sound_effect_volume,
             music_volume: this.app.audio.music_volume,
-            dialogue_audio_enabled: this.app.audio.dialogue_audio_enabled,
+            dialogue_typing_sound_effect_enabled: this.app.audio.dialogue_typing_sound_effect_enabled,
             dialogue_speed: this.app.quest_page.dialogue.text_typewriter.speed
         };
 

@@ -26,7 +26,7 @@ export class AudioTypewriter extends Typewriter {
         let sound_delta = 0;
         const timeout = 1000 / this.speed;
         this.addListener(`char`, () => {
-            if (!this.app.audio.dialogue_audio_enabled) return;
+            if (!this.app.audio.dialogue_typing_sound_effect_enabled) return;
             sound_delta += timeout;
 
             if (sound_delta / timeout >= 1.5) {
