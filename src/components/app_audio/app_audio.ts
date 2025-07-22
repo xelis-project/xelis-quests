@@ -9,7 +9,7 @@ export class AppAudio {
     background_music_init_volume: number;
     background_music_audio?: HTMLAudioElement;
 
-    dialogue_audio_enabled: boolean;
+    dialogue_typing_sound_effect_enabled: boolean;
 
     constructor() {
         this.master_volume = 1;
@@ -17,7 +17,7 @@ export class AppAudio {
         this.sound_effect_volume = 1;
         this.music_volume = 1;
         this.background_music_init_volume = 0;
-        this.dialogue_audio_enabled = true;
+        this.dialogue_typing_sound_effect_enabled = true;
     }
 
     play_background_music(audio?: HTMLAudioElement) {
