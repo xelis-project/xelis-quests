@@ -58,10 +58,10 @@ export class Settings extends Component<any> {
         content_element.appendChild(select_lang_element);
 
         this.dialogue_speed = new SettingsNumber();
-        this.dialogue_speed.text.innerHTML = `Dialogue speed`;
-        this.dialogue_speed.input.min = `10`;
-        this.dialogue_speed.input.max = `50`;
-        this.dialogue_speed.input.addEventListener(`input`, (e) => {
+        this.dialogue_speed.text_element.innerHTML = `Dialogue speed`;
+        this.dialogue_speed.input_element.min = `10`;
+        this.dialogue_speed.input_element.max = `50`;
+        this.dialogue_speed.input_element.addEventListener(`input`, (e) => {
             const input = e.target as HTMLInputElement;
             this.app.quest_page.dialogue.text_typewriter.speed = input.valueAsNumber;
             this.app.quest_page.question.text_typewriter.speed = input.valueAsNumber;;
@@ -71,9 +71,9 @@ export class Settings extends Component<any> {
         content_element.appendChild(this.dialogue_speed.element);
 
         this.dialogue_audio_enabled = new SettingsCheckbox();
-        this.dialogue_audio_enabled.text.innerHTML = `Dialogue audio enabled`;
+        this.dialogue_audio_enabled.text_element.innerHTML = `Dialogue audio enabled`;
 
-        this.dialogue_audio_enabled.input.addEventListener(`input`, (e) => {
+        this.dialogue_audio_enabled.input_element.addEventListener(`input`, (e) => {
             const input = e.target as HTMLInputElement;
             this.app.audio.dialogue_audio_enabled = input.checked;
             this.save_settings();
@@ -81,9 +81,9 @@ export class Settings extends Component<any> {
         content_element.appendChild(this.dialogue_audio_enabled.element);
 
         this.master_volume_slider = new SettingsSlider();
-        this.master_volume_slider.title.innerHTML = `Master Volume`;
+        this.master_volume_slider.title_element.innerHTML = `Master Volume`;
 
-        this.master_volume_slider.input.addEventListener(`input`, (e) => {
+        this.master_volume_slider.input_element.addEventListener(`input`, (e) => {
             const input = e.target as HTMLInputElement;
             this.app.audio.master_volume = parseInt(input.value) / 100;
             this.save_settings();
@@ -91,9 +91,9 @@ export class Settings extends Component<any> {
         content_element.appendChild(this.master_volume_slider.element);
 
         this.music_volume_slider = new SettingsSlider();
-        this.music_volume_slider.title.innerHTML = `Music Volume`;
+        this.music_volume_slider.title_element.innerHTML = `Music Volume`;
 
-        this.music_volume_slider.input.addEventListener(`input`, (e) => {
+        this.music_volume_slider.input_element.addEventListener(`input`, (e) => {
             const input = e.target as HTMLInputElement;
             this.app.audio.music_volume = parseInt(input.value) / 100;
             this.app.audio.apply_background_music_volume();
@@ -102,9 +102,9 @@ export class Settings extends Component<any> {
         content_element.appendChild(this.music_volume_slider.element);
 
         this.voice_volume_slider = new SettingsSlider();
-        this.voice_volume_slider.title.innerHTML = `Voice Volume`;
+        this.voice_volume_slider.title_element.innerHTML = `Voice Volume`;
 
-        this.voice_volume_slider.input.addEventListener(`input`, (e) => {
+        this.voice_volume_slider.input_element.addEventListener(`input`, (e) => {
             const input = e.target as HTMLInputElement;
             this.app.audio.voice_volume = parseInt(input.value) / 100;
             this.save_settings();
@@ -112,9 +112,9 @@ export class Settings extends Component<any> {
         content_element.appendChild(this.voice_volume_slider.element);
 
         this.sound_effect_volume_slider = new SettingsSlider();
-        this.sound_effect_volume_slider.title.innerHTML = `Sound Effect Volume`;
+        this.sound_effect_volume_slider.title_element.innerHTML = `Sound Effect Volume`;
 
-        this.sound_effect_volume_slider.input.addEventListener(`input`, (e) => {
+        this.sound_effect_volume_slider.input_element.addEventListener(`input`, (e) => {
             const input = e.target as HTMLInputElement;
             this.app.audio.sound_effect_volume = parseInt(input.value) / 100;
             this.save_settings();
@@ -123,12 +123,12 @@ export class Settings extends Component<any> {
     }
 
     set_values() {
-        this.dialogue_speed.input.value = `${this.app.quest_page.dialogue.text_typewriter.speed}`;
-        this.dialogue_audio_enabled.input.checked = this.app.audio.dialogue_audio_enabled;
-        this.master_volume_slider.input.value = `${this.app.audio.master_volume * 100}`;
-        this.music_volume_slider.input.value = `${this.app.audio.music_volume * 100}`;
-        this.voice_volume_slider.input.value = `${this.app.audio.voice_volume * 100}`;
-        this.sound_effect_volume_slider.input.value = `${this.app.audio.sound_effect_volume * 100}`;
+        this.dialogue_speed.input_element.value = `${this.app.quest_page.dialogue.text_typewriter.speed}`;
+        this.dialogue_audio_enabled.input_element.checked = this.app.audio.dialogue_audio_enabled;
+        this.master_volume_slider.input_element.value = `${this.app.audio.master_volume * 100}`;
+        this.music_volume_slider.input_element.value = `${this.app.audio.music_volume * 100}`;
+        this.voice_volume_slider.input_element.value = `${this.app.audio.voice_volume * 100}`;
+        this.sound_effect_volume_slider.input_element.value = `${this.app.audio.sound_effect_volume * 100}`;
     }
 
     appear() {
