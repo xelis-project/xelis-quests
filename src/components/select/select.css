@@ -1,0 +1,15 @@
+.select {
+    position: relative;
+    user-select: none;
+    display: inline-block;
+}
+
+.select-list {
+    position: absolute;
+    visibility: hidden;
+    z-index: 1;
+}
+
+.select-list.open {
+    visibility: visible;
+}

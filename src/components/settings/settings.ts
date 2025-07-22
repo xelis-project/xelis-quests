@@ -7,6 +7,7 @@ import { SettingsSlider } from "./settings_slider";
 import { SettingsNumber } from "./settings_number";
 
 import './settings.css';
+import { SettingsSelect } from "./settings_select";
 
 export class Settings extends Component<any> {
     btn_close: HTMLButtonElement;
@@ -42,20 +43,20 @@ export class Settings extends Component<any> {
         content_element.classList.add(`settings-content`, `scrollbar-1`);
         this.element.appendChild(content_element);
 
-        const select_lang_element = document.createElement(`select`);
+        const settings_select = new SettingsSelect();
+        settings_select.title_element.innerHTML = `Language`;
         supported_languages.forEach((lang) => {
-            const opt = document.createElement(`option`);
-            opt.innerText = lang.title;
-            opt.value = lang.key;
-            select_lang_element.appendChild(opt);
-            opt.selected = this.app.localization.lang === opt.value;
+            settings_select.select.add_item(lang.key, lang.title);
+            if (this.app.localization.lang === lang.key) {
+                settings_select.select.set_value(lang.title);
+            }
         });
-        select_lang_element.addEventListener(`change`, () => {
-            this.app.localization.set_lang(select_lang_element.value as Lang);
+        settings_select.select.addListener(`change`, (key) => {
+            this.app.localization.set_lang(key as Lang);
             this.app.localization.save_lang();
             this.app.localization.update_elements();
         });
-        content_element.appendChild(select_lang_element);
+        content_element.appendChild(settings_select.element);
 
         this.dialogue_speed = new SettingsNumber();
         this.dialogue_speed.text_element.innerHTML = `Dialogue speed`;

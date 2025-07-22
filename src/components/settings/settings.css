@@ -156,8 +156,46 @@
     background: rgba(2, 255, 209, 0.1);
     padding: .5rem;
     outline: none;
-    opacity: .6;
     transition: opacity .25s;
     font-size: 1rem;
     color: #02FFCF;
+}
+
+.settings-select {
+    display: flex;
+    gap: .5rem;
+    flex-direction: column;
+}
+
+.settings-select> :first-child {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.settings-select .select button {
+    background: rgba(2, 255, 209, 0.1);
+    border: none;
+    color: #02FFCF;
+    padding: .5rem 1rem;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+.settings-select .select-list {
+    color: #02FFCF;
+    padding: .5rem 0;
+    display: flex;
+    flex-direction: column;
+    background-color: #032a22;
+    margin-top: .5rem;
+}
+
+.settings-select .select-list>div {
+    cursor: pointer;
+    padding: .5rem 1rem;
+}
+
+.settings-select .select-list>div:hover {
+    background-color: #02FFCF;
+    color: black;
+
 }
