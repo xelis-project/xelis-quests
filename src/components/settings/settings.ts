@@ -125,10 +125,10 @@ export class Settings extends Component<any> {
     set_values() {
         this.dialogue_speed.input_element.value = `${this.app.quest_page.dialogue.text_typewriter.speed}`;
         this.dialogue_audio_enabled.input_element.checked = this.app.audio.dialogue_audio_enabled;
-        this.master_volume_slider.input_element.value = `${this.app.audio.master_volume * 100}`;
-        this.music_volume_slider.input_element.value = `${this.app.audio.music_volume * 100}`;
-        this.voice_volume_slider.input_element.value = `${this.app.audio.voice_volume * 100}`;
-        this.sound_effect_volume_slider.input_element.value = `${this.app.audio.sound_effect_volume * 100}`;
+        this.master_volume_slider.set_value(this.app.audio.master_volume * 100);
+        this.music_volume_slider.set_value(this.app.audio.music_volume * 100);
+        this.voice_volume_slider.set_value(this.app.audio.voice_volume * 100);
+        this.sound_effect_volume_slider.set_value(this.app.audio.sound_effect_volume * 100);
     }
 
     appear() {

@@ -57,7 +57,16 @@
 }
 
 .settings-slider> :first-child {
+    display: flex;
+    align-items: center;
+    gap: .5rem;
     color: rgba(255, 255, 255, 0.5);
+}
+
+.settings-slider-percentage {
+    opacity: .5;
+    font-weight: bold;
+    font-size: .8rem;
 }
 
 .settings-slider input {
