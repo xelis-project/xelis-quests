@@ -75,7 +75,8 @@ export class Dialogue extends Component<any> {
 
     run_dialogue() {
         const dialogue = this.dialogues[this.dialogue_index];
-        this.text_typewriter.start(dialogue.text);
+        const text = this.app.localization.get_text(dialogue.text);
+        this.text_typewriter.start(text);
 
         if (dialogue.voice) {
             this.voice_audio = new Audio(dialogue.voice.src);
