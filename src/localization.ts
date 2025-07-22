@@ -30,39 +30,42 @@ export class Localization {
         this.lang = lang;
     }
 
-    get_text(en_text: string) {
-        if (this.lang === `en`) return en_text;
+    get_text(en_text: string, vars?: string[]) {
+        let localized_text = en_text;
 
-        const localized_text = lang_map[this.lang][en_text];
-        if (localized_text) return localized_text;
+        if (this.lang !== `en`) {
+            const lang_text = lang_map[this.lang][en_text];
+            if (lang_text) localized_text = lang_text;
+            console.warn(`Localized text not found: ${en_text}`);
+        }
 
-        console.warn(`Localized text not found: ${en_text}`);
-        return en_text;
-    }
-
-    set_element_text(element: Element, en_text: string, vars?: string[]) {
-        let localized_text = this.get_text(en_text);
         if (vars) {
-            this.vars[en_text] = vars;
             vars.forEach((v) => {
                 localized_text = localized_text.replace("{}", v);
             });
         }
 
-        element.innerHTML = localized_text;
-        element.setAttribute("lang-key", en_text);
+        return localized_text;
+    }
+
+    set_element_text(element: HTMLElement, attr: "innerHTML" | "title", en_text: string, vars?: string[]) {
+        element[attr] = this.get_text(en_text, vars);
+        element.setAttribute(`${attr}-lang-key`, en_text);
+        if (vars) this.vars[en_text] = vars;
     }
 
     update_elements() {
-        const traverse = (element: Element) => {
-            const en_text = element.getAttribute("lang-key");
-            if (en_text) {
-                this.set_element_text(element, en_text, this.vars[en_text]);
-            } else {
-                for (let i = 0; i < element.children.length; i++) {
-                    traverse(element.children[i]);
+        const traverse = (element: HTMLElement) => {
+            ["innerHTML", "title"].forEach((attr) => {
+                const en_text = element.getAttribute(`${attr}-lang-key`);
+                if (en_text) {
+                    this.set_element_text(element, attr as any, en_text, this.vars[en_text]);
+                } else {
+                    for (let i = 0; i < element.children.length; i++) {
+                        traverse(element.children[i] as HTMLElement);
+                    }
                 }
-            }
+            });
         }
 
         traverse(document.body);

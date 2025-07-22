@@ -27,13 +27,13 @@ export class Settings extends Component<any> {
         this.element.appendChild(header_element);
 
         const title_element = document.createElement(`div`);
-        this.app.localization.set_element_text(title_element, "SETTINGS");
+        this.app.localization.set_element_text(title_element, "innerHTML", "SETTINGS");
         title_element.classList.add(`settings-title`);
         header_element.appendChild(title_element);
 
         this.btn_close = document.createElement(`button`);
         this.btn_close.classList.add(`settings-btn-close`);
-        this.app.localization.set_element_text(this.btn_close, "GO BACK");
+        this.app.localization.set_element_text(this.btn_close, "innerHTML", "GO BACK");
         this.btn_close.addEventListener(`click`, () => {
             this.leave();
         });
@@ -44,7 +44,7 @@ export class Settings extends Component<any> {
         this.element.appendChild(content_element);
 
         const settings_select = new SettingsSelect();
-        this.app.localization.set_element_text(settings_select.title_element, `Language`);
+        this.app.localization.set_element_text(settings_select.title_element, "innerHTML", `Language`);
         supported_languages.forEach((lang) => {
             settings_select.select.add_item(lang.key, lang.title);
             if (this.app.localization.lang === lang.key) {
@@ -59,7 +59,7 @@ export class Settings extends Component<any> {
         content_element.appendChild(settings_select.element);
 
         this.dialogue_speed = new SettingsNumber();
-        this.app.localization.set_element_text(this.dialogue_speed.text_element, `Dialogue speed`);
+        this.app.localization.set_element_text(this.dialogue_speed.text_element, "innerHTML", `Dialogue speed`);
         this.dialogue_speed.input_element.min = `10`;
         this.dialogue_speed.input_element.max = `50`;
         this.dialogue_speed.input_element.addEventListener(`input`, (e) => {
@@ -72,7 +72,7 @@ export class Settings extends Component<any> {
         content_element.appendChild(this.dialogue_speed.element);
 
         this.dialogue_typing_sound_effect_enabled = new SettingsCheckbox();
-        this.app.localization.set_element_text(this.dialogue_typing_sound_effect_enabled.text_element, `Dialogue Typing Sound Effect`);
+        this.app.localization.set_element_text(this.dialogue_typing_sound_effect_enabled.text_element, "innerHTML", `Dialogue Typing Sound Effect`);
 
         this.dialogue_typing_sound_effect_enabled.input_element.addEventListener(`input`, (e) => {
             const input = e.target as HTMLInputElement;
@@ -82,7 +82,7 @@ export class Settings extends Component<any> {
         content_element.appendChild(this.dialogue_typing_sound_effect_enabled.element);
 
         this.master_volume_slider = new SettingsSlider();
-        this.app.localization.set_element_text(this.master_volume_slider.title_element, `Master Volume`);
+        this.app.localization.set_element_text(this.master_volume_slider.title_element, "innerHTML", `Master Volume`);
 
         this.master_volume_slider.input_element.addEventListener(`input`, (e) => {
             const input = e.target as HTMLInputElement;
@@ -92,7 +92,7 @@ export class Settings extends Component<any> {
         content_element.appendChild(this.master_volume_slider.element);
 
         this.music_volume_slider = new SettingsSlider();
-        this.app.localization.set_element_text(this.music_volume_slider.title_element, `Music Volume`);
+        this.app.localization.set_element_text(this.music_volume_slider.title_element, "innerHTML", `Music Volume`);
 
         this.music_volume_slider.input_element.addEventListener(`input`, (e) => {
             const input = e.target as HTMLInputElement;
@@ -103,7 +103,7 @@ export class Settings extends Component<any> {
         content_element.appendChild(this.music_volume_slider.element);
 
         this.voice_volume_slider = new SettingsSlider();
-        this.app.localization.set_element_text(this.voice_volume_slider.title_element, `Voice Volume`);
+        this.app.localization.set_element_text(this.voice_volume_slider.title_element, "innerHTML", `Voice Volume`);
 
         this.voice_volume_slider.input_element.addEventListener(`input`, (e) => {
             const input = e.target as HTMLInputElement;
@@ -113,7 +113,7 @@ export class Settings extends Component<any> {
         content_element.appendChild(this.voice_volume_slider.element);
 
         this.sound_effect_volume_slider = new SettingsSlider();
-        this.app.localization.set_element_text(this.sound_effect_volume_slider.title_element, `Sound Effect Volume`);
+        this.app.localization.set_element_text(this.sound_effect_volume_slider.title_element, "innerHTML", `Sound Effect Volume`);
 
         this.sound_effect_volume_slider.input_element.addEventListener(`input`, (e) => {
             const input = e.target as HTMLInputElement;

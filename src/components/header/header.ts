@@ -33,6 +33,7 @@ export class Header extends Component<any> {
 
         this.btn_intro_element = document.createElement(`button`);
         this.btn_intro_element.innerHTML = `INTRO`;
+        this.app.localization.set_element_text(this.btn_intro_element, `innerHTML`, `INTRO`);
         this.btn_intro_element.addEventListener(`click`, () => {
             this.app.go_to(`/`);
         });
@@ -45,6 +46,7 @@ export class Header extends Component<any> {
 
         this.btn_quests_element = document.createElement(`button`);
         this.btn_quests_element.innerHTML = `QUESTS`;
+        this.app.localization.set_element_text(this.btn_quests_element, `innerHTML`, `QUESTS`);
         this.btn_quests_element.addEventListener(`click`, () => {
             this.app.go_to(`/quests`);
         });
@@ -62,7 +64,7 @@ export class Header extends Component<any> {
         this.btn_settings_element = document.createElement(`button`);
         this.btn_settings_element.innerHTML = icons.settings();
         this.btn_settings_element.classList.add(`header-btn-settings`);
-        this.btn_settings_element.title = `Settings`;
+        this.app.localization.set_element_text(this.btn_settings_element, `title`, `Settings`);
         this.btn_settings_element.addEventListener(`click`, () => {
             this.app.settings.appear();
         });
@@ -75,7 +77,7 @@ export class Header extends Component<any> {
 
         this.btn_fullscreen_element = document.createElement(`button`);
         this.btn_fullscreen_element.innerHTML = icons.fullscreen();
-        this.btn_fullscreen_element.title = `Toggle fullscreen`;
+        this.app.localization.set_element_text(this.btn_fullscreen_element, `title`, `Toggle fullscreen`);
         this.btn_fullscreen_element.classList.add(`header-btn-fullscreen`);
         this.btn_fullscreen_element.addEventListener(`click`, () => {
             const is_fullscreen = this.app.toggle_fullscreen();

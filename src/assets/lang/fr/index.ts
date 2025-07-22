@@ -3,8 +3,10 @@ import type { LocalizationMap } from "../map";
 import settings from "./settings";
 import quest_1 from "./quest_1";
 import intro from "./intro";
+import header from "./header";
 
 export default {
+    ...header,
     ...intro,
     ...settings,
     ...quest_1
