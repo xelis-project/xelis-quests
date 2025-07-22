@@ -54,7 +54,7 @@ export class QuestsPage extends Component<any> {
     }
 
     on_wheel = (e: WheelEvent) => {
-        document.documentElement.scrollLeft += e.deltaY;
+        this.element.scrollLeft += e.deltaY;
     }
 
     register_events() {
