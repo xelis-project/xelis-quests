@@ -1,9 +1,12 @@
 import { animate, eases } from "animejs";
 import type { App } from "../../app";
 import { Component } from "../../component";
+import { supported_languages, type Lang } from "../../localization";
+import { SettingsCheckbox } from "./settings_checkbox";
+import { SettingsSlider } from "./settings_slider";
+import { SettingsNumber } from "./settings_number";
 
 import './settings.css';
-import { supported_languages, type Lang } from "../../localization";
 
 export class Settings extends Component<any> {
     btn_close: HTMLButtonElement;
@@ -213,75 +216,5 @@ export class Settings extends Component<any> {
         };
 
         window.localStorage.setItem(`settings`, JSON.stringify(settings));
-    }
-}
-
-class SettingsSlider {
-    element: HTMLDivElement;
-    title: HTMLDivElement;
-    input: HTMLInputElement;
-
-    constructor() {
-        this.element = document.createElement(`div`);
-        this.element.classList.add(`settings-slider`);
-
-        this.title = document.createElement(`div`);
-        this.element.appendChild(this.title);
-
-        this.input = document.createElement(`input`);
-        this.input.type = `range`;
-        this.input.min = `0`;
-        this.input.max = `100`;
-        this.input.value = `100`;
-        this.element.appendChild(this.input);
-    }
-}
-
-class SettingsCheckbox {
-    element: HTMLDivElement;
-    text: HTMLDivElement;
-    input: HTMLInputElement;
-
-    constructor() {
-        this.element = document.createElement(`div`);
-        this.element.classList.add(`settings-checkbox`);
-
-        this.text = document.createElement(`div`);
-        this.element.appendChild(this.text);
-
-        const container = document.createElement(`div`);
-        container.classList.add(`settings-checkbox-container`);
-
-        this.input = document.createElement(`input`);
-        this.input.type = `checkbox`;
-        container.appendChild(this.input);
-
-        const checkmark = document.createElement(`div`);
-        checkmark.classList.add(`settings-checkbox-checkmark`);
-        container.appendChild(checkmark);
-
-        this.element.appendChild(container);
-    }
-}
-
-class SettingsNumber {
-    element: HTMLDivElement;
-    text: HTMLDivElement;
-    input: HTMLInputElement;
-
-    constructor() {
-        this.element = document.createElement(`div`);
-        this.element.classList.add(`settings-number`);
-
-        this.text = document.createElement(`div`);
-        this.element.appendChild(this.text);
-
-        const container = document.createElement(`div`);
-
-        this.input = document.createElement(`input`);
-        this.input.type = `number`;
-        container.appendChild(this.input);
-
-        this.element.appendChild(container);
     }
 }
